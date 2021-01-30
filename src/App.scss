@@ -1,0 +1,23 @@
+.App {
+	min-height: 100vh;
+	overflow-x: hidden;
+	@media only screen and (min-width: 1248px) {
+		width: 1228px;
+		margin: 0 auto;
+	}
+	@media only screen and (max-width: 1246px) {
+		width: 904px;
+		margin: 0 auto;
+	}
+	@media only screen and (max-width: 920px) {
+		// width: 580px;
+		width: 100%;
+		margin: 0 auto;
+	}
+	@media only screen and (max-width: 600px) {
+		width: 100%;
+		margin: 0 auto;
+	}
+}
+
+// transition; color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out

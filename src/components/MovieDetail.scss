@@ -1,0 +1,113 @@
+.detail-container {
+	@media only screen and (max-width: 414px) {
+		margin: 0 1rem 1rem 1rem;
+	}
+}
+
+.detail-container > .item-title {
+	width: 100%;
+	font-family: Helvetica;
+	font-size: 1.5rem;
+	font-weight: bold;
+	font-stretch: normal;
+	font-style: normal;
+	line-height: 1.21;
+	letter-spacing: normal;
+	text-align: left;
+	color: #707070;
+	margin-bottom: 3rem;
+}
+
+.details {
+	display: flex;
+	@media only screen and (min-width: 416px) {
+		flex-flow: row;
+	}
+	@media only screen and (max-width: 414px) {
+		flex-flow: column;
+		align-items: center;
+	}
+}
+
+.details > .img {
+	display: flex;
+	border-radius: 6px;
+	@media only screen and (min-width: 416px) {
+		margin-right: 4rem;
+		height: 376px;
+		width: 256px;
+	}
+	@media only screen and (max-width: 414px) {
+		margin-bottom: 1rem;
+		height: 282px;
+		width: 192px;
+	}
+}
+
+.text-details {
+	@media only screen and (min-width: 416px) {
+		display: flex;
+		flex-flow: column;
+		justify-content: space-evenly;
+		max-width: 35rem;
+	}
+	@media only screen and (max-width: 414px) {
+		// margin: 0 1rem;
+	}
+}
+
+.text-details > .description {
+	display: flex;
+	@media only screen and (max-width: 414px) {
+		margin: 1rem 0;
+	}
+}
+
+.text-details > .actors {
+	display: flex;
+	flex-flow: column;
+	@media only screen and (max-width: 414px) {
+		margin: 1rem 0;
+	}
+}
+
+.text-details > .director {
+	display: flex;
+	flex-flow: column;
+	@media only screen and (max-width: 414px) {
+		margin: 1rem 0;
+	}
+}
+
+.text-details > .genre {
+	display: flex;
+	flex-flow: column;
+	@media only screen and (max-width: 414px) {
+		margin: 1rem 0;
+	}
+}
+
+.text-details > .rating {
+	display: flex;
+	align-items: center;
+}
+
+.text-details > .runtime {
+	display: flex;
+	flex-flow: column;
+	@media only screen and (max-width: 414px) {
+		margin: 1rem 0;
+	}
+}
+
+.detail-header {
+	font-family: Helvetica;
+	font-size: 1rem;
+	font-weight: bold;
+	font-stretch: normal;
+	font-style: normal;
+	line-height: 1.19;
+	letter-spacing: normal;
+	text-align: left;
+	color: #707070;
+}

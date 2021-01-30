@@ -1,0 +1,35 @@
+.back-container {
+	// display: flex;
+	// top: -24px;
+	// position: relative;
+	// margin: 0.375rem 0;
+	// cursor: pointer;
+}
+
+.back-button {
+	display: flex;
+	position: relative;
+	cursor: pointer;
+	margin: 0.375rem 0;
+	@media only screen and (min-width: 416px) {
+		top: -24px;
+	}
+	@media only screen and (max-width: 414px) {
+		top: 0;
+	}
+}
+
+.back-button > .back {
+	width: 9.063rem;
+	height: 1rem;
+	font-family: Helvetica;
+	font-size: 1rem;
+	font-weight: normal;
+	font-stretch: normal;
+	font-style: normal;
+	line-height: 1.19;
+	letter-spacing: normal;
+	text-align: left;
+	color: #bababa;
+	margin-left: 8px;
+}
