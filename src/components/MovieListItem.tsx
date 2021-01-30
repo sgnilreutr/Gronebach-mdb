@@ -1,7 +1,7 @@
 import React from 'react'
 import './MovieListItem.scss'
 import { Link } from 'react-router-dom'
-import { Movie } from '../data/api'
+import { getMoviePosterUrl, Movie } from '../data/api'
 
 interface Props {
   movieInfo: Movie
@@ -17,7 +17,7 @@ const MovieListItem: React.FC<Props> = ({ movieInfo }) => {
             // style={{ borderRadius: `6px` }}
             // height="376px"
             // width="256px"
-            src={movieInfo.Poster}
+            src={getMoviePosterUrl(movieInfo)}
             alt={movieInfo.Title}
           ></img>
           <div className="title">

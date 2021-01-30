@@ -1,9 +1,5 @@
 import axios from 'axios'
-
-// Simple fix, will have to recheck
-// export type SearchParams = {
-//     Query?: string
-// }
+import imageFallback from '../img/placeholder-image.png';
 
 export type Ratings = {
     Source: string,
@@ -63,4 +59,12 @@ export const createApiClient = (): ApiClient => {
                 .catch((err) => console.log(err))
         }
     }
+}
+
+export function getMoviePosterUrl(movieInfo:Movie) {
+  if (movieInfo.Poster === "N/A") {
+    return imageFallback;
+  }
+
+  return `${movieInfo.Poster}`;
 }
