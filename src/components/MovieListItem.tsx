@@ -14,9 +14,6 @@ const MovieListItem: React.FC<Props> = ({ movieInfo }) => {
         <div className="item">
           <img
             className={"item-img"}
-            // style={{ borderRadius: `6px` }}
-            // height="376px"
-            // width="256px"
             src={getMoviePosterUrl(movieInfo)}
             alt={movieInfo.Title}
           ></img>
