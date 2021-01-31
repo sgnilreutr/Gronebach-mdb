@@ -14,7 +14,7 @@ const MovieListItem: React.FC<Props> = ({ movieInfo }) => {
         <div className="item">
           <img
             className={'item-img'}
-            src={getMoviePosterUrl(movieInfo)}
+            src={getMoviePosterUrl(movieInfo.Poster)}
             alt={movieInfo.Title}
           ></img>
           <div className="title">

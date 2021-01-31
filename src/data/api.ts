@@ -61,10 +61,10 @@ export const createApiClient = (): ApiClient => {
     }
 }
 
-export function getMoviePosterUrl(movieInfo:Movie) {
-  if (movieInfo.Poster === "N/A") {
+export function getMoviePosterUrl(Poster:string) {
+  if (Poster === "N/A") {
     return imageFallback;
   }
 
-  return `${movieInfo.Poster}`;
+  return `${Poster}`;
 }
