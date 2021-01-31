@@ -3,7 +3,6 @@ import DetailHeader from './DetailHeader'
 import './MissingTitles.scss'
 
 const missing_titles = [
-    'Air Bud 4',
     'Attack on the Queen',
     'De Ondergrondse Vergeet Niet',
     'De Oorlog van de Eeuw 1',
@@ -12,13 +11,10 @@ const missing_titles = [
     'De Oorlog van de Eeuw 4',
     'De Oorlog van de Eeuw 5',
     'De Oorlog van de Eeuw 6',
-    'Johan Cruijf',
-    'Killing a beatle',
     's Werelds mooiste nationale parken Afrika en Europa',
     's Werelds mooiste nationale parken Azie en Oceanie',
     'Slag om Arnhem',
     'When the Party is over',
-    'Zomer Hitte'
 ]
 
 export default function Missingtitles() {
