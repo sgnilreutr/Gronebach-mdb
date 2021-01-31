@@ -49,7 +49,7 @@ export type ApiClient = {
 export const createApiClient = (): ApiClient => {
     return {
         getMovies: () => {
-            return axios.get('all_movies_20210124_19-44-53.json')
+            return axios.get('all_movies_20210131_14-39-46.json')
                 .then((res) => res.data)
                 .catch((err) => console.log(err))
         },

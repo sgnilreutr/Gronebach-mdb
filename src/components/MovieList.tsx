@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux'
 
 import MovieListItem from './MovieListItem'
 import Overviewheader from './OverviewHeader'
+import { Link } from 'react-router-dom'
 
 const api = createApiClient()
 const selectSearchTerm = (state: any) => state.searchTerm
@@ -55,7 +56,10 @@ const MovieList: React.FC = () => {
             />
           ))
         ) : (
-            <p>Geen items gevonden.</p>
+            <div>
+              <p>Geen items gevonden.</p>
+              <Link to="/missing">Controleer de ontbrekende titels</Link>
+            </div>
           )}
       </div>
     )
