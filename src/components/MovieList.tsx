@@ -64,7 +64,6 @@ const MovieList: React.FC = () => {
   return (
     <div>
       <Overviewheader />
-      {/* {movies ? <p>Showing {ovies.length} results</p> : null} */}
       {movies ? renderMovies(movies) : <h2>Loading...</h2>}
     </div>
   )
