@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import Header from './Header'
+import DetailHeader from './DetailHeader'
 import './MovieDetail.scss'
 import { FiStar } from 'react-icons/fi'
 import { useParams } from 'react-router-dom'
@@ -32,11 +32,7 @@ const Moviedetail: React.FC<MovieDetail> = () => {
         </div>
         <div>
           <div className="details">
-            <img
-              src={movie.Poster}
-              alt={movie.Title}
-              className="img"
-            ></img>
+            <img src={movie.Poster} alt={movie.Title} className="img"></img>
             <div className="text-details">
               <div className="description">{movie.Plot}</div>
               <div className="actors">
@@ -57,7 +53,7 @@ const Moviedetail: React.FC<MovieDetail> = () => {
                   <b>{movie.imdbRating}</b> / 10
                 </span>
               </div>
-              <div className="runtime"> 
+              <div className="runtime">
                 <span className="detail-header">Runtime</span>
                 <span>{movie.Runtime}</span>
               </div>
@@ -70,7 +66,7 @@ const Moviedetail: React.FC<MovieDetail> = () => {
 
   return (
     <div>
-      <Header />
+      <DetailHeader />
       {movie ? renderDetail(movie) : <h2>Loading...</h2>}
     </div>
   )

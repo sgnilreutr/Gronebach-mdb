@@ -1,12 +1,10 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import './HeaderOptions.scss'
 
-// Set Alles option as default selected
 const selectCategory = (state: any) => state.category
 
 export default function Headeroptions() {
-  // const [selectedButton, setSelectedButton] = useState<string>('All')
   const category = useSelector(selectCategory)
   const dispatch = useDispatch()
 
@@ -16,7 +14,6 @@ export default function Headeroptions() {
 
   return (
     <div className="headerOptions-container">
-      {/* <div className={`option ${selected && "option--selected"}`} onClick={() => setSelected(!selected)}>Alles</div> */}
       <div
         id={'All'}
         onClick={() => setCategory('')}
@@ -27,18 +24,14 @@ export default function Headeroptions() {
       <div
         id={'Movies'}
         onClick={() => setCategory('Movie')}
-        className={`option ${
-          category === 'Movie' && 'option--selected'
-        }`}
+        className={`option ${category === 'Movie' && 'option--selected'}`}
       >
         Films
       </div>
       <div
         id={'Series'}
         onClick={() => setCategory('Series')}
-        className={`option ${
-          category === 'Series' && 'option--selected'
-        }`}
+        className={`option ${category === 'Series' && 'option--selected'}`}
       >
         Series
       </div>

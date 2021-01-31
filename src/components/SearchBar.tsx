@@ -12,7 +12,7 @@ const SearchBar: React.FC = () => {
 
   return (
     <form className="search-bar" id="searchBar">
-      <FiSearch style={{ stroke: '#8d8d8d', marginRight: '6px'}} />
+      <FiSearch style={{ stroke: '#8d8d8d', marginRight: '6px' }} />
       <input
         type="search"
         placeholder="Filter via titel, acteur, genre, type, of jaar"

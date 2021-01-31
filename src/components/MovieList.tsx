@@ -4,9 +4,8 @@ import './MovieList.scss'
 import { createApiClient, Movie } from '../data/api'
 import { useSelector } from 'react-redux'
 
-import Header from './Header'
-import ResultIndicator from './ResultIndicator'
 import MovieListItem from './MovieListItem'
+import Overviewheader from './OverviewHeader'
 
 const api = createApiClient()
 const selectSearchTerm = (state: any) => state.searchTerm
@@ -33,33 +32,38 @@ const MovieList: React.FC = () => {
         movie.imdbID +
         movie.Year +
         movie.Type
-      ).includes(searchTerm.toLowerCase() || category.toLowerCase() || (searchTerm.toLowerCase() && category.toLowerCase()) )
+      ).includes(
+        searchTerm.toLowerCase() ||
+        category.toLowerCase() ||
+        (searchTerm.toLowerCase() && category.toLowerCase())
+      )
     )
 
     return (
       <div className="movie-grid">
-        {filteredMovies.length > 0 ?
-          (filteredMovies.map((movie) => (
-          <MovieListItem
-            key={movie.imdbID}
-            movieInfo={{
-              Title: `${movie.Title}`,
-              Year: `${movie.Year}`,
-              imdbID: `${movie.imdbID}`,
-              Type: `${movie.Type}`,
-              Poster: `${movie.Poster}`,
-            }}
-          />
-        )))
-        : <p>Geen items gevonden.</p>}
+        {filteredMovies.length > 0 ? (
+          filteredMovies.map((movie) => (
+            <MovieListItem
+              key={movie.imdbID}
+              movieInfo={{
+                Title: `${movie.Title}`,
+                Year: `${movie.Year}`,
+                imdbID: `${movie.imdbID}`,
+                Type: `${movie.Type}`,
+                Poster: `${movie.Poster}`,
+              }}
+            />
+          ))
+        ) : (
+            <p>Geen items gevonden.</p>
+          )}
       </div>
     )
   }
 
   return (
     <div>
-      <Header />
-      {/* <ResultIndicator query={location.search} /> */}
+      <Overviewheader />
       {/* {movies ? <p>Showing {ovies.length} results</p> : null} */}
       {movies ? renderMovies(movies) : <h2>Loading...</h2>}
     </div>

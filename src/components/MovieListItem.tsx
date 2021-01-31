@@ -13,7 +13,7 @@ const MovieListItem: React.FC<Props> = ({ movieInfo }) => {
       <Link style={{ textDecoration: `none` }} to={`item/${movieInfo.imdbID}`}>
         <div className="item">
           <img
-            className={"item-img"}
+            className={'item-img'}
             src={getMoviePosterUrl(movieInfo)}
             alt={movieInfo.Title}
           ></img>

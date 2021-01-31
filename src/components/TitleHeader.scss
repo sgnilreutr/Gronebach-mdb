@@ -1,11 +1,9 @@
-.header-container {
+.title-container {
 	display: flex;
-	margin-top: 4rem;
-	margin-bottom: 2.875rem;
 	flex-flow: column;
 	@media only screen and (min-width: 416px) {
 		margin-top: 4rem;
-		margin-bottom: 2.875rem;
+		margin-bottom: 1rem;
 	}
 	@media only screen and (max-width: 414px) {
 		// margin-top: 1.3rem;
@@ -14,7 +12,7 @@
 	}
 }
 
-.header-container > .header-title {
+.title-container > .header-title {
 	font-size: 1.5rem;
 	color: #707070;
 	width: max-content;

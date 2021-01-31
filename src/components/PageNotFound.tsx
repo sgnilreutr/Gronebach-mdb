@@ -1,10 +1,10 @@
 import React from 'react'
-import Header from './Header'
+import OverviewHeader from './OverviewHeader'
 
 export default function PageNotFound() {
   return (
     <div>
-      <Header />
+      <OverviewHeader />
       <h1>Uh, oh! Deze pagina bestaat niet.</h1>
     </div>
   )
