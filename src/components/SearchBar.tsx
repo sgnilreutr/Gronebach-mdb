@@ -7,7 +7,12 @@ const SearchBar: React.FC = () => {
   const dispatch = useDispatch()
 
   const onSearch = (value: string) => {
-    dispatch({ type: 'SEARCH_TERM_SET', payload: value })
+    let searchDebounce
+    clearTimeout(searchDebounce)
+
+    searchDebounce = setTimeout(async () => {
+      dispatch({ type: 'SEARCH_TERM_SET', payload: value })
+    }, 400)
   }
 
   return (
