@@ -24,6 +24,7 @@ const MovieListItem: React.FC<Props> = ({ movieInfo }) => {
               effect="blur"
               height={ITEM_HEIGHT}
               width={ITEM_WIDTH}
+              style={{ borderRadius: `6px` }}
             />
           </div>
           <div className="title">
