@@ -22,12 +22,9 @@ const MovieListItem: React.FC<Props> = ({ movieInfo }) => {
               src={getMoviePosterUrl(movieInfo.Poster)}
               alt={movieInfo.Title}
               effect="blur"
-              // height={378}
-              // width={258}
-              // height={176.72}
-              // width={120.32}
               height={ITEM_HEIGHT}
               width={ITEM_WIDTH}
+              style={{ borderRadius: `6px` }}
             />
           </div>
           <div className="title">
