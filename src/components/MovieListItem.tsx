@@ -10,8 +10,8 @@ interface Props {
 }
 
 const MovieListItem: React.FC<Props> = ({ movieInfo }) => {
-  const ITEM_HEIGHT = (window.innerWidth <= 414) ? 176.72 : 378
-  const ITEM_WIDTH = (window.innerWidth <= 414) ? 120.32 : 258
+  const itemHeight = (window.innerWidth <= 414) ? 176.72 : 378
+  const itemWidth = (window.innerWidth <= 414) ? 120.32 : 258
 
   return (
     <>
@@ -22,8 +22,8 @@ const MovieListItem: React.FC<Props> = ({ movieInfo }) => {
               src={getMoviePosterUrl(movieInfo.Poster)}
               alt={movieInfo.Title}
               effect="blur"
-              height={ITEM_HEIGHT}
-              width={ITEM_WIDTH}
+              height={itemHeight}
+              width={itemWidth}
               style={{ borderRadius: `6px` }}
             />
           </div>
