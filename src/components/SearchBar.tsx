@@ -30,7 +30,7 @@ const SearchBar: React.FC = () => {
       <input
         type="search"
         value={searchTerm}
-        placeholder="Filter via titel, acteur, genre, type, of jaar"
+        placeholder="Filter via titel, type, of jaar"
         className="placeholder-text ph-size"
         id="searchInput"
         onChange={(e) => onSearch(e.target.value)}
