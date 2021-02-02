@@ -45,8 +45,6 @@ const MovieList: React.FC = () => {
       )
     )
 
-    console.log(filteredMovies)
-
     return (
       <div className="movie-grid">
         {filteredMovies.length > 0 ? (
