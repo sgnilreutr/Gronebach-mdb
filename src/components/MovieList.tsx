@@ -30,15 +30,22 @@ const MovieList: React.FC = () => {
     const filteredMovies = movies.filter((movie) =>
       (
         movie.Title.toLowerCase() +
-        movie.imdbID +
         movie.Year +
-        movie.Type
+        movie.Type.toLowerCase() +
+        movie.Runtime.toLowerCase() +
+        movie.Genre.toLowerCase() +
+        movie.Director.toLowerCase() +
+        movie.Actors.toLowerCase() +
+        movie.Country.toLowerCase() +
+        movie.imdbRating
       ).includes(
         searchTerm.toLowerCase() ||
         category.toLowerCase() ||
         (searchTerm.toLowerCase() && category.toLowerCase())
       )
     )
+
+    console.log(filteredMovies)
 
     return (
       <div className="movie-grid">
@@ -52,6 +59,12 @@ const MovieList: React.FC = () => {
                 imdbID: `${movie.imdbID}`,
                 Type: `${movie.Type}`,
                 Poster: `${movie.Poster}`,
+                Runtime: `${movie.Runtime}`,
+                Genre: `${movie.Genre}`,
+                Actors: `${movie.Actors}`,
+                Country: `${movie.Country}`,
+                imdbRating: `${movie.imdbRating}`,
+                Director: `${movie.Director}`
               }}
             />
           ))
