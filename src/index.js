@@ -11,7 +11,7 @@ import RootReducer from './reducers/reducer';
 import logger from 'redux-logger'
 const store = createStore(
   RootReducer,
-  applyMiddleware(logger),
+  // applyMiddleware(logger),
 );
 
 ReactDOM.render(
