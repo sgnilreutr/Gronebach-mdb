@@ -3,7 +3,6 @@ import ReactPlayer from 'react-player'
 import { MdLocalMovies } from 'react-icons/md'
 import './MovieTrailer.scss'
 import { getMovieTrailerUrl } from '../data/api'
-import Novideo from './NoVideo'
 
 export const OpenTrailerButton = (props: any) => {
     return (
