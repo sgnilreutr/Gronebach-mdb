@@ -2,7 +2,6 @@ import React from 'react'
 import ReactPlayer from 'react-player'
 import { MdLocalMovies } from 'react-icons/md'
 import './MovieTrailer.scss'
-import { getMovieTrailerUrl } from '../data/api'
 
 export const OpenTrailerButton = (props: any) => {
     return (

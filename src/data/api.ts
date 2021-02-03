@@ -91,11 +91,3 @@ export function getMoviePosterUrl(Poster:string) {
 
   return `${Poster}`;
 }
-
-export function getMovieTrailerUrl(trailerUrl: any) {
-    if (trailerUrl === '') {
-        return videoFallback;
-    }
-
-    return `${trailerUrl}`
-}
