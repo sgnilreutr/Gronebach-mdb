@@ -35,7 +35,7 @@ const SearchBar: React.FC = () => {
         id="searchInput"
         onChange={(e) => onSearch(e.target.value)}
         autoFocus
-        style={{ backgroundColor: '#222' }}
+        style={{ backgroundColor: 'rgb(50, 50, 50)' }}
       />
     </form>
   )
