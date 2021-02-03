@@ -18,7 +18,7 @@
 	margin-bottom: 3rem;
 }
 
-.details {
+.details-inner {
 	display: flex;
 	@media only screen and (min-width: 416px) {
 		flex-flow: row;
@@ -29,7 +29,7 @@
 	}
 }
 
-.details > .img {
+.details-inner > .img {
 	display: flex;
 	border-radius: 6px;
 	@media only screen and (min-width: 416px) {

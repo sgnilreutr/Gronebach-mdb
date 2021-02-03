@@ -40,16 +40,27 @@ export type Movie = {
     Director: string
 }
 
+export type MovieTrailer = {
+    videoUrl: string
+}
+
 export const options = {
       headers: {
-          'x-rapidapi-key': process.env.REACT_APP_RAPIDAPI_KEY,
-          'x-rapidapi-host': process.env.REACT_APP_RAPIDAPI_HOST,
-      },
+        'x-rapidapi-key': process.env.REACT_APP_RAPIDAPI_KEY,
+        'x-rapidapi-host': process.env.REACT_APP_RAPIDAPI_HOST
+      }
+}
+
+export const requestOptions = {
+    headers :{
+        'x-api-key': process.env.REACT_APP_IMDB_API_KEY
+    }
 }
     
 export type ApiClient = {
     getMovies: () => Promise<Movie[]>;
     getMovieDetail: (movieId: string) => Promise<MovieDetail>;
+    getMovieTrailer: (movieId: string) => Promise<MovieTrailer>
 }
 
 export const createApiClient = (): ApiClient => {
@@ -61,6 +72,11 @@ export const createApiClient = (): ApiClient => {
         },
         getMovieDetail: (movieId: string) => {
             return axios.get(`https://movie-database-imdb-alternative.p.rapidapi.com/?i=${movieId}&r=json`, options)
+                .then((res) => res.data)
+                .catch((err) => console.log(err))
+        },
+        getMovieTrailer: (movieId: string) => {
+            return axios.get(`https://imdb-api.com/en/API/YoutubeTrailer/k_8ao1gjen/${movieId}`, requestOptions)
                 .then((res) => res.data)
                 .catch((err) => console.log(err))
         }
