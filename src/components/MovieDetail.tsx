@@ -4,17 +4,21 @@ import './MovieDetail.scss'
 import { FiStar } from 'react-icons/fi'
 import { useParams } from 'react-router-dom'
 import { createApiClient, getMoviePosterUrl, MovieDetail } from '../data/api'
+import ReactPlayer from 'react-player'
 
 const api = createApiClient()
 
 const Moviedetail: React.FC<MovieDetail> = () => {
   const { movieID } = useParams<{ movieID: string }>()
   const [movie, setMovie] = useState<any>({})
+  const [movieTrailer, setMovieTrailer] = useState<any>({})
 
   useEffect(() => {
     const fetchData = async () => {
       const movieDetail = await api.getMovieDetail(`${movieID}`)
       setMovie(movieDetail || 'No movie loaded.')
+      const movieTrailer = await api.getMovieTrailer(`${movieID}`)
+      setMovieTrailer(movieTrailer || 'No movie trailer')
     }
 
     fetchData()
@@ -31,33 +35,45 @@ const Moviedetail: React.FC<MovieDetail> = () => {
           </div>
         </div>
         <div>
-          <div className="details">
-            <img src={getMoviePosterUrl(movie.Poster)} alt={movie.Title} className="img"></img>
-            <div className="text-details">
-              <div className="description">{movie.Plot}</div>
-              <div className="actors">
-                <span className="detail-header">Acteurs</span>
-                <span>{movie.Actors}</span>
+          <div>
+            <div className="details-inner">
+              <img src={getMoviePosterUrl(movie.Poster)} alt={movie.Title} className="img"></img>
+              <div className="moviePlayer">
+                <ReactPlayer
+                  // light={true}
+                  url={movieTrailer.videoUrl}
+                  style={{ borderRadius: '6px' }}
+                />
               </div>
-              <div className="director">
-                <span className="detail-header">Regisseur</span>
-                <span>{movie.Director}</span>
-              </div>
-              <div className="genre">
-                <span className="detail-header">Genre</span>
-                <span>{movie.Genre}</span>
-              </div>
-              <div className="rating">
-                <FiStar />
-                <span style={{ marginLeft: `8px` }}>
-                  <b>{movie.imdbRating}</b> / 10
+              <div className="text-details">
+                <div className="description">{movie.Plot}</div>
+                <div className="actors">
+                  <span className="detail-header">Acteurs</span>
+                  <span>{movie.Actors}</span>
+                </div>
+                <div className="director">
+                  <span className="detail-header">Regisseur</span>
+                  <span>{movie.Director}</span>
+                </div>
+                <div className="genre">
+                  <span className="detail-header">Genre</span>
+                  <span>{movie.Genre}</span>
+                </div>
+                <div className="rating">
+                  <FiStar />
+                  <span style={{ marginLeft: `8px` }}>
+                    <b>{movie.imdbRating}</b> / 10
                 </span>
-              </div>
-              <div className="runtime">
-                <span className="detail-header">Runtime</span>
-                <span>{movie.Runtime}</span>
+                </div>
+                <div className="runtime">
+                  <span className="detail-header">Runtime</span>
+                  <span>{movie.Runtime}</span>
+                </div>
               </div>
             </div>
+            {/* <div className="moviePlayer">
+              <ReactPlayer light={true} url={movieTrailer.videoUrl} />
+            </div> */}
           </div>
         </div>
       </div>
