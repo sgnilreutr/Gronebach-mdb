@@ -4,7 +4,7 @@ import './MovieDetail.scss'
 import { FiStar } from 'react-icons/fi'
 import { useParams } from 'react-router-dom'
 import { createApiClient, getMoviePosterUrl, MovieDetail } from '../data/api'
-import ReactPlayer from 'react-player'
+import { MovieTrailer, OpenTrailerButton } from './MovieTrailer'
 
 const api = createApiClient()
 
@@ -12,17 +12,22 @@ const Moviedetail: React.FC<MovieDetail> = () => {
   const { movieID } = useParams<{ movieID: string }>()
   const [movie, setMovie] = useState<any>({})
   const [movieTrailer, setMovieTrailer] = useState<any>({})
+  const [state, setState] = useState('closed')
 
   useEffect(() => {
     const fetchData = async () => {
-      const movieDetail = await api.getMovieDetail(`${movieID}`)
+      const movieDetail = await api.getMovieDetail(`${ movieID }`)
       setMovie(movieDetail || 'No movie loaded.')
-      const movieTrailer = await api.getMovieTrailer(`${movieID}`)
+      const movieTrailer = await api.getMovieTrailer(`${ movieID }`)
       setMovieTrailer(movieTrailer || 'No movie trailer')
     }
 
     fetchData()
   }, [movieID])
+
+  const triggerOpenTrailerState = () => {
+    setState('open')
+  }
 
   const renderDetail = (movie: MovieDetail) => {
     return (
@@ -37,15 +42,11 @@ const Moviedetail: React.FC<MovieDetail> = () => {
         <div>
           <div>
             <div className="details-inner">
-              <img src={getMoviePosterUrl(movie.Poster)} alt={movie.Title} className="img"></img>
-              <div className="moviePlayer">
-                <ReactPlayer
-                  // light={true}
-                  url={movieTrailer.videoUrl}
-                  style={{ borderRadius: '6px' }}
-                />
-              </div>
+              <img src={getMoviePosterUrl(movie.Poster)} alt={movie.Title} className="img" />
               <div className="text-details">
+                {state === 'closed' && (
+                  <OpenTrailerButton openTrailer={triggerOpenTrailerState} />)}
+                {state === 'open' && <MovieTrailer trailerUrl={movieTrailer.videoUrl} />}
                 <div className="description">{movie.Plot}</div>
                 <div className="actors">
                   <span className="detail-header">Acteurs</span>

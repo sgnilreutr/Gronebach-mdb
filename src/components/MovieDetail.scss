@@ -44,21 +44,6 @@
 	}
 }
 
-.details-inner > .moviePlayer {
-	display: flex;
-	border-radius: 6px;
-	@media only screen and (min-width: 416px) {
-		margin-right: 4rem;
-		// height: 376px;
-		// width: 256px;
-	}
-	@media only screen and (max-width: 414px) {
-		margin-bottom: 1rem;
-		// height: 282px;
-		width: 100%;
-	}
-}
-
 .text-details {
 	@media only screen and (min-width: 416px) {
 		display: flex;

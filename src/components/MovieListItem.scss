@@ -1,7 +1,6 @@
 .item {
 	border-radius: 5px;
 	backdrop-filter: blur(28px);
-	border: solid 1px #e5e5e5;
 	@media only screen and (min-width: 416px) {
 		width: 16rem;
 		height: 23.5rem;
@@ -20,7 +19,6 @@
 	border-radius: 5px;
 	backdrop-filter: blur(28px);
 	box-shadow: 5px 10px 53px 0 rgba(95, 102, 173, 0.57);
-	border: solid 1px #e5e5e5;
 	@media only screen and (min-width: 416px) {
 		margin: 0 0 0.938rem;
 		transform: scale(1.04);
