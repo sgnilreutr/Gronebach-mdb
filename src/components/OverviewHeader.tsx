@@ -5,16 +5,15 @@ import './OverviewHeader.scss'
 import TitleHeader from './TitleHeader'
 
 export default function Overviewheader() {
-
-    return (
-        <div>
-            <TitleHeader />
-            <div className="overviewheader-container">
-                <div className="ml-auto">
-                    <SearchBar />
-                </div>
-                <HeaderOptions />
-            </div>
+  return (
+    <div>
+      <TitleHeader />
+      <div className="overviewheader-container">
+        <div className="ml-auto">
+          <SearchBar />
         </div>
-    )
+        <HeaderOptions />
+      </div>
+    </div>
+  )
 }

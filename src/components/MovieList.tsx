@@ -40,8 +40,8 @@ const MovieList: React.FC = () => {
         movie.imdbRating
       ).includes(
         searchTerm.toLowerCase() ||
-        category.toLowerCase() ||
-        (searchTerm.toLowerCase() && category.toLowerCase())
+          category.toLowerCase() ||
+          (searchTerm.toLowerCase() && category.toLowerCase())
       )
     )
 
@@ -62,16 +62,16 @@ const MovieList: React.FC = () => {
                 Actors: `${movie.Actors}`,
                 Country: `${movie.Country}`,
                 imdbRating: `${movie.imdbRating}`,
-                Director: `${movie.Director}`
+                Director: `${movie.Director}`,
               }}
             />
           ))
         ) : (
-            <div>
-              <p>Geen items gevonden.</p>
-              <Link to="/missing">Controleer de ontbrekende titels</Link>
-            </div>
-          )}
+          <div>
+            <p>Geen items gevonden.</p>
+            <Link to="/missing">Controleer de ontbrekende titels</Link>
+          </div>
+        )}
       </div>
     )
   }

@@ -1,5 +1,6 @@
 import axios from 'axios'
 import imageFallback from '../img/placeholder-image.png';
+import videoFallback from '../img/placeholder-video.jpeg';
 
 export type Ratings = {
     Source: string,
@@ -89,4 +90,12 @@ export function getMoviePosterUrl(Poster:string) {
   }
 
   return `${Poster}`;
+}
+
+export function getMovieTrailerUrl(trailerUrl: any) {
+    if (trailerUrl === '') {
+        return videoFallback;
+    }
+
+    return `${trailerUrl}`
 }

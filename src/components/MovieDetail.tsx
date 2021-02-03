@@ -25,6 +25,8 @@ const Moviedetail: React.FC<MovieDetail> = () => {
     fetchData()
   }, [movieID])
 
+  console.log(movieTrailer)
+
   const triggerOpenTrailerState = () => {
     setState('open')
   }
@@ -42,11 +44,18 @@ const Moviedetail: React.FC<MovieDetail> = () => {
         <div>
           <div>
             <div className="details-inner">
-              <img src={getMoviePosterUrl(movie.Poster)} alt={movie.Title} className="img" />
+              <img
+                src={getMoviePosterUrl(movie.Poster)}
+                alt={movie.Title}
+                className="img"
+              />
               <div className="text-details">
                 {state === 'closed' && (
-                  <OpenTrailerButton openTrailer={triggerOpenTrailerState} />)}
-                {state === 'open' && <MovieTrailer trailerUrl={movieTrailer.videoUrl} />}
+                  <OpenTrailerButton openTrailer={triggerOpenTrailerState} />
+                )}
+                {state === 'open' && (
+                  <MovieTrailer trailerUrl={movieTrailer.videoUrl} />
+                )}
                 <div className="description">{movie.Plot}</div>
                 <div className="actors">
                   <span className="detail-header">Acteurs</span>
@@ -64,7 +73,7 @@ const Moviedetail: React.FC<MovieDetail> = () => {
                   <FiStar />
                   <span style={{ marginLeft: `8px` }}>
                     <b>{movie.imdbRating}</b> / 10
-                </span>
+                  </span>
                 </div>
                 <div className="runtime">
                   <span className="detail-header">Runtime</span>
@@ -72,9 +81,6 @@ const Moviedetail: React.FC<MovieDetail> = () => {
                 </div>
               </div>
             </div>
-            {/* <div className="moviePlayer">
-              <ReactPlayer light={true} url={movieTrailer.videoUrl} />
-            </div> */}
           </div>
         </div>
       </div>

@@ -23,7 +23,6 @@ const SearchBar: React.FC = () => {
     dispatch({ type: 'SEARCH_TERM_SET', payload: value })
   }
 
-
   return (
     <form className="search-bar" id="searchBar">
       <FiSearch style={{ stroke: '#8d8d8d', marginRight: '6px' }} />
