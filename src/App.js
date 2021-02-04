@@ -8,16 +8,16 @@ import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
 
 function App() {
   return (
-    <Router>
-      <div className="App">
-        <Switch>
-          <Route path="/" exact={true} component={MovieList} />
-          <Route path="/item/:movieID" component={MovieDetail} />
-          <Route path="/missing" component={MissingTitles} />
-          <Route path="*" component={PageNotFound} />
-        </Switch>
-      </div>
-    </Router>
+      <Router>
+        <div className="App">
+          <Switch>
+            <Route path="/" exact={true} component={MovieList} />
+            <Route path="/item/:movieID" component={MovieDetail} />
+            <Route path="/missing" component={MissingTitles} />
+            <Route path="*" component={PageNotFound} />
+          </Switch>
+        </div>
+      </Router>
   )
 }
 

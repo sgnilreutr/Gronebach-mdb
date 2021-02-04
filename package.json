@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@react-firebase/database": "^0.3.11",
     "@reduxjs/toolkit": "^1.1.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
@@ -15,6 +16,7 @@
     "@types/react-router-dom": "^5.1.7",
     "@types/redux-logger": "^3.0.8",
     "axios": "^0.21.1",
+    "firebase": "^8.2.5",
     "node-sass": "4.14.1",
     "prettier": "^2.2.1",
     "react": "^17.0.1",
