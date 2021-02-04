@@ -27,6 +27,8 @@ const Moviedetail: React.FC<MovieDetail> = () => {
   }
 
   const renderDetail = (movie: MovieDetail) => {
+    console.log(movie)
+
     return (
       <div className="detail-container">
         <div className="item-title">
@@ -34,6 +36,7 @@ const Moviedetail: React.FC<MovieDetail> = () => {
             <span>
               {movie.Title} ({movie.Year})
             </span>
+            <pre className="">{movie.Rated}</pre>
           </div>
         </div>
         <div>
