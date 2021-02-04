@@ -11,15 +11,12 @@ const api = createApiClient()
 const Moviedetail: React.FC<MovieDetail> = () => {
   const { movieID } = useParams<{ movieID: string }>()
   const [movie, setMovie] = useState<any>({})
-  const [movieTrailer, setMovieTrailer] = useState<any>({})
   const [state, setState] = useState('closed')
 
   useEffect(() => {
     const fetchData = async () => {
       const movieDetail = await api.getMovieDetail(`${ movieID }`)
       setMovie(movieDetail || 'No movie loaded.')
-      const movieTrailer = await api.getMovieTrailer(`${ movieID }`)
-      setMovieTrailer(movieTrailer || 'No movie trailer')
     }
 
     fetchData()
@@ -46,7 +43,7 @@ const Moviedetail: React.FC<MovieDetail> = () => {
               <div className="text-details">
                 {state === 'closed' && (
                   <OpenTrailerButton openTrailer={triggerOpenTrailerState} />)}
-                {state === 'open' && <MovieTrailer trailerUrl={movieTrailer.videoUrl} />}
+                {state === 'open' && <MovieTrailer movieID={movie.imdbID} />}
                 <div className="description">{movie.Plot}</div>
                 <div className="actors">
                   <span className="detail-header">Acteurs</span>
