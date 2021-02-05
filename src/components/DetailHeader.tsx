@@ -17,7 +17,7 @@ export default function Backtooverview() {
       <div className="back-container">
         <div className="back-button" onClick={navigateBack}>
           <FiArrowLeft style={{ stroke: '#8d8d8d' }} />
-          <div className="back">Terug naar overzicht</div>
+          <div className="back">Terug naar homepage</div>
         </div>
       </div>
     </div>

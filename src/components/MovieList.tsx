@@ -39,7 +39,7 @@ const MovieList: React.FC<Props> = ({ movies }) => {
     )
 
     return (
-      <div className="movie-grid">
+      <div className="movie-horizontal-grid">
         <div className="hs hs-scroll">
           {filteredMovies.length > 0 ? (
             filteredMovies.map((movie) => (

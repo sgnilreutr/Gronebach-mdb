@@ -6,11 +6,7 @@ import firebase from '../data/firebase'
 import { Movie } from '../data/api'
 import { FiChevronRight } from 'react-icons/fi'
 
-interface Props {
-
-}
-
-const Homepage = (props: Props) => {
+const Homepage = ({ history }: { history: any }) => {
     const [movieList, setMovieList] = useState<Movie[]>()
 
     //Fetch data from RTDb in Firebase
@@ -26,31 +22,41 @@ const Homepage = (props: Props) => {
         })
     }, [])
 
+    // const openOverviewPage = (part: any) => {
+    //     history.push('/overview/action')
+    // }
+
     const categoryHomepage = (movieList: any) => {
 
+        //Show Top Rated category homepage
         const filterTopMovies = movieList.filter((movie: any) =>
             (movie.imdbRating >= 8.5))
+        const partTop = filterTopMovies.slice(0, 10)
 
-        const part = filterTopMovies.slice(0, 10)
-
+        //Show Action category homepage
         const filterActionMovies = movieList.filter((movie: any) =>
             (movie.Genre.toLowerCase()).includes('action'))
+        const partAction = filterActionMovies.slice(0, 10)
 
-        const part1 = filterActionMovies.slice(0, 10)
-
+        //Show Romance category homepage
         const filterRomanceMovies = movieList.filter((movie: any) =>
             (movie.Genre.toLowerCase()).includes('romance'))
-        const part2 = filterRomanceMovies.slice(0, 10)
+        const partRomance = filterRomanceMovies.slice(0, 10)
 
+        //Show Comedy category homepage
         const filterComedyMovies = movieList.filter((movie: any) =>
             (movie.Genre.toLowerCase()).includes('comedy'))
-        const part3 = filterComedyMovies.slice(0, 10)
+        const partComedy = filterComedyMovies.slice(0, 10)
 
-        console.log(part)
+        //Show Child safe category homepage
+        const filterChildMovies = movieList.filter((movie: any) =>
+            (movie.Rated === 'PG' && 'G'))
+        const partChild = filterChildMovies.slice(0, 10)
 
         return (
             <div>
                 <div>
+                    {/* <div onClick={() => openOverviewPage(part)} className="category-header"> */}
                     <div className="category-header">
                         <h2 className="category-header__title">Best beoordeeld</h2>
                         <div className="category-header__subtitle">
@@ -58,7 +64,7 @@ const Homepage = (props: Props) => {
                             <FiChevronRight className="category-header__icon" size={18} />
                         </div>
                     </div>
-                    <MovieList movies={part} />
+                    <MovieList movies={partTop} />
                 </div>
                 <div>
                     <div className="category-header">
@@ -68,7 +74,7 @@ const Homepage = (props: Props) => {
                             <FiChevronRight className="category-header__icon" size={18} />
                         </div>
                     </div>
-                    <MovieList movies={part1} />
+                    <MovieList movies={partAction} />
                 </div>
                 <div>
                     <div className="category-header">
@@ -78,7 +84,7 @@ const Homepage = (props: Props) => {
                             <FiChevronRight className="category-header__icon" size={18} />
                         </div>
                     </div>
-                    <MovieList movies={part2} />
+                    <MovieList movies={partRomance} />
                 </div>
                 <div>
                     <div className="category-header">
@@ -88,14 +94,24 @@ const Homepage = (props: Props) => {
                             <FiChevronRight className="category-header__icon" size={18} />
                         </div>
                     </div>
-                    <MovieList movies={part3} />
+                    <MovieList movies={partComedy} />
+                </div>
+                <div>
+                    <div className="category-header">
+                        <h2 className="category-header__title">Kijk met de kinderen</h2>
+                        <div className="category-header__subtitle">
+                            <span className="category-header__subtitle-text">Bekijk alles</span>
+                            <FiChevronRight className="category-header__icon" size={18} />
+                        </div>
+                    </div>
+                    <MovieList movies={partChild} />
                 </div>
             </div>
         )
     }
 
     return (
-        <div>
+        <div style={{ marginBottom: '6rem' }}>
             <Overviewheader />
             {movieList ? categoryHomepage(movieList) : <h2>Nothing to show</h2>}
         </div>

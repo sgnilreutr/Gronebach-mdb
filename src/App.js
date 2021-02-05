@@ -1,6 +1,7 @@
 import React from 'react'
 import './App.scss'
 // import MovieList from './components/MovieList'
+import MovieOverview from './components/MovieOverview'
 import MovieDetail from './components/MovieDetail'
 import MissingTitles from './components/MissingTitles'
 import PageNotFound from './components/PageNotFound'
@@ -13,6 +14,7 @@ function App() {
         <div className="App">
           <Switch>
             <Route path="/" exact={true} component={Homepage} />
+            <Route path="/overview/:genre" component={MovieOverview} />
             <Route path="/item/:movieID" component={MovieDetail} />
             <Route path="/missing" component={MissingTitles} />
             <Route path="*" component={PageNotFound} />
