@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './MovieOverview.scss'
 
 import { Movie } from '../data/api'
-import { useSelector } from 'react-redux'
+// import { useSelector } from 'react-redux'
 
 import MovieListItem from './MovieListItem'
 import { Link } from 'react-router-dom'
@@ -15,10 +15,10 @@ interface Props {
     movies: any
 }
 
-const selectSearchTerm = (state: any) => state.searchTerm
+// const selectSearchTerm = (state: any) => state.searchTerm
 
 const MovieOverview: React.FC<Props> = () => {
-    const searchTerm = useSelector(selectSearchTerm)
+    // const searchTerm = useSelector(selectSearchTerm)
     const [movies, setMovies] = useState<Movie[]>()
 
     //Fetch data from RTDb in Firebase
