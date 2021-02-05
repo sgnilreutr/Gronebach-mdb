@@ -17,21 +17,21 @@ export default function Headeroptions() {
       <div
         id={'All'}
         onClick={() => setCategory('')}
-        className={`option ${category === '' && 'option--selected'}`}
+        className={`option ${ category === '' && 'option--selected' }`}
       >
         Alles
       </div>
       <div
         id={'Movies'}
         onClick={() => setCategory('Movie')}
-        className={`option ${category === 'Movie' && 'option--selected'}`}
+        className={`option ${ category === 'Movie' && 'option--selected' }`}
       >
         Films
       </div>
       <div
         id={'Series'}
         onClick={() => setCategory('Series')}
-        className={`option ${category === 'Series' && 'option--selected'}`}
+        className={`option ${ category === 'Series' && 'option--selected' }`}
       >
         Series
       </div>
