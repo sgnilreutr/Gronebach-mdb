@@ -1,0 +1,37 @@
+.category-header {
+	cursor: pointer;
+	display: flex;
+	align-items: baseline;
+	margin-top: 2.5rem;
+}
+
+.category-header__title {
+	@media only screen and (min-width: 416px) {
+		font-size: 24px;
+	}
+	@media only screen and (max-width: 414px) {
+		font-size: 1rem;
+		margin-left: 0.5rem;
+	}
+}
+
+.category-header__subtitle {
+	opacity: 0;
+	transition: opacity 0.3s ease-out;
+	display: inline-flex;
+	align-items: baseline;
+	margin-left: 0.5rem;
+}
+
+.category-header__subtitle:hover {
+	opacity: 0.5;
+}
+
+.category-header__subtitle-text {
+	font-size: 1.3rem;
+}
+
+.category-header__icon {
+	position: sticky;
+	top: 19%;
+}
