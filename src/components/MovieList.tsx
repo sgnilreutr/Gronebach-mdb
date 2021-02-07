@@ -12,29 +12,17 @@ interface Props {
   movies: any
 }
 
-const selectSearchTerm = (state: any) => state.searchTerm
 const selectCategory = (state: any) => state.category
 
 const MovieList: React.FC<Props> = ({ movies }) => {
-  const searchTerm = useSelector(selectSearchTerm)
   const category = useSelector(selectCategory)
 
   const renderMovies = (movies: Movie[]) => {
     const filteredMovies = movies.filter((movie) =>
       (
-        movie.Title.toLowerCase() +
-        movie.Year +
-        movie.Type.toLowerCase() +
-        movie.Runtime.toLowerCase() +
-        movie.Genre.toLowerCase() +
-        movie.Director.toLowerCase() +
-        movie.Actors.toLowerCase() +
-        movie.Country.toLowerCase() +
-        movie.imdbRating
+        movie.Type.toLowerCase()
       ).includes(
-        searchTerm.toLowerCase() ||
-        category.toLowerCase() ||
-        (searchTerm.toLowerCase() && category.toLowerCase())
+        category.toLowerCase()
       )
     )
 

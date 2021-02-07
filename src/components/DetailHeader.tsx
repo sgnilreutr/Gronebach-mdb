@@ -3,6 +3,7 @@ import { FiArrowLeft } from 'react-icons/fi'
 import './DetailHeader.scss'
 import { useHistory } from 'react-router-dom'
 import TitleHeader from './TitleHeader'
+import Searchbutton from './SearchButton'
 
 export default function Backtooverview() {
   const history = useHistory()
@@ -19,6 +20,7 @@ export default function Backtooverview() {
           <FiArrowLeft style={{ stroke: '#8d8d8d' }} />
           <div className="back">Terug naar homepage</div>
         </div>
+        <Searchbutton />
       </div>
     </div>
   )
