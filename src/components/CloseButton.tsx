@@ -1,13 +1,9 @@
-import React, { ReactElement } from 'react'
+import React from 'react'
 import { FiX } from 'react-icons/fi'
 import { useHistory } from 'react-router-dom';
 import './CloseButton.scss'
 
-interface Props {
-
-}
-
-export default function CloseButton({ }: Props): ReactElement {
+export default function Closebutton() {
     const history = useHistory();
     const returnPage = () => {
         history.go(-1);

@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import SearchBar from './SearchBar'
 import './Search.scss'
 import { createApiClient, Movie } from '../data/api'
@@ -7,14 +7,11 @@ import MovieListItem from './MovieListItem'
 import { useSelector } from 'react-redux'
 import CloseButton from './CloseButton'
 
-interface Props {
-
-}
 
 const api = createApiClient()
 const selectSearchTerm = (state: any) => state.searchTerm
 
-export default function Search({ }: Props): ReactElement {
+export default function Search() {
     const searchTerm = useSelector(selectSearchTerm)
     const [movieList, setMovieList] = useState<Movie[]>()
 
