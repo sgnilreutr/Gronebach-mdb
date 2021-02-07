@@ -1,13 +1,6 @@
 .movie-horizontal-grid {
 	display: grid;
-	// grid-template-columns: 20px 1fr 20px;
 	align-items: center;
-	// @media only screen and (min-width: 416px) {
-	// 	font-size: 24px;
-	// }
-	// @media only screen and (max-width: 414px) {
-	// 	font-size: 1rem;
-	// }
 }
 
 .movie-horizontal-grid > * {
@@ -21,8 +14,6 @@
 .hs {
 	display: grid;
 	grid-gap: 25px;
-	// grid-template-columns: repeat(6, calc(50% - 40px));
-	// grid-template-columns: 10px;
 	grid-auto-flow: column;
 	grid-auto-columns: calc(50% - var(--gutter) * 2);
 	grid-template-rows: minmax(150px, 1fr);
@@ -36,6 +27,10 @@
 	scrollbar-width: none;
 	overflow-y: hidden;
 	// padding-bottom: 2rem;
+}
+
+.hs-scroll::-webkit-scrollbar {
+	width: 0;
 }
 
 .hs::before,
