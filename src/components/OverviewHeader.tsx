@@ -3,6 +3,9 @@ import SearchBar from './SearchBar'
 import HeaderOptions from './HeaderOptions'
 import './OverviewHeader.scss'
 import TitleHeader from './TitleHeader'
+// import { FiSearch } from 'react-icons/fi'
+// import { useHistory } from 'react-router-dom'
+import Searchbutton from './SearchButton'
 
 export default function Overviewheader() {
 
@@ -10,9 +13,7 @@ export default function Overviewheader() {
         <div>
             <TitleHeader />
             <div className="overviewheader-container">
-                <div className="ml-auto">
-                    <SearchBar />
-                </div>
+                <Searchbutton />
                 <HeaderOptions />
             </div>
         </div>

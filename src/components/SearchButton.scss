@@ -1,0 +1,9 @@
+.search {
+	cursor: pointer;
+	@media only screen and (min-width: 416px) {
+		margin-left: auto;
+	}
+	@media only screen and (max-width: 414px) {
+		margin: 0 1rem;
+	}
+}

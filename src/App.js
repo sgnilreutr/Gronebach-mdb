@@ -7,6 +7,7 @@ import MissingTitles from './components/MissingTitles'
 import PageNotFound from './components/PageNotFound'
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
 import Homepage from './components/Homepage'
+import Search from './components/Search'
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
             <Route path="/overview/*" component={MovieOverview} />
             <Route path="/item/:movieID" component={MovieDetail} />
             <Route path="/missing" component={MissingTitles} />
+            <Route path="/search" component={Search} />
             <Route path="*" component={PageNotFound} />
           </Switch>
         </div>

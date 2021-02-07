@@ -1,0 +1,20 @@
+.close-button-container {
+	margin-left: auto;
+}
+
+.close-button {
+	background-color: grey;
+	padding: 0.5rem;
+	border-radius: 50%;
+	display: flex;
+	place-items: center;
+	cursor: pointer;
+	transition: all ease-in-out 0.1s;
+	@media only screen and (max-width: 414px) {
+		margin-right: 0.5rem;
+	}
+}
+
+.close-button:hover {
+	background-color: rgb(158, 158, 158);
+}
