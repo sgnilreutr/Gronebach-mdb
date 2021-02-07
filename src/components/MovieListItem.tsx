@@ -1,9 +1,9 @@
 import React from 'react'
 import './MovieListItem.scss'
-import { Link } from 'react-router-dom'
 import { getMoviePosterUrl, Movie } from '../data/api'
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
+import { useHistory } from "react-router-dom";
 
 interface Props {
   movieInfo: Movie
@@ -13,9 +13,14 @@ const MovieListItem: React.FC<Props> = ({ movieInfo }) => {
   const itemHeight = (window.innerWidth <= 414) ? 176.72 : 378
   const itemWidth = (window.innerWidth <= 414) ? 120.32 : 258
 
+  const history = useHistory();
+  const openOverviewPage = (imdbID: string) => {
+    history.push(`/item/${ imdbID }`)
+  }
+
   return (
     <>
-      <Link style={{ textDecoration: `none` }} to={`item/${movieInfo.imdbID}`}>
+      <div onClick={() => openOverviewPage(movieInfo.imdbID)}>
         <div className="item">
           <div className={'item-img'}>
             <LazyLoadImage
@@ -33,7 +38,7 @@ const MovieListItem: React.FC<Props> = ({ movieInfo }) => {
             </div>
           </div>
         </div>
-      </Link>
+      </div>
     </>
   )
 }

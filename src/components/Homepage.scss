@@ -1,8 +1,12 @@
 .category-header {
-	cursor: pointer;
 	display: flex;
 	align-items: baseline;
 	margin-top: 2.5rem;
+	cursor: default;
+}
+
+.click {
+	cursor: pointer;
 }
 
 .category-header__title {
@@ -21,6 +25,15 @@
 	display: inline-flex;
 	align-items: baseline;
 	margin-left: 0.5rem;
+	cursor: pointer;
+}
+
+.category-header__subtitle__nohover {
+	opacity: 0;
+	transition: opacity 0.3s ease-out;
+	display: inline-flex;
+	align-items: baseline;
+	margin-left: 0.5rem;
 }
 
 .category-header__subtitle:hover {
@@ -34,4 +47,5 @@
 .category-header__icon {
 	position: sticky;
 	top: 19%;
+	opacity: 0.5;
 }

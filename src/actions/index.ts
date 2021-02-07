@@ -11,3 +11,10 @@ export const storeSetCategory = (setCategory: string) => {
         payload: setCategory
     }
 }
+
+export const storeOverviewQuery = (setQuery: string) => {
+    return {
+        type: 'SET_OVERVIEW_QUERY',
+        payload: setQuery
+    }
+}

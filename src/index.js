@@ -2,14 +2,15 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.scss'
 import App from './App'
-// import store from './app/store'
 import { Provider } from 'react-redux'
 import * as serviceWorker from './serviceWorker'
-import { createStore } from 'redux';
+import { applyMiddleware, createStore } from 'redux';
 import RootReducer from './reducers/reducer';
+import logger from 'redux-logger'
 
 const store = createStore(
-  RootReducer
+  RootReducer,
+  applyMiddleware(logger),
 );
 
 ReactDOM.render(

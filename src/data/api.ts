@@ -37,7 +37,8 @@ export type Movie = {
     Actors: string,
     Country: string,
     imdbRating: string,
-    Director: string
+    Director: string,
+    Rated?: string,
 }
 
 export type MovieTrailer = {
@@ -66,8 +67,7 @@ export type ApiClient = {
 export const createApiClient = (): ApiClient => {
     return {
         getMovies: () => {
-            // return axios.get('all_movies_20210202_21-17-10.json')
-            return axios.get('movie-json.json')
+            return axios.get('/all_movies_20210202_21-17-10.json')
                 .then((res) => res.data)
                 .catch((err) => console.log(err))
         },

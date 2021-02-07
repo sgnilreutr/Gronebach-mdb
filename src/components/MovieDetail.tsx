@@ -5,7 +5,6 @@ import { FiStar } from 'react-icons/fi'
 import { useParams } from 'react-router-dom'
 import { createApiClient, getMoviePosterUrl, MovieDetail } from '../data/api'
 import { MovieTrailer, OpenTrailerButton } from './MovieTrailer'
-import db from '../data/firebase'
 
 const api = createApiClient()
 
@@ -15,75 +14,10 @@ const Moviedetail: React.FC<MovieDetail> = () => {
   const [state, setState] = useState('closed')
 
 
-  // useEffect(() => {
-  //   const setData = async 
-
-  // },[movieID])
-  const onClick = (movie: any) => {
-    console.log(movie)
-    db.collection('movies').add(
-      {
-        Title: movie.Title,
-        Year: movie.Year,
-        Rated: movie.Rated,
-        Released: movie.Released,
-        Runtime: movie.Runtime,
-        Genre: movie.Genre,
-        Director: movie.Director,
-        Writer: movie.Writer,
-        Actors: movie.Actors,
-        Plot: movie.Plot,
-        Language: movie.Language,
-        Country: movie.Country,
-        Awards: movie.Awards,
-        Poster: movie.Poster,
-        // Ratings
-        Metascore: movie.Metascore,
-        imdbRating: movie.imdbRating,
-        imdbVotes: movie.imdbVotes,
-        imdbID: movie.imdbID,
-        Type: movie.Type,
-        DVD: movie.DVD != null ? movie.DVD : 'N/A',
-        BoxOffice: movie.BoxOffice != null ? movie.BoxOffice : 'N/A',
-        Production: movie.Production != null ? movie.Production : 'N/A',
-        Website: movie.Website != null ? movie.Website : 'N/A',
-      }
-    )
-  }
-
   useEffect(() => {
     const fetchData = async () => {
       const movieDetail = await api.getMovieDetail(`${ movieID }`)
-      await setMovie(movieDetail || 'No movie loaded.')
-      const addData = (movie: any) => {
-        db.collection('movies').add(
-          {
-            Title: movie.Title,
-            Year: movie.Year,
-            Rated: movie.Rated,
-            Released: movie.Released,
-            Runtime: movie.Runtime,
-            Genre: movie.Genre,
-            Director: movie.Director,
-            Writer: movie.Writer,
-            Actors: movie.Actors,
-            Plot: movie.Plot,
-            Language: movie.Language,
-            Country: movie.Country,
-            Awards: movie.Awards,
-            Poster: movie.Poster,
-            // Ratings
-            Metascore: movie.Metascore,
-            imdbRating: movie.imdbRating,
-            imdbVotes: movie.imdbVotes,
-            imdbID: movie.imdbID,
-            Type: movie.Type,
-            BoxOffice: movie.BoxOffice,
-            Production: movie.Production,
-            Website: movie.Website,
-          }
-        )
-      }
+      setMovie(movieDetail || 'No movie loaded.')
     }
 
     fetchData()
@@ -96,7 +30,6 @@ const Moviedetail: React.FC<MovieDetail> = () => {
   const renderDetail = (movie: MovieDetail) => {
     return (
       <div className="detail-container">
-        <button onClick={() => onClick(movie)}>Click</button>
         <div className="item-title">
           <div className="text-truncate">
             <span>
@@ -137,9 +70,6 @@ const Moviedetail: React.FC<MovieDetail> = () => {
                 </div>
               </div>
             </div>
-            {/* <div className="moviePlayer">
-              <ReactPlayer light={true} url={movieTrailer.videoUrl} />
-            </div> */}
           </div>
         </div>
       </div>
