@@ -58,12 +58,19 @@ export const requestOptions = {
 }
     
 export type ApiClient = {
+    getMovies: () => Promise<Movie[]>;
     getMovieDetail: (movieId: string) => Promise<MovieDetail>;
     getMovieTrailer: (movieId: string) => Promise<MovieTrailer>
 }
 
 export const createApiClient = (): ApiClient => {
     return {
+        getMovies: () => {
+            // return axios.get('all_movies_20210202_21-17-10.json')
+            return axios.get('movie-json.json')
+                .then((res) => res.data)
+                .catch((err) => console.log(err))
+        },
         getMovieDetail: (movieId: string) => {
             return axios.get(`https://movie-database-imdb-alternative.p.rapidapi.com/?i=${movieId}&r=json`, options)
                 .then((res) => res.data)
