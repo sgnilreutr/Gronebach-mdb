@@ -1,11 +1,13 @@
 export interface AppState {
   searchTerm: string
-  category: string
+    category: string
+    overviewQuery: string
 }
 
 export const initialState: AppState = {
   searchTerm: '',
-  category: ''
+  category: '',
+  overviewQuery: ''
 }
 
 const rootReducer = (state = initialState, action: any) => {
@@ -19,6 +21,11 @@ const rootReducer = (state = initialState, action: any) => {
             return {
                 ...state,
                 category: action.payload
+            }
+        case 'SET_OVERVIEW_QUERY':
+            return {
+                ...state,
+                overviewQuery: action.payload
             }
         default:
             return state;

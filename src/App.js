@@ -14,7 +14,7 @@ function App() {
         <div className="App">
           <Switch>
             <Route path="/" exact={true} component={Homepage} />
-            <Route path="/overview/:genre" component={MovieOverview} />
+            <Route path="/overview/*" component={MovieOverview} />
             <Route path="/item/:movieID" component={MovieDetail} />
             <Route path="/missing" component={MissingTitles} />
             <Route path="*" component={PageNotFound} />

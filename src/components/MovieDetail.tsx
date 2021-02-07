@@ -13,6 +13,7 @@ const Moviedetail: React.FC<MovieDetail> = () => {
   const [movie, setMovie] = useState<any>({})
   const [state, setState] = useState('closed')
 
+
   useEffect(() => {
     const fetchData = async () => {
       const movieDetail = await api.getMovieDetail(`${ movieID }`)
@@ -69,9 +70,6 @@ const Moviedetail: React.FC<MovieDetail> = () => {
                 </div>
               </div>
             </div>
-            {/* <div className="moviePlayer">
-              <ReactPlayer light={true} url={movieTrailer.videoUrl} />
-            </div> */}
           </div>
         </div>
       </div>
