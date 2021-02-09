@@ -2,8 +2,20 @@
 	cursor: pointer;
 	@media only screen and (min-width: 416px) {
 		margin-left: auto;
+		display: flex;
+		flex-flow: row;
+		align-items: center;
 	}
 	@media only screen and (max-width: 414px) {
 		margin: 0 1rem;
+	}
+}
+
+.search-label {
+	@media only screen and (min-width: 416px) {
+		padding-left: 0.5rem;
+	}
+	@media only screen and (max-width: 414px) {
+		display: none;
 	}
 }

@@ -1,12 +1,7 @@
 .overviewheader-container {
 	display: flex;
-	@media only screen and (min-width: 416px) {
-		flex-flow: column;
-	}
-	@media only screen and (max-width: 414px) {
-		flex-flow: row;
-		align-items: center;
-	}
+	flex-flow: row;
+	align-items: center;
 }
 
 // .overviewheader-container > .search {

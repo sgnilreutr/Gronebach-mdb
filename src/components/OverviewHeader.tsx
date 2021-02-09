@@ -10,8 +10,8 @@ export default function Overviewheader() {
         <div>
             <TitleHeader />
             <div className="overviewheader-container">
-                <Searchbutton />
                 <HeaderOptions />
+                <Searchbutton />
             </div>
         </div>
     )
