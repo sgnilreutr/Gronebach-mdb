@@ -11,7 +11,6 @@ export default function Searchbutton() {
 
     return (
         <div className="search" onClick={openSearch}>
-            {/* <SearchBar /> */}
             <FiSearch size={24} />
             <p className="search-label">Zoeken</p>
         </div>

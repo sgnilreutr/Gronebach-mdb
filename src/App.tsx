@@ -1,6 +1,5 @@
 import React from 'react'
 import './App.scss'
-// import MovieList from './components/MovieList'
 import MovieOverview from './components/MovieOverview'
 import MovieDetail from './components/MovieDetail'
 import MissingTitles from './components/MissingTitles'

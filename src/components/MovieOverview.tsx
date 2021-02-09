@@ -5,7 +5,6 @@ import { createApiClient, Movie } from '../data/api'
 
 import MovieListItem from './MovieListItem'
 import { Link, useLocation } from 'react-router-dom'
-// import Overviewheader from './OverviewHeader'
 import DetailHeader from './DetailHeader'
 
 

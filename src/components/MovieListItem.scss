@@ -24,10 +24,6 @@
 		margin: 0 0 0.938rem;
 		transform: scale(1.04);
 	}
-	@media only screen and (max-width: 414px) {
-		// height: 176.72px;
-		// width: 120.32px;
-	}
 }
 
 .item > .item-img {
@@ -53,7 +49,6 @@
 	font-style: normal;
 	line-height: 1.19;
 	letter-spacing: normal;
-	text-align: left;
 	color: #707070;
 	text-align: center;
 	@media only screen and (max-width: 414px) {

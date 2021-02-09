@@ -32,7 +32,6 @@ export const MovieTrailer = ({ movieID }: { movieID: any }) => {
         <div>
             <div className="movie-player">
                 <ReactPlayer
-                    // light={true}
                     url={movieTrailer.videoUrl}
                     style={{ borderRadius: '6px' }}
                     height={itemHeight}
