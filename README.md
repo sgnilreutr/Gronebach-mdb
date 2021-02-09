@@ -1,7 +1,12 @@
 # Gronebach-mdb
 
-1. Using FireBase RealTime Database
-2. Redux
+Check out the demo version here: http://gronebach-mdb.vercel.app/
+
+## Tech stack
+- TypeScript
+- React
+- Redux
+- Yarn
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
 
