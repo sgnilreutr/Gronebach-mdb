@@ -56,7 +56,7 @@ const Homepage = ({ history }: { history: any }) => {
             (movie.imdbRating >= 8.5))
         const partTop = filterTopMovies.slice(0, 10)
 
-        // Show Action category homepage
+        //Show Action category homepage
         const filterActionMovies = movieList.filter((movie: any) =>
             (movie.Genre.toLowerCase()).includes('action'))
         const partAction = filterActionMovies.slice(0, 10)

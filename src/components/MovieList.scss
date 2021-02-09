@@ -26,7 +26,6 @@
 	align-items: center;
 	scrollbar-width: none;
 	overflow-y: hidden;
-	// padding-bottom: 2rem;
 }
 
 .hs-scroll::-webkit-scrollbar {
@@ -38,8 +37,3 @@
 	content: ‘’;
 	width: 10px;
 }
-
-// width: calc(100% + 40%);
-// position: relative;
-// left: -170px;
-// padding: 0 30px;
