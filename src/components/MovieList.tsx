@@ -7,7 +7,6 @@ import { useSelector } from 'react-redux'
 import MovieListItem from './MovieListItem'
 import { Link } from 'react-router-dom'
 
-
 interface Props {
   movies: any
 }
@@ -19,11 +18,7 @@ const MovieList: React.FC<Props> = ({ movies }) => {
 
   const renderMovies = (movies: Movie[]) => {
     const filteredMovies = movies.filter((movie) =>
-      (
-        movie.Type.toLowerCase()
-      ).includes(
-        category.toLowerCase()
-      )
+      movie.Type.toLowerCase().includes(category.toLowerCase())
     )
 
     return (
@@ -34,36 +29,32 @@ const MovieList: React.FC<Props> = ({ movies }) => {
               <MovieListItem
                 key={movie.imdbID}
                 movieInfo={{
-                  Title: `${ movie.Title }`,
-                  Year: `${ movie.Year }`,
-                  imdbID: `${ movie.imdbID }`,
-                  Type: `${ movie.Type }`,
-                  Poster: `${ movie.Poster }`,
-                  Runtime: `${ movie.Runtime }`,
-                  Genre: `${ movie.Genre }`,
-                  Actors: `${ movie.Actors }`,
-                  Country: `${ movie.Country }`,
-                  imdbRating: `${ movie.imdbRating }`,
-                  Director: `${ movie.Director }`
+                  Title: `${movie.Title}`,
+                  Year: `${movie.Year}`,
+                  imdbID: `${movie.imdbID}`,
+                  Type: `${movie.Type}`,
+                  Poster: `${movie.Poster}`,
+                  Runtime: `${movie.Runtime}`,
+                  Genre: `${movie.Genre}`,
+                  Actors: `${movie.Actors}`,
+                  Country: `${movie.Country}`,
+                  imdbRating: `${movie.imdbRating}`,
+                  Director: `${movie.Director}`,
                 }}
               />
             ))
           ) : (
-              <div>
-                <p>Geen items gevonden.</p>
-                <Link to="/missing">Controleer de ontbrekende titels</Link>
-              </div>
-            )}
+            <div>
+              <p>Geen items gevonden.</p>
+              <Link to="/missing">Controleer de ontbrekende titels</Link>
+            </div>
+          )}
         </div>
       </div>
     )
   }
 
-  return (
-    <div>
-      {movies ? renderMovies(movies) : <h2>Loading...</h2>}
-    </div>
-  )
+  return <div>{movies ? renderMovies(movies) : <h2>Loading...</h2>}</div>
 }
 
 export default MovieList

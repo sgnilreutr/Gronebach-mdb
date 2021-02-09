@@ -3,13 +3,12 @@ import ReactDOM from 'react-dom'
 import './index.scss'
 import App from './App'
 import { Provider } from 'react-redux'
-import { createStore } from 'redux';
-import RootReducer from './reducers/reducer';
+// import { createStore, applyMiddleware } from 'redux';
+import { createStore } from 'redux'
+import RootReducer from './reducers/reducer'
 // import logger from 'redux-logger'
 
-const store = createStore(
-  RootReducer,
-);
+const store = createStore(RootReducer)
 // const store = createStore(
 //   RootReducer,
 //   applyMiddleware(logger),
