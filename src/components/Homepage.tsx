@@ -51,9 +51,13 @@ const Homepage = ({ history }: { history: any }) => {
     const categoryHomepage = (movieList: any) => {
         //Show Top Rated category homepage
         const filterTopMovies = movieList.filter(
-            (movie: any) => movie.imdbRating >= 8.5
+            (movie: any) => movie.imdbRating >= 8.0
         )
-        const partTop = filterTopMovies.slice(0, 10)
+        const randomNumber = (Math.floor(Math.random() * 100) + 10)
+        const randomRightBorderSlice = randomNumber > filterTopMovies.length ? filterTopMovies.length : randomNumber; console.log(randomRightBorderSlice)
+        const randomLeftBorderSlice = randomRightBorderSlice - 10; console.log(randomLeftBorderSlice)
+
+        const partTop = filterTopMovies.slice(randomLeftBorderSlice, randomRightBorderSlice)
 
         //Show Action category homepage
         const filterActionMovies = movieList.filter((movie: any) =>

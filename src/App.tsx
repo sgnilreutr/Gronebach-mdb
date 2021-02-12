@@ -21,14 +21,6 @@ function App() {
 
     fetchData()
   }, [])
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const movies = await api.getMovies()
-  //     setMovieList(movies || 'No movies loaded.')
-  //   }
-
-  //   fetchData()
-  // }, [])
 
   return (
     <Router>
