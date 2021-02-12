@@ -9,10 +9,9 @@ interface Props {
 const RelatedMovies = (genre: Props) => {
     const [relatedMovies, setRelatedMovies] = useState<Movie[]>()
 
-    //There is no check yet if the genre string does contain a comma
-    const query = genre.genre.split(',')
-
     useEffect(() => {
+        //There is no check yet if the genre string does contain a comma
+        const query = genre.genre.split(',')
         const json = localStorage.getItem("movies");
         if (json) {
             const allMovies = JSON.parse(json);
@@ -31,8 +30,7 @@ const RelatedMovies = (genre: Props) => {
         } else {
             console.log('No movies loaded')
         }
-    }, []);
-
+    }, [genre.genre]);
 
     return (
         <div>
