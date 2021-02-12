@@ -29,26 +29,26 @@ const MovieList: React.FC<Props> = ({ movies }) => {
               <MovieListItem
                 key={movie.imdbID}
                 movieInfo={{
-                  Title: `${movie.Title}`,
-                  Year: `${movie.Year}`,
-                  imdbID: `${movie.imdbID}`,
-                  Type: `${movie.Type}`,
-                  Poster: `${movie.Poster}`,
-                  Runtime: `${movie.Runtime}`,
-                  Genre: `${movie.Genre}`,
-                  Actors: `${movie.Actors}`,
-                  Country: `${movie.Country}`,
-                  imdbRating: `${movie.imdbRating}`,
-                  Director: `${movie.Director}`,
+                  Title: `${ movie.Title }`,
+                  Year: `${ movie.Year }`,
+                  imdbID: `${ movie.imdbID }`,
+                  Type: `${ movie.Type }`,
+                  Poster: `${ movie.Poster }`,
+                  Runtime: `${ movie.Runtime }`,
+                  Genre: `${ movie.Genre }`,
+                  Actors: `${ movie.Actors }`,
+                  Country: `${ movie.Country }`,
+                  imdbRating: `${ movie.imdbRating }`,
+                  Director: `${ movie.Director }`,
                 }}
               />
             ))
           ) : (
-            <div>
-              <p>Geen items gevonden.</p>
-              <Link to="/missing">Controleer de ontbrekende titels</Link>
-            </div>
-          )}
+              <div>
+                <p>Geen items gevonden.</p>
+                <Link to="/missing">Controleer de ontbrekende titels</Link>
+              </div>
+            )}
         </div>
       </div>
     )
