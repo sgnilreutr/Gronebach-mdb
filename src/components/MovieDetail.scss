@@ -6,7 +6,6 @@
 
 .detail-container > .item-title {
 	width: 100%;
-	font-family: Helvetica;
 	font-size: 1.5rem;
 	font-weight: bold;
 	font-stretch: normal;
@@ -16,6 +15,12 @@
 	text-align: left;
 	color: #b3b3b3;
 	margin-bottom: 3rem;
+	@media only screen and (min-width: 416px) {
+		font-size: 1.5rem;
+	}
+	@media only screen and (max-width: 414px) {
+		font-size: 1rem;
+	}
 }
 
 .details-inner {
@@ -107,4 +112,13 @@
 	letter-spacing: normal;
 	text-align: left;
 	color: #707070;
+}
+
+.related-container {
+	@media only screen and (min-width: 416px) {
+		margin-top: 8rem;
+	}
+	@media only screen and (max-width: 414px) {
+		margin-top: 2rem;
+	}
 }

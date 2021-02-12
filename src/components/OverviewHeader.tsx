@@ -5,14 +5,13 @@ import TitleHeader from './TitleHeader'
 import Searchbutton from './SearchButton'
 
 export default function Overviewheader() {
-
-    return (
-        <div>
-            <TitleHeader />
-            <div className="overviewheader-container">
-                <HeaderOptions />
-                <Searchbutton />
-            </div>
-        </div>
-    )
+  return (
+    <div>
+      <TitleHeader />
+      <div className="overviewheader-container">
+        <HeaderOptions />
+        <Searchbutton />
+      </div>
+    </div>
+  )
 }

@@ -7,7 +7,6 @@ import { useSelector } from 'react-redux'
 import MovieListItem from './MovieListItem'
 import { Link } from 'react-router-dom'
 
-
 interface Props {
   movies: any
 }
@@ -19,11 +18,7 @@ const MovieList: React.FC<Props> = ({ movies }) => {
 
   const renderMovies = (movies: Movie[]) => {
     const filteredMovies = movies.filter((movie) =>
-      (
-        movie.Type.toLowerCase()
-      ).includes(
-        category.toLowerCase()
-      )
+      movie.Type.toLowerCase().includes(category.toLowerCase())
     )
 
     return (
@@ -44,7 +39,7 @@ const MovieList: React.FC<Props> = ({ movies }) => {
                   Actors: `${ movie.Actors }`,
                   Country: `${ movie.Country }`,
                   imdbRating: `${ movie.imdbRating }`,
-                  Director: `${ movie.Director }`
+                  Director: `${ movie.Director }`,
                 }}
               />
             ))
@@ -59,11 +54,7 @@ const MovieList: React.FC<Props> = ({ movies }) => {
     )
   }
 
-  return (
-    <div>
-      {movies ? renderMovies(movies) : <h2>Loading...</h2>}
-    </div>
-  )
+  return <div>{movies ? renderMovies(movies) : <h2>Loading...</h2>}</div>
 }
 
 export default MovieList

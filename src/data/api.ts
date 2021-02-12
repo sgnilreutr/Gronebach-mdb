@@ -60,7 +60,7 @@ export const requestOptions = {
     
 export type ApiClient = {
     getMovies: () => Promise<Movie[]>;
-    getMovieDetail: (movieId: string) => Promise<MovieDetail>;
+    getMovieDetail: (movieId: string) => Promise<MovieDetail[]>;
     getMovieTrailer: (movieId: string) => Promise<MovieTrailer>
 }
 

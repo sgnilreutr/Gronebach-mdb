@@ -18,7 +18,6 @@ const SearchBar: React.FC = () => {
     event.preventDefault()
   }
 
-
   return (
     <form className="search-bar" id="searchBar" onSubmit={handleSubmit}>
       <FiSearch style={{ stroke: '#8d8d8d', marginRight: '6px' }} />

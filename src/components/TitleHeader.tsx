@@ -13,7 +13,12 @@ export default function TitleHeader() {
     <div className="title-container">
       <div className="header-title" onClick={navigateToHome}>
         <div className="title-1">Grönebach</div>
-        <div className="title-2">Movie Database <span role="img" aria-label="popcorn">🍿</span></div>
+        <div className="title-2">
+          Movie Database{' '}
+          <span role="img" aria-label="popcorn">
+            🍿
+          </span>
+        </div>
       </div>
     </div>
   )
