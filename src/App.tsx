@@ -24,7 +24,7 @@ function App() {
     }
 
     fetchData()
-  }, [])
+  }, [dispatch])
 
   return (
     <Router>
