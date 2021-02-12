@@ -9,11 +9,16 @@ import {
 } from '../data/api'
 import { MovieTrailer, OpenTrailerButton } from './MovieTrailer'
 import RelatedMovies from './RelatedMovies'
+import { useSelector } from 'react-redux'
+
+const selectBaseLoaded = (state: any) => state.baseLoaded
 
 const Moviedetail: React.FC<MovieDetail> = () => {
   const { movieID } = useParams<{ movieID: string }>()
   const [movie, setMovie] = useState<any>()
   const [state, setState] = useState('closed')
+
+  const baseLoaded = useSelector(selectBaseLoaded)
 
   useEffect(() => {
     const json = localStorage.getItem("movies");
@@ -27,7 +32,7 @@ const Moviedetail: React.FC<MovieDetail> = () => {
     } else {
       console.log('No movies loaded')
     }
-  }, [movieID]);
+  }, [movieID, baseLoaded]);
 
   const triggerOpenTrailerState = () => {
     setState('open')
