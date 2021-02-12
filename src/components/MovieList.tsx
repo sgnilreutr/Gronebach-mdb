@@ -7,6 +7,8 @@ import { useSelector } from 'react-redux'
 import MovieListItem from './MovieListItem'
 import { Link } from 'react-router-dom'
 
+import { FixedSizeList as List } from 'react-window';
+
 interface Props {
   movies: any
 }
@@ -15,6 +17,36 @@ const selectCategory = (state: any) => state.category
 
 const MovieList: React.FC<Props> = ({ movies }) => {
   const category = useSelector(selectCategory)
+  const dataT = movies.map((movie: any) => (
+    <MovieListItem
+      key={movie.imdbID}
+      movieInfo={{
+        Title: `${ movie.Title }`,
+        Year: `${ movie.Year }`,
+        imdbID: `${ movie.imdbID }`,
+        Type: `${ movie.Type }`,
+        Poster: `${ movie.Poster }`,
+        Runtime: `${ movie.Runtime }`,
+        Genre: `${ movie.Genre }`,
+        Actors: `${ movie.Actors }`,
+        Country: `${ movie.Country }`,
+        imdbRating: `${ movie.imdbRating }`,
+        Director: `${ movie.Director }`,
+      }}
+    />
+  ))
+
+  console.log(dataT)
+
+  function Column({ style }: { style: any }) {
+    const item = dataT
+    // console.log(item)
+    return (
+      <div style={style}>
+        {item}
+      </div>
+    )
+  };
 
   const renderMovies = (movies: Movie[]) => {
     const filteredMovies = movies.filter((movie) =>
@@ -54,7 +86,21 @@ const MovieList: React.FC<Props> = ({ movies }) => {
     )
   }
 
-  return <div>{movies ? renderMovies(movies) : <h2>Loading...</h2>}</div>
+  return (
+    <>
+      {/* <div>{movies ? renderMovies(movies) : <h2>Loading...</h2>}</div> */}
+      <>  <List
+        height={378}
+        itemCount={movies.length}
+        itemSize={278}
+        layout="horizontal"
+        width={1000}
+      >
+        {Column}
+
+      </List>
+      </>
+    </>)
 }
 
 export default MovieList
