@@ -1,11 +1,11 @@
-import React, { memo } from 'react'
+import React from 'react'
 import './MovieList.scss'
 
-import { Movie, MovieDetail } from '../data/api'
-import { useSelector } from 'react-redux'
+// import { Movie, MovieDetail } from '../data/api'
+// import { useSelector } from 'react-redux'
 
 import MovieListItem from './MovieListItem'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 
 import { FixedSizeList as List } from 'react-window';
 
@@ -13,9 +13,9 @@ interface Props {
   movies: any
 }
 
-const selectCategory = (state: any) => state.category
+// const selectCategory = (state: any) => state.category
 
-const ITEM_WIDTH = 400;
+// const ITEM_WIDTH = 400;
 
 // function generateIndexesForRow(rowIndex: any, maxItemsPerRow: any, itemsAmount: any) {
 //   const result = [];
@@ -38,12 +38,12 @@ function generateIndexesForRow(rowIndex: any, itemsAmount: any) {
   return result;
 }
 
-function getMaxItemsAmountPerRow(width: any) {
-  return Math.max(Math.floor(width / ITEM_WIDTH), 1);
-}
+// function getMaxItemsAmountPerRow(width: any) {
+//   return Math.max(Math.floor(width / ITEM_WIDTH), 1);
+// }
 
 const MovieList: React.FC<Props> = ({ movies }) => {
-  const category = useSelector(selectCategory)
+  // const category = useSelector(selectCategory)
 
   // const ColumnItem = memo(function ColumnItem(movie: MovieDetail) {
   function ColumnItem(movie: any, style: any) {
@@ -72,10 +72,10 @@ const MovieList: React.FC<Props> = ({ movies }) => {
   };
 
   const renderMovies = ({ style, index }: { style: any, index: number }) => {
-    const width = 0.85 * window.innerWidth;
-    const filteredMovies = movies.filter((movie: any) =>
-      movie.Type.toLowerCase().includes(category.toLowerCase())
-    )
+    // const width = 0.85 * window.innerWidth;
+    // const filteredMovies = movies.filter((movie: any) =>
+    //   movie.Type.toLowerCase().includes(category.toLowerCase())
+    // )
 
     // const maxItemsPerRow = getMaxItemsAmountPerRow(width);
     // const moviesIds = generateIndexesForRow(index, maxItemsPerRow, movies.length).map(movieIndex => movies[movieIndex]);
