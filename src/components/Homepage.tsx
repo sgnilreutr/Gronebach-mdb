@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './Homepage.scss'
 import MovieList from './MovieList'
 import Overviewheader from './OverviewHeader'
+import HomepageCategory from './HomepageCategory'
 import { Movie } from '../data/api'
 import { FiChevronRight } from 'react-icons/fi'
 import { useDispatch, useSelector } from 'react-redux'
@@ -12,6 +13,7 @@ const homepageCategories = [
     },
     {
         name: `Actie films`,
+        filter: `action`,
     },
     {
         name: `Romantische items`,
@@ -31,9 +33,6 @@ const selectBaseLoaded = (state: any) => state.baseLoaded
 const Homepage = ({ history }: { history: any }) => {
     const [movieList, setMovieList] = useState<Movie[]>([])
     const [topCategory, setTopCategory] = useState<Movie[]>([])
-    const [actionCategory, setActionCategory] = useState<Movie[]>([])
-    const [romanceCategory, setRomanceCategory] = useState<Movie[]>([])
-    const [comedyCategory, setComedyCategory] = useState<Movie[]>([])
     const [kidsCategory, setKidsCategory] = useState<Movie[]>([])
     const dispatch = useDispatch()
 
@@ -72,51 +71,6 @@ const Homepage = ({ history }: { history: any }) => {
         }
     }, [movieList])
 
-    //Show Action category homepage
-    useEffect(() => {
-        if (movieList) {
-            const filterList = movieList.filter(
-                (movie: any) => movie.Genre.toLowerCase().includes('action')
-            )
-            const randomNumber = (Math.floor(Math.random() * 100) + 10)
-            const randomRightBorderSlice = randomNumber > filterList.length ? filterList.length : randomNumber
-            const randomLeftBorderSlice = randomRightBorderSlice - 10
-            setActionCategory(filterList.slice(randomLeftBorderSlice, randomRightBorderSlice))
-        } else {
-            console.log('No movies loaded')
-        }
-    }, [movieList])
-
-    //Show Romance category homepage
-    useEffect(() => {
-        if (movieList) {
-            const filterList = movieList.filter(
-                (movie: any) => movie.Genre.toLowerCase().includes('romance')
-            )
-            const randomNumber = (Math.floor(Math.random() * 100) + 10)
-            const randomRightBorderSlice = randomNumber > filterList.length ? filterList.length : randomNumber
-            const randomLeftBorderSlice = randomRightBorderSlice - 10
-            setRomanceCategory(filterList.slice(randomLeftBorderSlice, randomRightBorderSlice))
-        } else {
-            console.log('No movies loaded')
-        }
-    }, [movieList])
-
-    //Show Comedy category homepage
-    useEffect(() => {
-        if (movieList) {
-            const filterList = movieList.filter(
-                (movie: any) => movie.Genre.toLowerCase().includes('comedy')
-            )
-            const randomNumber = (Math.floor(Math.random() * 100) + 10)
-            const randomRightBorderSlice = randomNumber > filterList.length ? filterList.length : randomNumber
-            const randomLeftBorderSlice = randomRightBorderSlice - 10
-            setComedyCategory(filterList.slice(randomLeftBorderSlice, randomRightBorderSlice))
-        } else {
-            console.log('No movies loaded')
-        }
-    }, [movieList])
-
     //Show Child safe category homepage
     useEffect(() => {
         if (movieList) {
@@ -150,55 +104,13 @@ const Homepage = ({ history }: { history: any }) => {
                     <MovieList movies={topCategory} />
                 </div>
                 <div>
-                    <div
-                        onClick={() => openCategory('action')}
-                        className="click category-header"
-                    >
-                        <h2 className="category-header__title">
-                            {homepageCategories[1].name}
-                        </h2>
-                        <FiChevronRight className="category-header__icon" size={18} />
-                        <div className="category-header__subtitle">
-                            <span className="category-header__subtitle-text">
-                                {CATEGORY_CTA_TEXT}
-                            </span>
-                        </div>
-                    </div>
-                    <MovieList movies={actionCategory} />
+                    <HomepageCategory movieList={movieList} categoryName={homepageCategories[1].name} categoryFilter={'action'} />
                 </div>
                 <div>
-                    <div
-                        onClick={() => openCategory('romance')}
-                        className="click category-header"
-                    >
-                        <h2 className="category-header__title">
-                            {homepageCategories[2].name}
-                        </h2>
-                        <FiChevronRight className="category-header__icon" size={18} />
-                        <div className="category-header__subtitle">
-                            <span className="category-header__subtitle-text">
-                                {CATEGORY_CTA_TEXT}
-                            </span>
-                        </div>
-                    </div>
-                    <MovieList movies={romanceCategory} />
+                    <HomepageCategory movieList={movieList} categoryName={homepageCategories[2].name} categoryFilter={'romance'} />
                 </div>
                 <div>
-                    <div
-                        onClick={() => openCategory('comedy')}
-                        className="click category-header"
-                    >
-                        <h2 className="category-header__title">
-                            {homepageCategories[3].name}
-                        </h2>
-                        <FiChevronRight className="category-header__icon" size={18} />
-                        <div className="category-header__subtitle">
-                            <span className="category-header__subtitle-text">
-                                {CATEGORY_CTA_TEXT}
-                            </span>
-                        </div>
-                    </div>
-                    <MovieList movies={comedyCategory} />
+                    <HomepageCategory movieList={movieList} categoryName={homepageCategories[3].name} categoryFilter={'comedy'} />
                 </div>
                 <div>
                     <div
