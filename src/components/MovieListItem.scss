@@ -3,8 +3,10 @@
 	backdrop-filter: blur(28px);
 	cursor: pointer;
 	@media only screen and (min-width: 416px) {
-		width: 16rem;
-		height: 23.5rem;
+		// max-width: 16rem;
+		// max-height: 23.5rem;
+		max-width: max-content;
+		max-height: max-content;
 		margin: 0 0 1rem;
 		transition: transform 0.2s ease-out, -webkit-transform 0.2s ease-out;
 		transition: box-shadow 0.1s ease-out, -webkit-transform 0.1s ease-out;
