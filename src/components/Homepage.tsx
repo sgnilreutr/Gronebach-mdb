@@ -66,8 +66,8 @@ const Homepage = ({ history }: { history: any }) => {
             const randomNumber = (Math.floor(Math.random() * 100) + 10)
             const randomRightBorderSlice = randomNumber > filterList.length ? filterList.length : randomNumber
             const randomLeftBorderSlice = randomRightBorderSlice - 10
-            // setTopCategory(filterList.slice(randomLeftBorderSlice, randomRightBorderSlice))
-            setTopCategory(filterList.slice(0, 4))
+            setTopCategory(filterList.slice(randomLeftBorderSlice, randomRightBorderSlice))
+            // setTopCategory(filterList.slice(0, 4))
         } else {
             console.log('No movies loaded')
         }
@@ -150,7 +150,7 @@ const Homepage = ({ history }: { history: any }) => {
                     </div>
                     <MovieList movies={topCategory} />
                 </div>
-                {/* <div>
+                <div>
                     <div
                         onClick={() => openCategory('action')}
                         className="click category-header"
@@ -217,7 +217,7 @@ const Homepage = ({ history }: { history: any }) => {
                         </div>
                     </div>
                     <MovieList movies={kidsCategory} />
-                </div> */}
+                </div>
             </div>
         )
     }

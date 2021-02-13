@@ -27,16 +27,6 @@ function generateIndexesForRow(rowIndex: any, maxItemsPerRow: any, itemsAmount: 
 
   return result;
 }
-// function generateIndexesForRow(rowIndex: any, itemsAmount: any) {
-//   const result = [];
-//   const startIndex = rowIndex;
-
-//   for (let i = startIndex; i < Math.min(startIndex, itemsAmount); i++) {
-//     result.push(i);
-//   }
-
-//   return result;
-// }
 
 function getMaxItemsAmountPerRow(width: any) {
   return Math.max(Math.floor(width / ITEM_WIDTH), 1);
@@ -44,15 +34,14 @@ function getMaxItemsAmountPerRow(width: any) {
 
 const MovieList: React.FC<Props> = ({ movies }) => {
   const category = useSelector(selectCategory)
+  const height = window.innerHeight;
+  const width = 0.85 * window.innerWidth;
 
   // const ColumnItem = memo(function ColumnItem(movie: MovieDetail) {
   function ColumnItem(movie: any) {
-    // console.log(movie.movie.Poster)
-    console.log(movie)
     return (
       <div key={movie.imdbID}>
         <MovieListItem
-          // key={movie.imdbID}
           movieInfo={{
             Title: `${ movie.movie.Title }`,
             Year: `${ movie.movie.Year }`,
@@ -67,30 +56,22 @@ const MovieList: React.FC<Props> = ({ movies }) => {
             Director: `${ movie.movie.Director }`,
           }}
         />
-        {/* <p>hey</p> */}
       </div>
     )
   };
-  const height = window.innerHeight;
 
   const renderMovies = ({ style, index }: { style: any, index: number }) => {
-    const width = 0.85 * window.innerWidth;
     const filteredMovies = movies.filter((movie: any) =>
       movie.Type.toLowerCase().includes(category.toLowerCase())
     )
 
-    // console.log('hey', filteredMovies.map((movie: any, index: any) => (movie[index])))
-
-    const maxItemsPerRow = getMaxItemsAmountPerRow(width);
+    // const maxItemsPerRow = getMaxItemsAmountPerRow(width); console.log(maxItemsPerRow)
+    const maxItemsPerRow = 4; console.log(maxItemsPerRow)
     const moviesIds = generateIndexesForRow(index, maxItemsPerRow, movies.length).map(movieIndex => movies[movieIndex]);
-    // console.log(moviesIds)
-    // const Ids = movies.length.map(movieIndex => movies[movieIndex])
-    // const moviesIds = generateIndexesForRow(index, movies.length).map(movieIndex => movies[movieIndex]);
 
     return (
       <div style={style}>
-        {movies.map((movie: any, index: any) => (
-          // {moviesIds.map((movie: any, index: any) => (
+        {moviesIds.map((movie: any, index: any) => (
           <ColumnItem key={movie.imdbID} movie={movie} />
         ))}
       </div>
@@ -101,9 +82,9 @@ const MovieList: React.FC<Props> = ({ movies }) => {
     <>
       {/* <div>{movies ? renderMovies(movies) : <h2>Loading...</h2>}</div> */}
       <List
-        height={height}
-        // height={800}
-        itemCount={1}
+        // height={height}
+        height={400}
+        itemCount={movies.length}
         itemSize={278}
         layout="horizontal"
         width={1000}
