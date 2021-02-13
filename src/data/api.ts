@@ -23,7 +23,8 @@ export type MovieDetail = {
     Awards: string,
     Poster: string,
     imdbRating: string,
-    Ratings?: Ratings
+    Ratings?: Ratings,
+    Type?: string
 }
 
 export type Movie = {

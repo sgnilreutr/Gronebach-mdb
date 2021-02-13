@@ -4,7 +4,7 @@ import MovieList from './MovieList'
 import Overviewheader from './OverviewHeader'
 import { Movie } from '../data/api'
 import { FiChevronRight } from 'react-icons/fi'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 const homepageCategories = [
     {
@@ -26,9 +26,18 @@ const homepageCategories = [
 
 const CATEGORY_CTA_TEXT = 'Bekijk alles'
 
+const selectBaseLoaded = (state: any) => state.baseLoaded
+
 const Homepage = ({ history }: { history: any }) => {
-    const [movieList, setMovieList] = useState<Movie[]>()
+    const [movieList, setMovieList] = useState<Movie[]>([])
+    const [topCategory, setTopCategory] = useState<Movie[]>([])
+    const [actionCategory, setActionCategory] = useState<Movie[]>([])
+    const [romanceCategory, setRomanceCategory] = useState<Movie[]>([])
+    const [comedyCategory, setComedyCategory] = useState<Movie[]>([])
+    const [kidsCategory, setKidsCategory] = useState<Movie[]>([])
     const dispatch = useDispatch()
+
+    const baseLoaded = useSelector(selectBaseLoaded)
 
     const openCategory = (value: string) => {
         dispatch({ type: 'SET_OVERVIEW_QUERY', payload: value })
@@ -46,39 +55,84 @@ const Homepage = ({ history }: { history: any }) => {
                 setMovieList(allMovies);
             }
         }
-    }, []);
+    }, [baseLoaded]);
+
+    //Show Top Rated category homepage
+    useEffect(() => {
+        if (movieList) {
+            const filterList = movieList.filter(
+                (movie: any) => movie.imdbRating >= 8.0
+            )
+            const randomNumber = (Math.floor(Math.random() * 100) + 10)
+            const randomRightBorderSlice = randomNumber > filterList.length ? filterList.length : randomNumber
+            const randomLeftBorderSlice = randomRightBorderSlice - 10
+            setTopCategory(filterList.slice(randomLeftBorderSlice, randomRightBorderSlice))
+        } else {
+            console.log('No movies loaded')
+        }
+    }, [movieList])
+
+    //Show Action category homepage
+    useEffect(() => {
+        if (movieList) {
+            const filterList = movieList.filter(
+                (movie: any) => movie.Genre.toLowerCase().includes('action')
+            )
+            const randomNumber = (Math.floor(Math.random() * 100) + 10)
+            const randomRightBorderSlice = randomNumber > filterList.length ? filterList.length : randomNumber
+            const randomLeftBorderSlice = randomRightBorderSlice - 10
+            setActionCategory(filterList.slice(randomLeftBorderSlice, randomRightBorderSlice))
+        } else {
+            console.log('No movies loaded')
+        }
+    }, [movieList])
+
+    //Show Romance category homepage
+    useEffect(() => {
+        if (movieList) {
+            const filterList = movieList.filter(
+                (movie: any) => movie.Genre.toLowerCase().includes('romance')
+            )
+            const randomNumber = (Math.floor(Math.random() * 100) + 10)
+            const randomRightBorderSlice = randomNumber > filterList.length ? filterList.length : randomNumber
+            const randomLeftBorderSlice = randomRightBorderSlice - 10
+            setRomanceCategory(filterList.slice(randomLeftBorderSlice, randomRightBorderSlice))
+        } else {
+            console.log('No movies loaded')
+        }
+    }, [movieList])
+
+    //Show Comedy category homepage
+    useEffect(() => {
+        if (movieList) {
+            const filterList = movieList.filter(
+                (movie: any) => movie.Genre.toLowerCase().includes('comedy')
+            )
+            const randomNumber = (Math.floor(Math.random() * 100) + 10)
+            const randomRightBorderSlice = randomNumber > filterList.length ? filterList.length : randomNumber
+            const randomLeftBorderSlice = randomRightBorderSlice - 10
+            setComedyCategory(filterList.slice(randomLeftBorderSlice, randomRightBorderSlice))
+        } else {
+            console.log('No movies loaded')
+        }
+    }, [movieList])
+
+    //Show Child safe category homepage
+    useEffect(() => {
+        if (movieList) {
+            const filterList = movieList.filter(
+                (movie: any) => movie.Rated === 'PG' && 'G'
+            )
+            const randomNumber = (Math.floor(Math.random() * 100) + 10)
+            const randomRightBorderSlice = randomNumber > filterList.length ? filterList.length : randomNumber
+            const randomLeftBorderSlice = randomRightBorderSlice - 10
+            setKidsCategory(filterList.slice(randomLeftBorderSlice, randomRightBorderSlice))
+        } else {
+            console.log('No movies loaded')
+        }
+    }, [movieList])
 
     const categoryHomepage = (movieList: any) => {
-        //Show Top Rated category homepage
-        const filterTopMovies = movieList.filter(
-            (movie: any) => movie.imdbRating >= 8.5
-        )
-        const partTop = filterTopMovies.slice(0, 10)
-
-        //Show Action category homepage
-        const filterActionMovies = movieList.filter((movie: any) =>
-            movie.Genre.toLowerCase().includes('action')
-        )
-        const partAction = filterActionMovies.slice(0, 10)
-
-        //Show Romance category homepage
-        const filterRomanceMovies = movieList.filter((movie: any) =>
-            movie.Genre.toLowerCase().includes('romance')
-        )
-        const partRomance = filterRomanceMovies.slice(0, 10)
-
-        //Show Comedy category homepage
-        const filterComedyMovies = movieList.filter((movie: any) =>
-            movie.Genre.toLowerCase().includes('comedy')
-        )
-        const partComedy = filterComedyMovies.slice(0, 10)
-
-        //Show Child safe category homepage
-        const filterChildMovies = movieList.filter(
-            (movie: any) => movie.Rated === 'PG' && 'G'
-        )
-        const partChild = filterChildMovies.slice(0, 10)
-
         return (
             <div>
                 <div>
@@ -93,7 +147,7 @@ const Homepage = ({ history }: { history: any }) => {
                             <FiChevronRight className="category-header__icon" size={18} />
                         </div>
                     </div>
-                    <MovieList movies={partTop} />
+                    <MovieList movies={topCategory} />
                 </div>
                 <div>
                     <div
@@ -110,7 +164,7 @@ const Homepage = ({ history }: { history: any }) => {
                             </span>
                         </div>
                     </div>
-                    <MovieList movies={partAction} />
+                    <MovieList movies={actionCategory} />
                 </div>
                 <div>
                     <div
@@ -127,7 +181,7 @@ const Homepage = ({ history }: { history: any }) => {
                             </span>
                         </div>
                     </div>
-                    <MovieList movies={partRomance} />
+                    <MovieList movies={romanceCategory} />
                 </div>
                 <div>
                     <div
@@ -144,7 +198,7 @@ const Homepage = ({ history }: { history: any }) => {
                             </span>
                         </div>
                     </div>
-                    <MovieList movies={partComedy} />
+                    <MovieList movies={comedyCategory} />
                 </div>
                 <div>
                     <div
@@ -161,7 +215,7 @@ const Homepage = ({ history }: { history: any }) => {
                             </span>
                         </div>
                     </div>
-                    <MovieList movies={partChild} />
+                    <MovieList movies={kidsCategory} />
                 </div>
             </div>
         )
