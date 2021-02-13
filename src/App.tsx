@@ -1,34 +1,30 @@
 import React, { useEffect } from 'react'
 import './App.scss'
+import { createApiClient } from './data/api'
+import { useDispatch } from 'react-redux'
+import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
 import MovieOverview from './components/MovieOverview'
 import MovieDetail from './components/MovieDetail'
 import MissingTitles from './components/MissingTitles'
 import PageNotFound from './components/PageNotFound'
-import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
 import Homepage from './components/Homepage'
 import Search from './components/Search'
-import { createApiClient } from './data/api'
 
 const api = createApiClient()
 
 function App() {
+  const dispatch = useDispatch()
+
   //Load in all movies and store it in the localstorage
   useEffect(() => {
     const fetchData = async () => {
       const movies = JSON.stringify(await api.getMovies())
       localStorage.setItem('movies', movies || 'No movies loaded')
+      dispatch({ type: 'SET_BASE_LOADED', payload: true })
     }
 
     fetchData()
-  }, [])
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const movies = await api.getMovies()
-  //     setMovieList(movies || 'No movies loaded.')
-  //   }
-
-  //   fetchData()
-  // }, [])
+  }, [dispatch])
 
   return (
     <Router>

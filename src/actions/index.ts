@@ -18,3 +18,10 @@ export const storeOverviewQuery = (setQuery: string) => {
         payload: setQuery
     }
 }
+
+export const storeBaseLoaded = (setBaseLoad: string) => {
+    return {
+        type: 'SET_BASE_LOADED',
+        payload: setBaseLoad
+    }
+}
