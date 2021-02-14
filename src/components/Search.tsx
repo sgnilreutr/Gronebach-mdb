@@ -41,31 +41,32 @@ export default function Search() {
     return (
       <div className="movie-grid">
         {filteredMovies.length > 0 ? (
-          filteredMovies.map((movie) => (
+          filteredMovies.map((movie, index) => (
             <div key={movie.imdbID}>
               <MovieListItem
+                // id={index}
                 movieInfo={{
-                  Title: `${movie.Title}`,
-                  Year: `${movie.Year}`,
-                  imdbID: `${movie.imdbID}`,
-                  Type: `${movie.Type}`,
-                  Poster: `${movie.Poster}`,
-                  Runtime: `${movie.Runtime}`,
-                  Genre: `${movie.Genre}`,
-                  Actors: `${movie.Actors}`,
-                  Country: `${movie.Country}`,
-                  imdbRating: `${movie.imdbRating}`,
-                  Director: `${movie.Director}`,
+                  Title: `${ movie.Title }`,
+                  Year: `${ movie.Year }`,
+                  imdbID: `${ movie.imdbID }`,
+                  Type: `${ movie.Type }`,
+                  Poster: `${ movie.Poster }`,
+                  Runtime: `${ movie.Runtime }`,
+                  Genre: `${ movie.Genre }`,
+                  Actors: `${ movie.Actors }`,
+                  Country: `${ movie.Country }`,
+                  imdbRating: `${ movie.imdbRating }`,
+                  Director: `${ movie.Director }`,
                 }}
               />
             </div>
           ))
         ) : (
-          <div>
-            <p>Geen items gevonden.</p>
-            <Link to="/missing">Controleer de ontbrekende titels</Link>
-          </div>
-        )}
+            <div>
+              <p>Geen items gevonden.</p>
+              <Link to="/missing">Controleer de ontbrekende titels</Link>
+            </div>
+          )}
       </div>
     )
   }
@@ -80,11 +81,11 @@ export default function Search() {
         searchTerm ? (
           renderSearchMovies(movieList)
         ) : (
-          <h2 className="search-page-placeholder">Start met zoeken</h2>
-        )
+            <h2 className="search-page-placeholder">Start met zoeken</h2>
+          )
       ) : (
-        <h2>Loading...</h2>
-      )}
+          <h2>Loading...</h2>
+        )}
     </div>
   )
 }

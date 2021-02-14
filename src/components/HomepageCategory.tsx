@@ -1,6 +1,7 @@
 import React from 'react'
 import { FiChevronRight } from 'react-icons/fi'
 import { Movie } from '../data/api'
+import MovieListContainer from './MovieListContainer'
 import MovieList from './MovieList'
 
 
@@ -37,7 +38,8 @@ const HomepageCategory = ({ movieList, categoryName, categoryFilter }: { movieLi
                     <FiChevronRight className="category-header__icon" size={18} />
                 </div>
             </div>
-            <MovieList movies={randomSlice} />
+            <MovieListContainer movies={randomSlice} />
+            {/* <MovieList movies={randomSlice} /> */}
         </div>
     )
 }
