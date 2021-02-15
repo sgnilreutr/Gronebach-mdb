@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import './MovieList.scss'
 
 import { Movie } from '../data/api'
@@ -8,6 +8,8 @@ import MovieListItem from './MovieListItem'
 import { Link } from 'react-router-dom'
 import ScrollMenu from 'react-horizontal-scrolling-menu';
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+// import styled from 'styled-components'
+// import Slider from 'react-slick'
 
 interface Props {
   movies: any
@@ -17,11 +19,11 @@ const selectCategory = (state: any) => state.category
 
 const MovieList: React.FC<Props> = ({ movies }) => {
   const category = useSelector(selectCategory)
-  const [menuItems, setMenuItems] = React.useState<any>([])
-  const [filteredMovies, setFilteredMovies] = React.useState<any>([])
+  const [menuItems, setMenuItems] = useState<any>([])
+  const [filteredMovies, setFilteredMovies] = useState<any>([])
   const isMountedRef = useRef<any>(null);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const filteredMovies = movies.filter((movie: any) =>
       movie.Type.toLowerCase().includes(category.toLowerCase())
     )
@@ -48,41 +50,63 @@ const MovieList: React.FC<Props> = ({ movies }) => {
       />
     });
 
-  const Arrow = ({ text, className }: { text: any, className: string }) => {
+  const Arrow = ({ icon, className }: { icon: {}, className: string }) => {
     return (
       <div
         className={className}
-      >{text}</div>
+      >{icon}</div>
     );
   };
 
-  const ArrowLeft = Arrow({ text: <FaChevronLeft size={30} />, className: 'arrow-global arrow-prev' });
-  const ArrowRight = Arrow({ text: <FaChevronRight size={30} />, className: 'arrow-global arrow-next' });
+  const ArrowLeft = Arrow({ icon: <FaChevronLeft size={30} />, className: 'arrow-global arrow-prev' });
+  const ArrowRight = Arrow({ icon: <FaChevronRight size={30} />, className: 'arrow-global arrow-next' });
 
   // Create menu from items
-  React.useEffect(() => {
+  useEffect(() => {
     isMountedRef.current = true;
     if (filteredMovies) setMenuItems(Menu(filteredMovies))
     return () => { isMountedRef.current = false; }
   }, [filteredMovies])
 
-  const renderMovies = (movies: Movie[]) => {
+  const renderMovies = (filteredMovies: Movie[]) => {
     return (
       <div>
-        {
-          movies.length > 0 ? (
+        {filteredMovies.length > 0 ? (
+          window.innerWidth >= 416 ? (
             <ScrollMenu
               data={menuItems}
               arrowLeft={ArrowLeft}
               arrowRight={ArrowRight}
               wheel={false}
-            />
-          ) : (
-              <div>
-                <p>Geen items gevonden.</p>
-                <Link to="/missing">Controleer de ontbrekende titels</Link>
+            />) : (
+              <div className="movie-horizontal-grid">
+                <div className="hs hs-scroll">
+                  {filteredMovies.map((movie) => (
+                    <MovieListItem
+                      key={movie.imdbID}
+                      movieInfo={{
+                        Title: `${ movie.Title }`,
+                        Year: `${ movie.Year }`,
+                        imdbID: `${ movie.imdbID }`,
+                        Type: `${ movie.Type }`,
+                        Poster: `${ movie.Poster }`,
+                        Runtime: `${ movie.Runtime }`,
+                        Genre: `${ movie.Genre }`,
+                        Actors: `${ movie.Actors }`,
+                        Country: `${ movie.Country }`,
+                        imdbRating: `${ movie.imdbRating }`,
+                        Director: `${ movie.Director }`,
+                      }}
+                    />
+                  ))}
+                </div>
               </div>
-            )}
+            )) : (
+            <div>
+              <p>Geen items gevonden.</p>
+              <Link to="/missing">Controleer de ontbrekende titels</Link>
+            </div>
+          )}
       </div>
     )
   }
