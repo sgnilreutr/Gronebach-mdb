@@ -8,8 +8,6 @@ import MovieListItem from './MovieListItem'
 import { Link } from 'react-router-dom'
 import ScrollMenu from 'react-horizontal-scrolling-menu';
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
-// import styled from 'styled-components'
-// import Slider from 'react-slick'
 
 interface Props {
   movies: any
