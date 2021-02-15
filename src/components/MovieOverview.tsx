@@ -39,7 +39,7 @@ const MovieOverview: React.FC<Props> = () => {
 
     return (
       <div>
-        <h1>Alle {partLoc[2]} films</h1>
+        <h1>Alle {partLoc[2]} items</h1>
         <div className="movie-grid">
           {filteredMovies.length > 0 ? (
             filteredMovies.map((movie) => (

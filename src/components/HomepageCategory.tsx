@@ -4,7 +4,7 @@ import { Movie } from '../data/api'
 import MovieList from './MovieList'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import './Homepage.scss'
+
 
 const CATEGORY_CTA_TEXT = 'Bekijk alles'
 
