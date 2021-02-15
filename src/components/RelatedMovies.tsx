@@ -7,7 +7,7 @@ interface Props {
 }
 
 const RelatedMovies = (genre: Props) => {
-    const [relatedMovies, setRelatedMovies] = useState<Movie[]>()
+    const [relatedMovies, setRelatedMovies] = useState<Movie[]>([])
 
     useEffect(() => {
         //There is no check yet if the genre string does contain a comma
@@ -32,6 +32,7 @@ const RelatedMovies = (genre: Props) => {
         }
     }, [genre.genre]);
 
+    console.log(relatedMovies)
     return (
         <div>
             <MovieList movies={relatedMovies} />

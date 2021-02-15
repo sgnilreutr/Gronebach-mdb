@@ -9,8 +9,6 @@ import MissingTitles from './components/MissingTitles'
 import PageNotFound from './components/PageNotFound'
 import Homepage from './components/Homepage'
 import Search from './components/Search'
-import Test from './components/Test'
-import Test2 from './components/Test2'
 
 const api = createApiClient()
 
@@ -37,8 +35,6 @@ function App() {
           <Route path="/item/:movieID" component={MovieDetail} />
           <Route path="/missing" component={MissingTitles} />
           <Route path="/search" component={Search} />
-          <Route path="/test" component={Test} />
-          <Route path="/test2" component={Test2} />
           <Route path="*" component={PageNotFound} />
         </Switch>
       </div>
