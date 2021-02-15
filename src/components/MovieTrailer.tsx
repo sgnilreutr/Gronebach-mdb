@@ -20,7 +20,7 @@ export const MovieTrailer = ({ movieID }: { movieID: any }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const movieTrailer = await api.getMovieTrailer(`${movieID}`)
+      const movieTrailer = await api.getMovieTrailer(`${ movieID }`)
       setMovieTrailer(movieTrailer || 'No movie trailer')
     }
 
@@ -29,8 +29,6 @@ export const MovieTrailer = ({ movieID }: { movieID: any }) => {
 
   const itemHeight = window.innerWidth <= 414 ? 193 : 376
   const itemWidth = window.innerWidth <= 414 ? 343 : 640
-
-  console.log(movieTrailer)
 
   return (
     <div>

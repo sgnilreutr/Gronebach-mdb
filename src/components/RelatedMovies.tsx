@@ -32,7 +32,6 @@ const RelatedMovies = (genre: Props) => {
         }
     }, [genre.genre]);
 
-    console.log(relatedMovies)
     return (
         <div>
             <MovieList movies={relatedMovies} />

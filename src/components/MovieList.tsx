@@ -34,30 +34,15 @@ const MovieList: React.FC<Props> = ({ movies }) => {
         key={movie.imdbID}
         movieInfo={{
           Title: `${ movie.Title }`,
-          Year: `${ movie.Year }`,
           imdbID: `${ movie.imdbID }`,
-          Type: `${ movie.Type }`,
           Poster: `${ movie.Poster }`,
-          Runtime: `${ movie.Runtime }`,
-          Genre: `${ movie.Genre }`,
-          Actors: `${ movie.Actors }`,
-          Country: `${ movie.Country }`,
-          imdbRating: `${ movie.imdbRating }`,
-          Director: `${ movie.Director }`,
+          Genre: `${ movie.Genre }`
         }}
       />
     });
 
-  const Arrow = ({ icon, className }: { icon: {}, className: string }) => {
-    return (
-      <div
-        className={className}
-      >{icon}</div>
-    );
-  };
-
-  const ArrowLeft = Arrow({ icon: <FaChevronLeft size={30} />, className: 'arrow-global arrow-prev' });
-  const ArrowRight = Arrow({ icon: <FaChevronRight size={30} />, className: 'arrow-global arrow-next' });
+  const ArrowLeft = <div className="arrow-global arrow-prev"><FaChevronLeft size={30} /></div>
+  const ArrowRight = <div className="arrow-global arrow-next"><FaChevronRight size={30} /></div>
 
   // Create menu from items
   useEffect(() => {
@@ -84,16 +69,9 @@ const MovieList: React.FC<Props> = ({ movies }) => {
                       key={movie.imdbID}
                       movieInfo={{
                         Title: `${ movie.Title }`,
-                        Year: `${ movie.Year }`,
                         imdbID: `${ movie.imdbID }`,
-                        Type: `${ movie.Type }`,
                         Poster: `${ movie.Poster }`,
-                        Runtime: `${ movie.Runtime }`,
-                        Genre: `${ movie.Genre }`,
-                        Actors: `${ movie.Actors }`,
-                        Country: `${ movie.Country }`,
-                        imdbRating: `${ movie.imdbRating }`,
-                        Director: `${ movie.Director }`,
+                        Genre: `${ movie.Genre }`
                       }}
                     />
                   ))}

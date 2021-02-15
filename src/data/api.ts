@@ -28,6 +28,21 @@ export type MovieDetail = {
 
 export type Movie = {
     Title: string,
+    Year?: string,
+    imdbID: string,
+    Type?: string,
+    Poster: string,
+    Runtime?: string,
+    Genre: string,
+    Actors?: string,
+    Country?: string,
+    imdbRating?: string,
+    Director?: string,
+    Rated?: string,
+}
+
+export type MovieSearch = {
+    Title: string,
     Year: string,
     imdbID: string,
     Type: string,

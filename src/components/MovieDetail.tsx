@@ -38,7 +38,6 @@ const Moviedetail: React.FC<MovieDetail> = () => {
     setState('open')
   }
 
-  console.log(movie)
   const renderDetail = (movie: MovieDetail[]) => {
 
     return (
