@@ -1,29 +1,31 @@
 import React, { useEffect, useState } from 'react'
 import './MovieOverview.scss'
-
-import { createApiClient, Movie } from '../data/api'
-
+import { Movie } from '../data/api'
 import MovieListItem from './MovieListItem'
 import { Link, useLocation } from 'react-router-dom'
 import DetailHeader from './DetailHeader'
+import { useSelector } from 'react-redux'
 
 interface Props {
   movies: any
 }
 
-const api = createApiClient()
+const selectBaseLoaded = (state: any) => state.baseLoaded
 
 const MovieOverview: React.FC<Props> = () => {
   const [movieList, setMovieList] = useState<Movie[]>()
+  const baseLoaded = useSelector(selectBaseLoaded)
 
   useEffect(() => {
-    const fetchData = async () => {
-      const movies = await api.getMovies()
-      setMovieList(movies)
+    const json = localStorage.getItem("movies");
+    if (json) {
+      const allMovies = JSON.parse(json);
+      if (allMovies) {
+        setMovieList(allMovies);
+      }
     }
+  }, [baseLoaded]);
 
-    fetchData()
-  }, [])
 
   const location = useLocation()
   let partLoc = location.pathname.split('/')
@@ -40,10 +42,9 @@ const MovieOverview: React.FC<Props> = () => {
         <h1>Alle {partLoc[2]} films</h1>
         <div className="movie-grid">
           {filteredMovies.length > 0 ? (
-            filteredMovies.map((movie, index) => (
+            filteredMovies.map((movie) => (
               <div key={movie.imdbID}>
                 <MovieListItem
-                  // id={index}
                   movieInfo={{
                     Title: `${ movie.Title }`,
                     Year: `${ movie.Year }`,

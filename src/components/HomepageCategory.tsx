@@ -1,7 +1,7 @@
 import React from 'react'
 import { FiChevronRight } from 'react-icons/fi'
 import { Movie } from '../data/api'
-import MovieListContainer from './MovieListContainer'
+import MovieList from './MovieList'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import './Homepage.scss'
@@ -48,7 +48,7 @@ const HomepageCategory = ({ movieList, categoryName, categoryFilter }: { movieLi
                     </span>
                 </div>
             </div>
-            <MovieListContainer movies={randomSlice} />
+            <MovieList movies={randomSlice} />
         </div>
     )
 }

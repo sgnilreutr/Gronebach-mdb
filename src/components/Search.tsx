@@ -1,27 +1,29 @@
 import React, { useEffect, useState } from 'react'
 import SearchBar from './SearchBar'
 import './Search.scss'
-import { createApiClient, Movie } from '../data/api'
+import { Movie } from '../data/api'
 import { Link } from 'react-router-dom'
 import MovieListItem from './MovieListItem'
 import { useSelector } from 'react-redux'
 import CloseButton from './CloseButton'
 
-const api = createApiClient()
 const selectSearchTerm = (state: any) => state.searchTerm
+const selectBaseLoaded = (state: any) => state.baseLoaded
 
 export default function Search() {
   const searchTerm = useSelector(selectSearchTerm)
+  const baseLoaded = useSelector(selectBaseLoaded)
   const [movieList, setMovieList] = useState<Movie[]>()
 
   useEffect(() => {
-    const fetchData = async () => {
-      const movies = await api.getMovies()
-      setMovieList(movies || 'No movies loaded.')
+    const json = localStorage.getItem("movies");
+    if (json) {
+      const allMovies = JSON.parse(json);
+      if (allMovies) {
+        setMovieList(allMovies);
+      }
     }
-
-    fetchData()
-  }, [])
+  }, [baseLoaded]);
 
   const renderSearchMovies = (movieList: Movie[]) => {
     const filteredMovies = movieList.filter((movie) =>
@@ -41,10 +43,9 @@ export default function Search() {
     return (
       <div className="movie-grid">
         {filteredMovies.length > 0 ? (
-          filteredMovies.map((movie, index) => (
+          filteredMovies.map((movie) => (
             <div key={movie.imdbID}>
               <MovieListItem
-                // id={index}
                 movieInfo={{
                   Title: `${ movie.Title }`,
                   Year: `${ movie.Year }`,
