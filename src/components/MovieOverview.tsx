@@ -31,7 +31,7 @@ const MovieOverview: React.FC<Props> = () => {
   const renderMovies = (movieList: Movie[]) => {
     const filteredMovies = movieList.filter((movie) =>
       partLoc[2] !== 'children'
-        ? movie.Genre.toLowerCase().includes(`${partLoc[2]}`)
+        ? movie.Genre.toLowerCase().includes(`${ partLoc[2] }`)
         : movie.Rated === 'PG' && 'G'
     )
 
@@ -40,31 +40,32 @@ const MovieOverview: React.FC<Props> = () => {
         <h1>Alle {partLoc[2]} films</h1>
         <div className="movie-grid">
           {filteredMovies.length > 0 ? (
-            filteredMovies.map((movie) => (
+            filteredMovies.map((movie, index) => (
               <div key={movie.imdbID}>
                 <MovieListItem
+                  // id={index}
                   movieInfo={{
-                    Title: `${movie.Title}`,
-                    Year: `${movie.Year}`,
-                    imdbID: `${movie.imdbID}`,
-                    Type: `${movie.Type}`,
-                    Poster: `${movie.Poster}`,
-                    Runtime: `${movie.Runtime}`,
-                    Genre: `${movie.Genre}`,
-                    Actors: `${movie.Actors}`,
-                    Country: `${movie.Country}`,
-                    imdbRating: `${movie.imdbRating}`,
-                    Director: `${movie.Director}`,
+                    Title: `${ movie.Title }`,
+                    Year: `${ movie.Year }`,
+                    imdbID: `${ movie.imdbID }`,
+                    Type: `${ movie.Type }`,
+                    Poster: `${ movie.Poster }`,
+                    Runtime: `${ movie.Runtime }`,
+                    Genre: `${ movie.Genre }`,
+                    Actors: `${ movie.Actors }`,
+                    Country: `${ movie.Country }`,
+                    imdbRating: `${ movie.imdbRating }`,
+                    Director: `${ movie.Director }`,
                   }}
                 />
               </div>
             ))
           ) : (
-            <div>
-              <p>Geen items gevonden.</p>
-              <Link to="/missing">Controleer de ontbrekende titels</Link>
-            </div>
-          )}
+              <div>
+                <p>Geen items gevonden.</p>
+                <Link to="/missing">Controleer de ontbrekende titels</Link>
+              </div>
+            )}
         </div>
       </div>
     )

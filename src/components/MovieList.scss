@@ -13,11 +13,11 @@
 
 .hs {
 	display: grid;
-	grid-gap: 25px;
+	grid-gap: 8px;
 	grid-auto-flow: column;
 	grid-auto-columns: calc(50% - var(--gutter) * 2);
 	grid-template-rows: minmax(150px, 1fr);
-	padding: 0 20px;
+	padding: 0 8px;
 }
 
 .hs-scroll {
@@ -36,4 +36,59 @@
 .hs::after {
 	content: ‘’;
 	width: 10px;
+}
+
+.menu-item {
+	padding: 0 40px;
+	margin: 5px 10px;
+	user-select: none;
+	cursor: pointer;
+	border: none;
+}
+
+.menu-item-wrapper {
+	margin: 0 16px;
+}
+
+.scroll-menu-arrow {
+	z-index: 50;
+	cursor: pointer;
+}
+
+.horizontal-menu {
+	align-items: center;
+	display: flex;
+	user-select: none;
+	margin: 0 -30px;
+}
+
+.menu-wrapper {
+	padding: 10px 0;
+}
+
+.arrow-global {
+	position: relative;
+	height: 50px;
+	display: flex;
+	align-items: center;
+	transition: transform 0.3s ease-out,
+		-webkit-transform 0.3s ease-out opacity 0.45s ease-out;
+	opacity: 0.7;
+}
+
+.arrow-prev {
+	margin-left: 10px;
+}
+
+.arrow-next {
+	margin-right: 10px;
+}
+
+.arrow-prev:hover {
+	transform: translateX(-10px);
+	opacity: 1;
+}
+.arrow-next:hover {
+	transform: translateX(10px);
+	opacity: 1;
 }

@@ -12,14 +12,14 @@ const homepageCategories = [
         name: `Best beoordeeld`,
     },
     {
-        name: `Actie films`,
+        name: `Vol met actie`,
         filter: `action`,
     },
     {
         name: `Romantische items`,
     },
     {
-        name: `Comedies`,
+        name: `Comedy's`,
     },
     {
         name: `Kijk met de kinderen`,
@@ -103,15 +103,9 @@ const Homepage = ({ history }: { history: any }) => {
                     </div>
                     <MovieList movies={topCategory} />
                 </div>
-                <div>
-                    <HomepageCategory movieList={movieList} categoryName={homepageCategories[1].name} categoryFilter={'action'} />
-                </div>
-                <div>
-                    <HomepageCategory movieList={movieList} categoryName={homepageCategories[2].name} categoryFilter={'romance'} />
-                </div>
-                <div>
-                    <HomepageCategory movieList={movieList} categoryName={homepageCategories[3].name} categoryFilter={'comedy'} />
-                </div>
+                <HomepageCategory movieList={movieList} categoryName={homepageCategories[1].name} categoryFilter={'action'} />
+                <HomepageCategory movieList={movieList} categoryName={homepageCategories[2].name} categoryFilter={'romance'} />
+                <HomepageCategory movieList={movieList} categoryName={homepageCategories[3].name} categoryFilter={'comedy'} />
                 <div>
                     <div
                         onClick={() => openCategory('children')}
