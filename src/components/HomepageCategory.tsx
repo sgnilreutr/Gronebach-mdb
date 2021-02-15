@@ -2,8 +2,6 @@ import React from 'react'
 import { FiChevronRight } from 'react-icons/fi'
 import { Movie } from '../data/api'
 import MovieListContainer from './MovieListContainer'
-import MovieList from './MovieList'
-
 
 const CATEGORY_CTA_TEXT = 'Bekijk alles'
 
@@ -39,7 +37,6 @@ const HomepageCategory = ({ movieList, categoryName, categoryFilter }: { movieLi
                 </div>
             </div>
             <MovieListContainer movies={randomSlice} />
-            {/* <MovieList movies={randomSlice} /> */}
         </div>
     )
 }
