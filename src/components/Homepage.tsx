@@ -22,6 +22,12 @@ const homepageCategories = [
         name: `Comedy's`,
     },
     {
+        name: `Ontdek de mysteries`,
+    },
+    {
+        name: `Misdaad`,
+    },
+    {
         name: `Kijk met de kinderen`,
     },
 ]
@@ -106,13 +112,15 @@ const Homepage = ({ history }: { history: any }) => {
                 <HomepageCategory movieList={movieList} categoryName={homepageCategories[1].name} categoryFilter={'action'} />
                 <HomepageCategory movieList={movieList} categoryName={homepageCategories[2].name} categoryFilter={'romance'} />
                 <HomepageCategory movieList={movieList} categoryName={homepageCategories[3].name} categoryFilter={'comedy'} />
+                <HomepageCategory movieList={movieList} categoryName={homepageCategories[4].name} categoryFilter={'mystery'} />
+                <HomepageCategory movieList={movieList} categoryName={homepageCategories[5].name} categoryFilter={'crime'} />
                 <div>
                     <div
                         onClick={() => openCategory('children')}
                         className="click category-header"
                     >
                         <h2 className="category-header__title">
-                            {homepageCategories[4].name}
+                            {homepageCategories[6].name}
                         </h2>
                         <FiChevronRight className="category-header__icon" size={18} />
                         <div className="category-header__subtitle">
