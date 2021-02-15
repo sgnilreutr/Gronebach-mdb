@@ -13,7 +13,7 @@ const homepageCategories = [
     },
     {
         name: `Vol met actie`,
-        filter: `action`,
+        filter: 'action',
     },
     {
         name: `Romantische items`,

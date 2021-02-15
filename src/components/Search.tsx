@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import SearchBar from './SearchBar'
 import './Search.scss'
-import { Movie } from '../data/api'
+import { MovieSearch } from '../data/api'
 import { Link } from 'react-router-dom'
 import MovieListItem from './MovieListItem'
 import { useSelector } from 'react-redux'
@@ -13,7 +13,7 @@ const selectBaseLoaded = (state: any) => state.baseLoaded
 export default function Search() {
   const searchTerm = useSelector(selectSearchTerm)
   const baseLoaded = useSelector(selectBaseLoaded)
-  const [movieList, setMovieList] = useState<Movie[]>()
+  const [movieList, setMovieList] = useState<MovieSearch[]>()
 
   useEffect(() => {
     const json = localStorage.getItem("movies");
@@ -25,7 +25,7 @@ export default function Search() {
     }
   }, [baseLoaded]);
 
-  const renderSearchMovies = (movieList: Movie[]) => {
+  const renderSearchMovies = (movieList: MovieSearch[]) => {
     const filteredMovies = movieList.filter((movie) =>
       (
         movie.Title.toLowerCase() +
