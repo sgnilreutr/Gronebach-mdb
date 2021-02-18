@@ -1,6 +1,6 @@
 .category-header {
 	display: flex;
-	align-items: baseline;
+	align-items: center;
 	margin-top: 2.5rem;
 	cursor: pointer;
 }
@@ -21,7 +21,7 @@
 
 .category-header__subtitle {
 	opacity: 0;
-	transition: opacity 0.3s ease-out;
+	transition: opacity 0.3s ease-in-out;
 	display: inline-flex;
 	align-items: baseline;
 	margin-left: 0.5rem;
@@ -30,9 +30,9 @@
 
 .category-header__subtitle__nohover {
 	opacity: 0;
-	transition: opacity 0.3s ease-out;
-	display: inline-flex;
+	transition: opacity 0.3s ease-in-out;
 	align-items: baseline;
+	display: inline-flex;
 	margin-left: 0.5rem;
 }
 
@@ -45,7 +45,5 @@
 }
 
 .category-header__icon {
-	position: relative;
-	top: 19%;
 	opacity: 0.5;
 }
