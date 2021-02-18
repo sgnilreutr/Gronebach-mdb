@@ -1,4 +1,4 @@
-export const storeSearchTerm = (setSearchTerm: any ) => {
+export const storeSearchTerm = (setSearchTerm: string ) => {
     return {
         type: 'SEARCH_TERM_SET',
         payload: setSearchTerm
