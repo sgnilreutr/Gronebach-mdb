@@ -63,7 +63,7 @@ export default function Search() {
             </div>
           ))
         ) : (
-            <div>
+            <div className="search-no-results">
               <p>Geen items gevonden.</p>
               <Link to="/missing">Controleer de ontbrekende titels</Link>
             </div>
