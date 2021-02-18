@@ -7,14 +7,6 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
-    "@types/history": "^4.7.8",
-    "@types/jest": "^26.0.20",
-    "@types/node": "^14.14.27",
-    "@types/react": "^17.0.2",
-    "@types/react-dom": "^17.0.1",
-    "@types/react-lazy-load-image-component": "^1.5.1",
-    "@types/react-router-dom": "^5.1.7",
-    "@types/redux-logger": "^3.0.8",
     "axios": "^0.21.1",
     "history": "^5.0.0",
     "node-sass": "4.14.1",
@@ -56,6 +48,14 @@
     ]
   },
   "devDependencies": {
-    "@types/react-redux": "^7.1.16"
+    "@types/history": "^4.7.8",
+    "@types/jest": "^26.0.20",
+    "@types/node": "^14.14.28",
+    "@types/react": "^17.0.2",
+    "@types/react-dom": "^17.0.1",
+    "@types/react-lazy-load-image-component": "^1.5.1",
+    "@types/react-redux": "^7.1.16",
+    "@types/react-router-dom": "^5.1.7",
+    "@types/redux-logger": "^3.0.8"
   }
 }
