@@ -1,21 +1,21 @@
 import React, { useEffect } from 'react'
 import './App.scss'
-import { createApiClient } from './data/api'
 import { useDispatch } from 'react-redux'
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
-import MovieOverview from './components/MovieOverview'
-import MovieDetail from './components/MovieDetail'
-import MissingTitles from './components/MissingTitles'
+import { createApiClient } from './data/api'
+import MovieOverview from './components/MovieOverview/MovieOverview'
+import MovieDetail from './components/MovieDetail/MovieDetail'
+import MissingTitles from './components/MissingTitles/MissingTitles'
 import PageNotFound from './components/PageNotFound'
-import Homepage from './components/Homepage'
-import Search from './components/Search'
+import Homepage from './components/Homepage/Homepage'
+import Search from './components/Search/Search'
 
 const api = createApiClient()
 
 function App() {
   const dispatch = useDispatch()
 
-  //Load in all movies and store it in the localstorage
+  // Load in all movies and store it in the localstorage
   useEffect(() => {
     const fetchData = async () => {
       const movies = JSON.stringify(await api.getMovies())
@@ -30,7 +30,7 @@ function App() {
     <Router>
       <div className="App">
         <Switch>
-          <Route path="/" exact={true} component={Homepage} />
+          <Route path="/" exact component={Homepage} />
           <Route path="/overview/*" component={MovieOverview} />
           <Route path="/item/:movieID" component={MovieDetail} />
           <Route path="/missing" component={MissingTitles} />

@@ -1,0 +1,21 @@
+.trailer-button {
+  display: flex;
+  align-items: center;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.trailer-button:hover {
+  color: rgb(68, 68, 68);
+}
+
+.movie-player {
+  display: flex;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  @media only screen and (min-width: 416px) {
+    margin-right: 4rem;
+  }
+}

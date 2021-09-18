@@ -1,18 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.scss'
-import App from './App'
 import { Provider } from 'react-redux'
-// import { createStore, applyMiddleware } from 'redux';
 import { createStore } from 'redux'
+import App from './App'
 import RootReducer from './reducers/reducer'
-// import logger from 'redux-logger'
 
 const store = createStore(RootReducer)
-// const store = createStore(
-//   RootReducer,
-//   applyMiddleware(logger),
-// );
 
 ReactDOM.render(
   <React.StrictMode>

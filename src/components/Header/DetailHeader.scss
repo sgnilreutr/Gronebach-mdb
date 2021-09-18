@@ -1,0 +1,33 @@
+.back-container {
+  padding-bottom: 1.4rem;
+  display: flex;
+  flex-flow: row;
+}
+
+.back-button {
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+  cursor: pointer;
+  max-width: fit-content;
+  background: transparent;
+  border: 0;
+  align-items: center;
+  @media only screen and (max-width: 414px) {
+    margin: 0.375rem auto 0.375rem 1rem;
+  }
+}
+
+.back-button > .back {
+  max-width: max-content;
+  height: 1rem;
+  font-family: Helvetica;
+  font-size: 1rem;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.19;
+  letter-spacing: normal;
+  text-align: left;
+  margin-left: 8px;
+}
