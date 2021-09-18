@@ -1,16 +1,19 @@
-import React, { useEffect, useState } from 'react'
+import React, { lazy, Suspense, useEffect, useState } from 'react'
 import './App.scss'
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
 import { createApiClient, Movie } from './data/api'
-import MovieOverview from './components/MovieOverview/MovieOverview'
-import MovieDetail from './components/MovieDetail/MovieDetail'
-import MissingTitles from './components/MissingTitles/MissingTitles'
-import PageNotFound from './components/PageNotFound'
-import Homepage from './components/Homepage/Homepage'
-import Search from './components/Search/Search'
 import { MovieProvider } from './context/movieDatabaseContext'
 import * as global from './constants/globalConstants'
-import RandomMovieIntro from './components/RandomMovieIntro/randomMovieIntro'
+
+const Homepage = lazy(() => import("./components/Homepage/Homepage"));
+const MovieOverview = lazy(() => import("./components/MovieOverview/MovieOverview"));
+const MovieDetail = lazy(() => import("./components/MovieDetail/MovieDetail"));
+const MissingTitles = lazy(() => import("./components/MissingTitles/MissingTitles"));
+const PageNotFound = lazy(() => import("./components/PageNotFound"));
+const Search = lazy(() => import("./components/Search/Search"));
+const RandomMovieIntro = lazy(() => import("./components/RandomMovieIntro/randomMovieIntro"));
+
+const Loading = () => <div style={{ width: '100%', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}><p>{global.LOADING}</p></div>;
 
 const App = () => {
   const [allMovies, setAllMovies] = useState<Movie[]>([])
@@ -51,15 +54,17 @@ const App = () => {
     <MovieProvider value={allMovies}>
       <Router>
         <div className="App">
-          <Switch>
-            <Route path="/" exact component={Homepage} />
-            <Route path="/overview/*" component={MovieOverview} />
-            <Route path="/item/:movieID" component={MovieDetail} />
-            <Route path="/missing" component={MissingTitles} />
-            <Route path="/search" component={Search} />
-            <Route path="/random/:movieID" component={RandomMovieIntro} />
-            <Route path="*" component={PageNotFound} />
-          </Switch>
+          <Suspense fallback={<Loading />}>
+            <Switch>
+              <Route path="/" exact component={Homepage} />
+              <Route path="/overview/*" component={MovieOverview} />
+              <Route path="/item/:movieID" component={MovieDetail} />
+              <Route path="/missing" component={MissingTitles} />
+              <Route path="/search" component={Search} />
+              <Route path="/random/:movieID" component={RandomMovieIntro} />
+              <Route path="*" component={PageNotFound} />
+            </Switch>
+          </Suspense>
         </div>
       </Router>
     </MovieProvider>
