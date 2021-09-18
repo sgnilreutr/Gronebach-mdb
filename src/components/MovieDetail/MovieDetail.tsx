@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './MovieDetail.scss'
 import { FiStar } from 'react-icons/fi'
 import { useParams } from 'react-router-dom'
+import isEmpty from 'lodash/isEmpty'
 import { useSelector } from 'react-redux'
 import DetailHeader from '../Header/DetailHeader'
 import {
@@ -11,6 +12,7 @@ import {
 import { MovieTrailer, OpenTrailerButton } from './MovieTrailer'
 import RelatedMovies from './RelatedMovies'
 import * as global from '../../constants/globalConstants'
+import fetchData from '../../data/fetchData'
 
 const selectBaseLoaded = (state: any) => state.baseLoaded
 
@@ -29,22 +31,12 @@ const Moviedetail: React.FC<MovieDetail> = () => {
   const baseLoaded = useSelector(selectBaseLoaded)
 
   useEffect(() => {
-    const json = localStorage.getItem("movies");
-    try {
-      if (json) {
-        const allMovies = JSON.parse(json);
-        if (allMovies) {
-          setMovie(allMovies.filter((item: any) =>
-            item.imdbID.toLowerCase().includes(`${ movieID }`)
-          ))
-        }
-      } else {
-        console.log('No movies loaded')
-      }
-    } catch (error) {
-      console.error(error)
+    if (isEmpty(movie) && baseLoaded && movieID) {
+      fetchData().then((value) => setMovie(value.filter((item: any) =>
+        item.imdbID.toLowerCase().includes(`${ movieID }`)
+      )))
     }
-  }, [movieID, baseLoaded]);
+  }, [movieID, baseLoaded, movie])
 
   const triggerOpenTrailerState = () => {
     setState('open')

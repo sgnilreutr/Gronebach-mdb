@@ -7,6 +7,7 @@ import SearchBar from '../Elements/SearchBar'
 import MovieListItem from '../MovieOverview/MovieListItem'
 import CloseButton from '../Elements/CloseButton'
 import * as global from '../../constants/globalConstants'
+import fetchData from '../../data/fetchData'
 
 const selectSearchTerm = (state: any) => state.searchTerm
 const selectBaseLoaded = (state: any) => state.baseLoaded
@@ -19,14 +20,10 @@ export default function Search() {
   const [movieList, setMovieList] = useState<MovieSearch[]>([])
 
   useEffect(() => {
-    const json = localStorage.getItem("movies");
-    if (json) {
-      const allMovies = JSON.parse(json);
-      if (allMovies) {
-        setMovieList(allMovies);
-      }
+    if (movieList.length === 0 && baseLoaded) {
+      fetchData().then((value) => setMovieList(value))
     }
-  }, [baseLoaded]);
+  }, [baseLoaded, movieList])
 
   const renderSearchMovies = () => {
     const filteredMovies = movieList.filter((movie) =>

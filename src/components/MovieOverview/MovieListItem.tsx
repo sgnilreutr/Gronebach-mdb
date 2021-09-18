@@ -10,22 +10,22 @@ interface Props {
   movieInfo: Movie
 }
 
-const MovieListItem: React.FC<Props> = ({ movieInfo }) => {
+const MovieListItem: React.FC<Props> = ({ movieInfo: { imdbID, Poster, Title } }) => {
   const itemHeight = window.innerWidth <= global.WINDOW_WIDTH_414 ? 176.72 : 378
   const itemWidth = window.innerWidth <= global.WINDOW_WIDTH_414 ? 120.32 : 258
 
   const history = useHistory()
-  const openOverviewPage = (imdbID: string) => {
-    history.push(`/item/${ imdbID }`)
+  const openOverviewPage = () => {
+    history.push({ pathname: `/item/${ imdbID }` })
   }
 
   return (
-    <div aria-hidden="true" onClick={() => openOverviewPage(movieInfo.imdbID)}>
+    <div aria-hidden="true" onClick={() => openOverviewPage()}>
       <div className="item">
         <div className="item-img">
           <LazyLoadImage
-            src={getMoviePosterUrl(movieInfo.Poster)}
-            alt={movieInfo.Title}
+            src={getMoviePosterUrl(Poster)}
+            alt={Title}
             effect="blur"
             height={itemHeight}
             width={itemWidth}
@@ -34,7 +34,7 @@ const MovieListItem: React.FC<Props> = ({ movieInfo }) => {
         </div>
         <div className="title">
           <div className="text-truncate">
-            <span className="no-style">{movieInfo.Title}</span>
+            <span className="no-style">{Title}</span>
           </div>
         </div>
       </div>

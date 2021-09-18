@@ -6,6 +6,7 @@ import { Movie } from '../../data/api'
 import MovieListItem from './MovieListItem'
 import DetailHeader from '../Header/DetailHeader'
 import * as global from '../../constants/globalConstants'
+import fetchData from '../../data/fetchData'
 
 interface Props {
   movies: any
@@ -14,18 +15,14 @@ interface Props {
 const selectBaseLoaded = (state: any) => state.baseLoaded
 
 const MovieOverview: React.FC<Props> = () => {
-  const [movieList, setMovieList] = useState<Movie[]>()
+  const [movieList, setMovieList] = useState<Movie[]>([])
   const baseLoaded = useSelector(selectBaseLoaded)
 
   useEffect(() => {
-    const json = localStorage.getItem("movies");
-    if (json) {
-      const allMovies = JSON.parse(json);
-      if (allMovies) {
-        setMovieList(allMovies);
-      }
+    if (movieList.length === 0 && baseLoaded) {
+      fetchData().then((value) => setMovieList(value))
     }
-  }, [baseLoaded]);
+  }, [baseLoaded, movieList])
 
 
   const location = useLocation()
