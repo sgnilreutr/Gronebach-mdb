@@ -34,11 +34,11 @@ const MovieList: React.FC<Props> = ({ movies }) => {
       <MovieListItem
         key={movie.imdbID}
         movieInfo={{
-          Title: `${ movie.Title }`,
-          imdbID: `${ movie.imdbID }`,
-          Poster: `${ movie.Poster }`,
-          Genre: `${ movie.Genre }`,
-          Type: `${ movie.Type }`,
+          Title: `${movie.Title}`,
+          imdbID: `${movie.imdbID}`,
+          Poster: `${movie.Poster}`,
+          Genre: `${movie.Genre}`,
+          Type: `${movie.Type}`,
         }}
       />
     ))

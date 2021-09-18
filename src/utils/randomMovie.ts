@@ -2,12 +2,10 @@ import { MovieSearch } from '../data/api'
 
 export const randomMovie = (movies: MovieSearch[]) => {
   const randomNumber = Math.floor(Math.random() * (movies.length - 1)) + 1
-  //   movies[randomNumber]
-  console.log(movies[randomNumber])
+  return movies[randomNumber]
 }
 
-//  Make it only loop for 10 times
-//  Make it take out the movie from the pool of possibilties once it is taken
+//  It takes out the movie from the pool of possibilties once it is taken
 export const tenRandomMovies = (movies: MovieSearch[]) => {
   const movieProp = movies
   if (movieProp.length > 10) {

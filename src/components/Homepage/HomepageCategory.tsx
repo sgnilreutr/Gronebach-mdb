@@ -24,7 +24,7 @@ const HomepageCategory = ({
   const openCategory = (value: string) => {
     dispatch({ type: 'SET_OVERVIEW_QUERY', payload: value })
     history.push({
-      pathname: `/overview/${ value }`,
+      pathname: `/overview/${value}`,
     })
   }
 

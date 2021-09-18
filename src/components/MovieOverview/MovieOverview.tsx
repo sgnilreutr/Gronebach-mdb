@@ -19,7 +19,7 @@ const MovieOverview: React.FC = () => {
     if (partLoc[2] === 'top' && allMovieList.length > 0) {
       return allMovieList.filter((movie) => parseInt(movie.imdbRating, 10) >= 8.0)
     }
-    return allMovieList.filter((movie) => movie.Genre.toLowerCase().includes(`${ partLoc[2] }`))
+    return allMovieList.filter((movie) => movie.Genre.toLowerCase().includes(`${partLoc[2]}`))
   }
 
   const renderMovies = () => {

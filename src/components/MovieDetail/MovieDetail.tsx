@@ -24,7 +24,7 @@ const Moviedetail: React.FC<MovieDetail> = () => {
 
   useEffect(() => {
     if (movieID && allMovieList.length > 0) {
-      setMovie(allMovieList.filter((item) => item.imdbID.toLowerCase().includes(`${ movieID }`)))
+      setMovie(allMovieList.filter((item) => item.imdbID.toLowerCase().includes(`${movieID}`)))
     }
   }, [movieID, allMovieList])
 
