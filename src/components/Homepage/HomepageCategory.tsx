@@ -4,6 +4,8 @@ import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { Movie } from '../../data/api'
 import MovieList from '../MovieOverview/MovieList'
+import { tenRandomMovies } from '../../utils/randomMovie'
+import * as global from '../../constants/globalConstants'
 
 
 const CATEGORY_CTA_TEXT = 'Bekijk alles'
@@ -39,14 +41,11 @@ const HomepageCategory = ({ movieList, categoryName, categoryFilter }: { movieLi
     }
 
     const sliceMovies = () => {
-        if (movieList) {
-            const randomNumber = (Math.floor(Math.random() * 100) + 10)
-            const randomEndIndex = randomNumber > filteredList().length ? filteredList().length : randomNumber
-            const randomStartIndex = randomEndIndex - 10
-            return filteredList().slice(randomStartIndex, randomEndIndex)
+        if (movieList.length > 0 && filteredList().length > 0) {
+            const filteredMovies = filteredList()
+            return tenRandomMovies(filteredMovies)
         }
-        return null
-
+        return []
     }
 
     return (
@@ -62,7 +61,8 @@ const HomepageCategory = ({ movieList, categoryName, categoryFilter }: { movieLi
                     </span>
                 </div>
             </div>
-            <MovieList movies={sliceMovies()} />
+            {sliceMovies().length === 0 && <p>{global.LOADING}</p>}
+            {sliceMovies().length > 0 && <MovieList movies={sliceMovies()} />}
         </div>
     )
 }
