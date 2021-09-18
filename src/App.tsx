@@ -5,15 +5,27 @@ import { createApiClient, Movie } from './data/api'
 import { MovieProvider } from './context/movieDatabaseContext'
 import * as global from './constants/globalConstants'
 
-const Homepage = lazy(() => import("./components/Homepage/Homepage"));
-const MovieOverview = lazy(() => import("./components/MovieOverview/MovieOverview"));
-const MovieDetail = lazy(() => import("./components/MovieDetail/MovieDetail"));
-const MissingTitles = lazy(() => import("./components/MissingTitles/MissingTitles"));
-const PageNotFound = lazy(() => import("./components/PageNotFound"));
-const Search = lazy(() => import("./components/Search/Search"));
-const RandomMovieIntro = lazy(() => import("./components/RandomMovieIntro/randomMovieIntro"));
+const Homepage = lazy(() => import('./components/Homepage/Homepage'))
+const MovieOverview = lazy(() => import('./components/MovieOverview/MovieOverview'))
+const MovieDetail = lazy(() => import('./components/MovieDetail/MovieDetail'))
+const MissingTitles = lazy(() => import('./components/MissingTitles/MissingTitles'))
+const PageNotFound = lazy(() => import('./components/PageNotFound'))
+const Search = lazy(() => import('./components/Search/Search'))
+const RandomMovieIntro = lazy(() => import('./components/RandomMovieIntro/randomMovieIntro'))
 
-const Loading = () => <div style={{ width: '100%', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}><p>{global.LOADING}</p></div>;
+const Loading = () => (
+  <div
+    style={{
+      width: '100%',
+      height: '100vh',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+    }}
+  >
+    <p>{global.LOADING}</p>
+  </div>
+)
 
 const App = () => {
   const [allMovies, setAllMovies] = useState<Movie[]>([])

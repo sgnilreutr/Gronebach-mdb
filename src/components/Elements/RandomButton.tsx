@@ -7,30 +7,40 @@ import './RandomButton.scss'
 
 const BUTTON_TEXT = 'Suprise me!'
 
+const preLoadRandomIntro = () => {
+  import('../RandomMovieIntro/randomMovieIntro')
+}
+
 const RandomButton = () => {
-    const allMovieList = useContext(MovieDatabaseContext) as MovieSearch[]
+  const allMovieList = useContext(MovieDatabaseContext) as MovieSearch[]
 
-    const history = useHistory()
-    const openIntroPage = (imdbID: string) => {
-        history.push({ pathname: `/random/${ imdbID }/` })
+  const history = useHistory()
+  const openIntroPage = (imdbID: string) => {
+    history.push({ pathname: `/random/${imdbID}/` })
+  }
+
+  const fetchRandomMovie = () => {
+    const movie = randomMovie(allMovieList)
+    if (Object.keys(movie).length > 0) {
+      openIntroPage(movie.imdbID)
+    } else {
+      console.error('Mislukt laden random movie')
     }
+  }
 
-    const fetchRandomMovie = () => {
-        const movie = randomMovie(allMovieList)
-        if (Object.keys(movie).length > 0) {
-            openIntroPage(movie.imdbID)
-        } else {
-            console.error('Mislukt laden random movie')
-        }
-    }
-
-    return (
-        <div className="randombutton_container">
-            <button className="random" type="button" onClick={() => fetchRandomMovie()}>
-                {BUTTON_TEXT}
-            </button>
-        </div>
-    )
+  return (
+    <div className="randombutton_container">
+      <button
+        className="random"
+        type="button"
+        onClick={() => fetchRandomMovie()}
+        onMouseOver={preLoadRandomIntro}
+        onFocus={preLoadRandomIntro}
+      >
+        {BUTTON_TEXT}
+      </button>
+    </div>
+  )
 }
 
 export default RandomButton

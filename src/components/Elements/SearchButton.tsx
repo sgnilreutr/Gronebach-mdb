@@ -5,6 +5,10 @@ import { useHistory } from 'react-router-dom'
 
 const SEARCH = 'Zoeken'
 
+const preLoadSearch = () => {
+  import('../Search/Search')
+}
+
 export default function Searchbutton() {
   const history = useHistory()
   const openSearch = () => {
@@ -12,7 +16,13 @@ export default function Searchbutton() {
   }
 
   return (
-    <button className="search" onClick={openSearch} type="button">
+    <button
+      className="search"
+      onClick={openSearch}
+      type="button"
+      onMouseOver={preLoadSearch}
+      onFocus={preLoadSearch}
+    >
       <FiSearch size={24} />
       <p className="search-label">{SEARCH}</p>
     </button>
