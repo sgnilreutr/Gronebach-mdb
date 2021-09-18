@@ -8,16 +8,21 @@ import * as global from '../../constants/globalConstants'
 
 const WATCH_TRAILER_BUTTON = 'Bekijk Trailer'
 
-export const OpenTrailerButton = (props: any) => {
+interface TrailerButton {
+  openTrailer(): any
+}
+
+export const OpenTrailerButton = (props: TrailerButton) => {
   const { openTrailer } = props
   return (
     <div aria-hidden="true" className="trailer-button" onClick={openTrailer}>
       <MdLocalMovies />
       {WATCH_TRAILER_BUTTON}
-    </div>)
+    </div>
+  )
 }
 
-export const MovieTrailer = ({ movieID }: { movieID: any }) => {
+export const MovieTrailer = ({ movieID }: { movieID: string }) => {
   const [movieTrailer, setMovieTrailer] = useState<any>({})
   const [loadingState, setLoadingState] = useState<string>('idle')
 
@@ -29,12 +34,10 @@ export const MovieTrailer = ({ movieID }: { movieID: any }) => {
         if (!isEmpty(response)) {
           setMovieTrailer(response)
           setLoadingState('loaded')
-        }
-        else {
+        } else {
           setLoadingState('error')
         }
-      }
-      catch (err) {
+      } catch (err) {
         console.error(err)
         setLoadingState('error')
       }
@@ -50,13 +53,14 @@ export const MovieTrailer = ({ movieID }: { movieID: any }) => {
   return (
     <div>
       <div className="movie-player">
-        {loadingState === 'loaded' && movieTrailer.videoUrl &&
+        {loadingState === 'loaded' && movieTrailer.videoUrl && (
           <ReactPlayer
             url={movieTrailer.videoUrl}
             style={{ borderRadius: '6px' }}
             height={itemHeight}
             width={itemWidth}
-          />}
+          />
+        )}
         {loadingState === 'loading' && <p>{global.LOADING}</p>}
         {loadingState === 'error' && <p>{global.COULD_NOT_LOAD}</p>}
       </div>

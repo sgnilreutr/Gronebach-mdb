@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext } from 'react'
 import './Search.scss'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
@@ -7,26 +7,18 @@ import SearchBar from '../Elements/SearchBar'
 import MovieListItem from '../MovieOverview/MovieListItem'
 import CloseButton from '../Elements/CloseButton'
 import * as global from '../../constants/globalConstants'
-import fetchData from '../../data/fetchData'
+import MovieDatabaseContext from '../../context/movieDatabaseContext'
 
 const selectSearchTerm = (state: any) => state.searchTerm
-const selectBaseLoaded = (state: any) => state.baseLoaded
 
 const START_SEARCHING = 'Start met zoeken'
 
 export default function Search() {
   const searchTerm = useSelector(selectSearchTerm)
-  const baseLoaded = useSelector(selectBaseLoaded)
-  const [movieList, setMovieList] = useState<MovieSearch[]>([])
-
-  useEffect(() => {
-    if (movieList.length === 0 && baseLoaded) {
-      fetchData().then((value) => setMovieList(value))
-    }
-  }, [baseLoaded, movieList])
+  const allMovieList = useContext(MovieDatabaseContext) as MovieSearch[]
 
   const renderSearchMovies = () => {
-    const filteredMovies = movieList.filter((movie) =>
+    const filteredMovies = allMovieList.filter((movie) =>
       (
         movie.Title.toLowerCase() +
         movie.Year +
@@ -44,7 +36,19 @@ export default function Search() {
       <div className="movie-grid">
         {filteredMovies.length > 0 ? (
           filteredMovies.map((movie) => {
-            const { Title, Year, imdbID, Type, Poster, Runtime, Genre, Actors, Country, imdbRating, Director } = movie
+            const {
+              Title,
+              Year,
+              imdbID,
+              Type,
+              Poster,
+              Runtime,
+              Genre,
+              Actors,
+              Country,
+              imdbRating,
+              Director,
+            } = movie
             return (
               <div key={movie.imdbID}>
                 <MovieListItem
@@ -64,8 +68,7 @@ export default function Search() {
                 />
               </div>
             )
-          }
-          )
+          })
         ) : (
           <div className="search-no-results">
             <p>{global.NO_ITEMS}</p>
@@ -82,9 +85,11 @@ export default function Search() {
         <SearchBar />
         <CloseButton />
       </div>
-      {movieList.length === 0 && <h2>{global.LOADING}</h2>}
-      {movieList.length > 0 && searchTerm && renderSearchMovies()}
-      {movieList.length > 0 && !searchTerm && <h2 className="search-page-placeholder">{START_SEARCHING}</h2>}
+      {allMovieList.length === 0 && <h2>{global.LOADING}</h2>}
+      {allMovieList.length > 0 && searchTerm && renderSearchMovies()}
+      {allMovieList.length > 0 && !searchTerm && (
+        <h2 className="search-page-placeholder">{START_SEARCHING}</h2>
+      )}
     </div>
   )
 }
