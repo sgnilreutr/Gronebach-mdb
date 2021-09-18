@@ -32,7 +32,11 @@ export default function Missingtitles() {
           </span>
         </h1>
         <p>{MISSING_SUB}</p>
-        {MISSING_TITLES.map((title) => <li key={title.substr(0, 4)} className="missing_title">{title}</li>)}
+        {MISSING_TITLES.map((title) => (
+          <li key={title.substr(0, 4)} className="missing_title">
+            {title}
+          </li>
+        ))}
       </div>
     </div>
   )

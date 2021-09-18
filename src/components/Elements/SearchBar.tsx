@@ -15,7 +15,7 @@ const SearchBar: React.FC = () => {
     dispatch({ type: 'SEARCH_TERM_SET', payload: value })
   }
 
-  const handleSubmit = (event: any) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
   }
 

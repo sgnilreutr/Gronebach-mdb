@@ -1,19 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './MovieDetail.scss'
 import { FiStar } from 'react-icons/fi'
 import { useParams } from 'react-router-dom'
-import { useSelector } from 'react-redux'
 import DetailHeader from '../Header/DetailHeader'
-import {
-  getMoviePosterUrl,
-  MovieDetail
-} from '../../data/api'
+import { getMoviePosterUrl, Movie, MovieDetail } from '../../data/api'
 import { MovieTrailer, OpenTrailerButton } from './MovieTrailer'
 import RelatedMovies from './RelatedMovies'
 import * as global from '../../constants/globalConstants'
-import fetchData from '../../data/fetchData'
-
-const selectBaseLoaded = (state: any) => state.baseLoaded
+import MovieDatabaseContext from '../../context/movieDatabaseContext'
 
 const RATING = '/ 10'
 const ACTORS = 'Acteurs'
@@ -26,16 +20,13 @@ const Moviedetail: React.FC<MovieDetail> = () => {
   const { movieID } = useParams<{ movieID: string }>()
   const [movie, setMovie] = useState<any>()
   const [trailerActive, setTrailerActive] = useState(false)
-
-  const baseLoaded = useSelector(selectBaseLoaded)
+  const allMovieList = useContext(MovieDatabaseContext) as Movie[]
 
   useEffect(() => {
-    if (baseLoaded && movieID) {
-      fetchData().then((value) => setMovie(value.filter((item: any) =>
-        item.imdbID.toLowerCase().includes(`${ movieID }`)
-      )))
+    if (movieID && allMovieList.length > 0) {
+      setMovie(allMovieList.filter((item) => item.imdbID.toLowerCase().includes(`${ movieID }`)))
     }
-  }, [movieID, baseLoaded])
+  }, [movieID, allMovieList])
 
   useEffect(() => {
     setTrailerActive(false)
@@ -47,8 +38,9 @@ const Moviedetail: React.FC<MovieDetail> = () => {
 
   const renderDetail = () => (
     <>
-      {movie.map((item: any) => {
-        const { imdbID, Title, Year, Poster, Plot, Actors, Director, Genre, imdbRating, Runtime } = item
+      {movie.map((item: MovieDetail) => {
+        const { imdbID, Title, Year, Poster, Plot, Actors, Director, Genre, imdbRating, Runtime } =
+          item
         return (
           <div className="detail-container" key={imdbID}>
             <div className="item-title">
@@ -61,15 +53,9 @@ const Moviedetail: React.FC<MovieDetail> = () => {
             <div>
               <div>
                 <div className="details-inner">
-                  <img
-                    src={getMoviePosterUrl(Poster)}
-                    alt={Title}
-                    className="img"
-                  />
+                  <img src={getMoviePosterUrl(Poster)} alt={Title} className="img" />
                   <div className="text-details">
-                    {!trailerActive && (
-                      <OpenTrailerButton openTrailer={triggerOpenTrailerState} />
-                    )}
+                    {!trailerActive && <OpenTrailerButton openTrailer={triggerOpenTrailerState} />}
                     {trailerActive && <MovieTrailer movieID={imdbID} />}
                     <div className="rating">
                       <FiStar />
@@ -103,9 +89,9 @@ const Moviedetail: React.FC<MovieDetail> = () => {
               <h2>{RELATED_MOVIES}</h2>
               <RelatedMovies genre={Genre} activeMovie={movieID} />
             </div>
-          </div>)
-      })
-      }
+          </div>
+        )
+      })}
     </>
   )
 

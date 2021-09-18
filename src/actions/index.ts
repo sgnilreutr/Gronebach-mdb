@@ -12,8 +12,3 @@ export const storeOverviewQuery = (setQuery: string) => ({
   type: 'SET_OVERVIEW_QUERY',
   payload: setQuery,
 })
-
-export const storeBaseLoaded = (setBaseLoad: string) => ({
-  type: 'SET_BASE_LOADED',
-  payload: setBaseLoad,
-})

@@ -1,53 +1,36 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext } from 'react'
 import './MovieOverview.scss'
 import { Link, useLocation } from 'react-router-dom'
-import { useSelector } from 'react-redux'
-import { Movie } from '../../data/api'
+import { MovieSearch } from '../../data/api'
 import MovieListItem from './MovieListItem'
 import DetailHeader from '../Header/DetailHeader'
 import * as global from '../../constants/globalConstants'
-import fetchData from '../../data/fetchData'
+import MovieDatabaseContext from '../../context/movieDatabaseContext'
 
-interface Props {
-  movies: any
-}
-
-const selectBaseLoaded = (state: any) => state.baseLoaded
-
-const MovieOverview: React.FC<Props> = () => {
-  const [movieList, setMovieList] = useState<Movie[]>([])
-  const baseLoaded = useSelector(selectBaseLoaded)
+const MovieOverview: React.FC = () => {
   const location = useLocation()
+  const allMovieList = useContext(MovieDatabaseContext) as MovieSearch[]
   const partLoc = location.pathname.split('/')
 
-  useEffect(() => {
-    if (movieList.length === 0 && baseLoaded) {
-      fetchData().then((value) => setMovieList(value))
-    }
-  }, [baseLoaded, movieList])
-
-
   const filteredList = () => {
-    if (partLoc[2] === 'kids') {
-      return movieList.filter((movie) => movie.Rated === 'PG' && 'G')
+    if (partLoc[2] === 'kids' && allMovieList.length > 0) {
+      return allMovieList.filter((movie) => movie.Rated === 'PG' && 'G')
     }
-    if (partLoc[2] === 'top') {
-      return movieList.filter((movie: any) => movie.imdbRating >= 8.0)
+    if (partLoc[2] === 'top' && allMovieList.length > 0) {
+      return allMovieList.filter((movie) => parseInt(movie.imdbRating, 10) >= 8.0)
     }
-    return movieList.filter((movie) => movie.Genre.toLowerCase().includes(`${ partLoc[2] }`))
+    return allMovieList.filter((movie) => movie.Genre.toLowerCase().includes(`${ partLoc[2] }`))
   }
 
-
   const renderMovies = () => {
-    if (movieList) {
-
+    if (allMovieList) {
       return (
         <div>
           <h1>Alle {partLoc[2]} items</h1>
           <div className="movie-grid">
             {filteredList().length > 0 ? (
               filteredList().map((movie) => {
-                const { Title, imdbID, Poster, Genre } = movie
+                const { Title, imdbID, Poster, Genre, Type } = movie
                 return (
                   <div key={movie.imdbID}>
                     <MovieListItem
@@ -56,6 +39,7 @@ const MovieOverview: React.FC<Props> = () => {
                         Genre,
                         imdbID,
                         Poster,
+                        Type,
                       }}
                     />
                   </div>
@@ -77,7 +61,7 @@ const MovieOverview: React.FC<Props> = () => {
   return (
     <div>
       <DetailHeader />
-      {movieList ? renderMovies() : <h2>{global.LOADING}</h2>}
+      {allMovieList.length > 0 ? renderMovies() : <h2>{global.LOADING}</h2>}
     </div>
   )
 }

@@ -30,7 +30,7 @@ export type Movie = {
   Title: string
   Year?: string
   imdbID: string
-  Type?: string
+  Type: string
   Poster: string
   Runtime?: string
   Genre: string

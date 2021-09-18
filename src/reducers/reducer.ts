@@ -2,14 +2,12 @@ export interface AppState {
   searchTerm: string
   category: string
   overviewQuery: string
-  baseLoaded: boolean
 }
 
 export const initialState: AppState = Object.freeze({
   searchTerm: '',
   category: '',
   overviewQuery: '',
-  baseLoaded: false,
 })
 
 const rootReducer = (state = initialState, action: any) => {
@@ -28,11 +26,6 @@ const rootReducer = (state = initialState, action: any) => {
       return {
         ...state,
         overviewQuery: action.payload,
-      }
-    case 'SET_BASE_LOADED':
-      return {
-        ...state,
-        baseLoaded: action.payload,
       }
     default:
       return state

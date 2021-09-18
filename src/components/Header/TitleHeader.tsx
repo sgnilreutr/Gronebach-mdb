@@ -24,7 +24,12 @@ export default function TitleHeader() {
           </span>
         </div>
       </div>
-      <a style={{ color: '#232323', fontSize: '0.7rem', opacity: '0.7', textDecoration: 'none' }} href="https://github.com/sgnilreutr">{ROBBERT_TUERLINGS}</a>
+      <a
+        style={{ color: '#232323', fontSize: '0.7rem', opacity: '0.7', textDecoration: 'none' }}
+        href="https://github.com/sgnilreutr"
+      >
+        {ROBBERT_TUERLINGS}
+      </a>
     </div>
   )
 }
