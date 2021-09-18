@@ -19,21 +19,35 @@ const HomepageCategory = ({ movieList, categoryName, categoryFilter }: { movieLi
         })
     }
 
-    function sliceMovies() {
-        if (movieList) {
+    const filteredList = () => {
+        if (categoryFilter === 'topMovie') {
             const filterList = movieList.filter(
-                (movie: any) => movie.Genre.toLowerCase().includes(categoryFilter)
+                (movie: any) => movie.imdbRating >= 8.0
             )
+            return filterList
+        }
+        if (categoryFilter === 'kids') {
+            const filterList = movieList.filter(
+                (movie: any) => movie.Rated === 'PG' && 'G'
+            )
+            return filterList
+        }
+        const filterList = movieList.filter(
+            (movie: any) => movie.Genre.toLowerCase().includes(categoryFilter)
+        )
+        return filterList
+    }
+
+    const sliceMovies = () => {
+        if (movieList) {
             const randomNumber = (Math.floor(Math.random() * 100) + 10)
-            const randomEndIndex = randomNumber > filterList.length ? filterList.length : randomNumber
+            const randomEndIndex = randomNumber > filteredList().length ? filteredList().length : randomNumber
             const randomStartIndex = randomEndIndex - 10
-            return filterList.slice(randomStartIndex, randomEndIndex)
+            return filteredList().slice(randomStartIndex, randomEndIndex)
         }
         return console.log('No movies loaded')
 
     }
-
-    const randomSlice = sliceMovies()
 
     return (
         <div>
@@ -48,7 +62,7 @@ const HomepageCategory = ({ movieList, categoryName, categoryFilter }: { movieLi
                     </span>
                 </div>
             </div>
-            <MovieList movies={randomSlice} />
+            <MovieList movies={sliceMovies()} />
         </div>
     )
 }
