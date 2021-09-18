@@ -1,4 +1,4 @@
-export const LOADING = 'Loading...'
+export const LOADING = 'Aan het laden...'
 export const NO_ITEMS = 'Geen items gevonden.'
 export const COULD_NOT_LOAD =
   'Content kon niet geladen worden. Probeer het later nog een keer.'
