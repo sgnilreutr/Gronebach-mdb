@@ -16,7 +16,7 @@ const MovieListItem: React.FC<Props> = ({ movieInfo: { imdbID, Poster, Title } }
 
   const history = useHistory()
   const openOverviewPage = () => {
-    history.push({ pathname: `/item/${imdbID}/` })
+    history.push({ pathname: `/item/${ imdbID }/` })
   }
 
   return (
