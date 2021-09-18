@@ -4,9 +4,10 @@ import { Movie } from '../../data/api'
 
 interface Props {
     genre: string;
+    activeMovie: string;
 }
 
-const RelatedMovies = ({ genre }: Props) => {
+const RelatedMovies = ({ genre, activeMovie }: Props) => {
     const [relatedMovies, setRelatedMovies] = useState<Movie[]>([])
 
     useEffect(() => {
@@ -17,7 +18,7 @@ const RelatedMovies = ({ genre }: Props) => {
             if (json) {
                 const allMovies = JSON.parse(json);
                 if (allMovies) {
-                    const filteredMovies = allMovies.filter((movie: any) =>
+                    const filteredMovies = allMovies.filter((movies: any) => movies.imdbID !== activeMovie).filter((movie: any) =>
                         movie.Genre.toLowerCase().includes(query[0].toLowerCase())
                     )
                     const shuffledMovies = filteredMovies.sort((a: any, b: any) => (a.Year < b.Year) ? 1 : -1)

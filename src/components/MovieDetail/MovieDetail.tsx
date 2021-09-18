@@ -101,7 +101,7 @@ const Moviedetail: React.FC<MovieDetail> = () => {
 
             <div className="related-container">
               <h2>{RELATED_MOVIES}</h2>
-              <RelatedMovies genre={Genre} />
+              <RelatedMovies genre={Genre} activeMovie={movieID} />
             </div>
           </div>)
       })

@@ -45,7 +45,7 @@ const HomepageCategory = ({ movieList, categoryName, categoryFilter }: { movieLi
             const randomStartIndex = randomEndIndex - 10
             return filteredList().slice(randomStartIndex, randomEndIndex)
         }
-        return console.log('No movies loaded')
+        return null
 
     }
 
