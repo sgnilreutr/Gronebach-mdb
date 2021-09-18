@@ -23,10 +23,10 @@ const RelatedMovies = ({ genre }: Props) => {
                     const shuffledMovies = filteredMovies.sort((a: any, b: any) => (a.Year < b.Year) ? 1 : -1)
 
                     const randomNumber = (Math.floor(Math.random() * 100) + 10)
-                    const randomRightBorderSlice = randomNumber > shuffledMovies.length ? shuffledMovies.length : randomNumber
-                    const randomLeftBorderSlice = randomRightBorderSlice - 10
+                    const randomEndIndex = randomNumber > shuffledMovies.length ? shuffledMovies.length : randomNumber
+                    const randomStartIndex = randomEndIndex - 10
 
-                    setRelatedMovies(shuffledMovies.slice(randomLeftBorderSlice, randomRightBorderSlice))
+                    setRelatedMovies(shuffledMovies.slice(randomStartIndex, randomEndIndex))
                 }
             }
         } catch (error) {

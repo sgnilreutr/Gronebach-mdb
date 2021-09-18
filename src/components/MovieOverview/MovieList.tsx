@@ -35,7 +35,7 @@ const MovieList: React.FC<Props> = ({ movies }) => {
         Poster: `${ movie.Poster }`,
         Genre: `${ movie.Genre }`
       }}
-    />);
+    />)
 
   const ArrowLeft = <div className="arrow-global arrow-prev"><FaChevronLeft size={30} /></div>
   const ArrowRight = <div className="arrow-global arrow-next"><FaChevronRight size={30} /></div>
@@ -60,17 +60,20 @@ const MovieList: React.FC<Props> = ({ movies }) => {
       {filteredMovies.length > 0 && window.innerWidth < global.WINDOW_WIDTH_416 &&
         <div className="movie-horizontal-grid">
           <div className="hs hs-scroll">
-            {filteredMovies.map((movie: any) => (
-              <MovieListItem
-                key={movie.imdbID}
-                movieInfo={{
-                  Title: `${ movie.Title }`,
-                  imdbID: `${ movie.imdbID }`,
-                  Poster: `${ movie.Poster }`,
-                  Genre: `${ movie.Genre }`
-                }}
-              />
-            ))}
+            {filteredMovies.map((movie: any) => {
+              const { Title, imdbID, Poster, Genre } = movie
+              return (
+                <MovieListItem
+                  key={movie.imdbID}
+                  movieInfo={{
+                    Title,
+                    imdbID,
+                    Poster,
+                    Genre
+                  }}
+                />
+              )
+            })}
           </div>
         </div>}
       {filteredMovies.length < 1 &&

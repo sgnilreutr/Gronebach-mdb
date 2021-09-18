@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import './MovieDetail.scss'
 import { FiStar } from 'react-icons/fi'
 import { useParams } from 'react-router-dom'
-import isEmpty from 'lodash/isEmpty'
 import { useSelector } from 'react-redux'
 import DetailHeader from '../Header/DetailHeader'
 import {
@@ -26,20 +25,24 @@ const RELATED_MOVIES = 'Gerelateerde films'
 const Moviedetail: React.FC<MovieDetail> = () => {
   const { movieID } = useParams<{ movieID: string }>()
   const [movie, setMovie] = useState<any>()
-  const [state, setState] = useState('closed')
+  const [trailerActive, setTrailerActive] = useState(false)
 
   const baseLoaded = useSelector(selectBaseLoaded)
 
   useEffect(() => {
-    if (isEmpty(movie) && baseLoaded && movieID) {
+    if (baseLoaded && movieID) {
       fetchData().then((value) => setMovie(value.filter((item: any) =>
         item.imdbID.toLowerCase().includes(`${ movieID }`)
       )))
     }
-  }, [movieID, baseLoaded, movie])
+  }, [movieID, baseLoaded])
+
+  useEffect(() => {
+    setTrailerActive(false)
+  }, [movieID])
 
   const triggerOpenTrailerState = () => {
-    setState('open')
+    setTrailerActive(!trailerActive)
   }
 
   const renderDetail = () => (
@@ -64,10 +67,10 @@ const Moviedetail: React.FC<MovieDetail> = () => {
                     className="img"
                   />
                   <div className="text-details">
-                    {state === 'closed' && (
+                    {!trailerActive && (
                       <OpenTrailerButton openTrailer={triggerOpenTrailerState} />
                     )}
-                    {state === 'open' && <MovieTrailer movieID={imdbID} />}
+                    {trailerActive && <MovieTrailer movieID={imdbID} />}
                     <div className="rating">
                       <FiStar />
                       <span style={{ marginLeft: `8px` }}>

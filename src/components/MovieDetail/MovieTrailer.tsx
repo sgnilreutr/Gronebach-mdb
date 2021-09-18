@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import isEmpty from 'lodash/isEmpty'
 import ReactPlayer from 'react-player'
 import { MdLocalMovies } from 'react-icons/md'
 import './MovieTrailer.scss'
@@ -16,23 +17,32 @@ export const OpenTrailerButton = (props: any) => {
     </div>)
 }
 
-const api = createApiClient()
-
 export const MovieTrailer = ({ movieID }: { movieID: any }) => {
   const [movieTrailer, setMovieTrailer] = useState<any>({})
+  const [loadingState, setLoadingState] = useState<string>('idle')
 
   useEffect(() => {
     const fetchData = async () => {
+      setLoadingState('loading')
       try {
-        const response = await api.getMovieTrailer(`${ movieID }`)
-        setMovieTrailer(response)
+        const response = await createApiClient().getMovieTrailer(`${ movieID }`)
+        console.log(response)
+        if (!isEmpty(response)) {
+          setMovieTrailer(response)
+          setLoadingState('loaded')
+        }
+        else {
+          setLoadingState('error')
+        }
       }
       catch (err) {
         console.error(err)
+        setLoadingState('error')
       }
     }
-
-    fetchData()
+    if (movieID && loadingState === 'idle') {
+      fetchData()
+    }
   }, [movieID])
 
   const itemHeight = window.innerWidth <= global.WINDOW_WIDTH_414 ? 193 : 376
@@ -41,12 +51,15 @@ export const MovieTrailer = ({ movieID }: { movieID: any }) => {
   return (
     <div>
       <div className="movie-player">
-        <ReactPlayer
-          url={movieTrailer.videoUrl}
-          style={{ borderRadius: '6px' }}
-          height={itemHeight}
-          width={itemWidth}
-        />
+        {loadingState === 'loaded' && movieTrailer.videoUrl &&
+          <ReactPlayer
+            url={movieTrailer.videoUrl}
+            style={{ borderRadius: '6px' }}
+            height={itemHeight}
+            width={itemWidth}
+          />}
+        {loadingState === 'loading' && <p>{global.LOADING}</p>}
+        {loadingState === 'error' && <p>{global.COULD_NOT_LOAD}</p>}
       </div>
     </div>
   )

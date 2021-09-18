@@ -20,7 +20,7 @@ const HomepageCategory = ({ movieList, categoryName, categoryFilter }: { movieLi
     }
 
     const filteredList = () => {
-        if (categoryFilter === 'topMovie') {
+        if (categoryFilter === 'top') {
             const filterList = movieList.filter(
                 (movie: any) => movie.imdbRating >= 8.0
             )

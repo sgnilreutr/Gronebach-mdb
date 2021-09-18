@@ -43,25 +43,29 @@ export default function Search() {
     return (
       <div className="movie-grid">
         {filteredMovies.length > 0 ? (
-          filteredMovies.map((movie) => (
-            <div key={movie.imdbID}>
-              <MovieListItem
-                movieInfo={{
-                  Title: `${ movie.Title }`,
-                  Year: `${ movie.Year }`,
-                  imdbID: `${ movie.imdbID }`,
-                  Type: `${ movie.Type }`,
-                  Poster: `${ movie.Poster }`,
-                  Runtime: `${ movie.Runtime }`,
-                  Genre: `${ movie.Genre }`,
-                  Actors: `${ movie.Actors }`,
-                  Country: `${ movie.Country }`,
-                  imdbRating: `${ movie.imdbRating }`,
-                  Director: `${ movie.Director }`,
-                }}
-              />
-            </div>
-          ))
+          filteredMovies.map((movie) => {
+            const { Title, Year, imdbID, Type, Poster, Runtime, Genre, Actors, Country, imdbRating, Director } = movie
+            return (
+              <div key={movie.imdbID}>
+                <MovieListItem
+                  movieInfo={{
+                    Title,
+                    Year,
+                    imdbID,
+                    Type,
+                    Poster,
+                    Runtime,
+                    Genre,
+                    Actors,
+                    Country,
+                    imdbRating,
+                    Director,
+                  }}
+                />
+              </div>
+            )
+          }
+          )
         ) : (
           <div className="search-no-results">
             <p>{global.NO_ITEMS}</p>

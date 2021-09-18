@@ -17,6 +17,8 @@ const selectBaseLoaded = (state: any) => state.baseLoaded
 const MovieOverview: React.FC<Props> = () => {
   const [movieList, setMovieList] = useState<Movie[]>([])
   const baseLoaded = useSelector(selectBaseLoaded)
+  const location = useLocation()
+  const partLoc = location.pathname.split('/')
 
   useEffect(() => {
     if (movieList.length === 0 && baseLoaded) {
@@ -25,41 +27,40 @@ const MovieOverview: React.FC<Props> = () => {
   }, [baseLoaded, movieList])
 
 
-  const location = useLocation()
-  const partLoc = location.pathname.split('/')
+  const filteredList = () => {
+    if (partLoc[2] === 'kids') {
+      return movieList.filter((movie) => movie.Rated === 'PG' && 'G')
+    }
+    if (partLoc[2] === 'top') {
+      return movieList.filter((movie: any) => movie.imdbRating >= 8.0)
+    }
+    return movieList.filter((movie) => movie.Genre.toLowerCase().includes(`${ partLoc[2] }`))
+  }
+
 
   const renderMovies = () => {
     if (movieList) {
-      const filteredMovies = movieList.filter((movie) =>
-        partLoc[2] !== 'children'
-          ? movie.Genre.toLowerCase().includes(`${ partLoc[2] }`)
-          : movie.Rated === 'PG' && 'G'
-      )
 
       return (
         <div>
           <h1>Alle {partLoc[2]} items</h1>
           <div className="movie-grid">
-            {filteredMovies.length > 0 ? (
-              filteredMovies.map((movie) => (
-                <div key={movie.imdbID}>
-                  <MovieListItem
-                    movieInfo={{
-                      Title: `${ movie.Title }`,
-                      Year: `${ movie.Year }`,
-                      imdbID: `${ movie.imdbID }`,
-                      Type: `${ movie.Type }`,
-                      Poster: `${ movie.Poster }`,
-                      Runtime: `${ movie.Runtime }`,
-                      Genre: `${ movie.Genre }`,
-                      Actors: `${ movie.Actors }`,
-                      Country: `${ movie.Country }`,
-                      imdbRating: `${ movie.imdbRating }`,
-                      Director: `${ movie.Director }`,
-                    }}
-                  />
-                </div>
-              ))
+            {filteredList().length > 0 ? (
+              filteredList().map((movie) => {
+                const { Title, imdbID, Poster, Genre } = movie
+                return (
+                  <div key={movie.imdbID}>
+                    <MovieListItem
+                      movieInfo={{
+                        Title,
+                        Genre,
+                        imdbID,
+                        Poster,
+                      }}
+                    />
+                  </div>
+                )
+              })
             ) : (
               <div>
                 <p>{global.NO_ITEMS}</p>
