@@ -24,7 +24,7 @@ const Moviedetail: React.FC<MovieDetail> = () => {
 
   useEffect(() => {
     if (movieID && allMovieList.length > 0) {
-      setMovie(allMovieList.filter((item) => item.imdbID.toLowerCase().includes(`${movieID}`)))
+      setMovie(allMovieList.filter((item) => item.imdbID.toLowerCase().includes(`${ movieID }`)))
     }
   }, [movieID, allMovieList])
 
@@ -85,7 +85,7 @@ const Moviedetail: React.FC<MovieDetail> = () => {
               </div>
             </div>
 
-            <div className="related-container">
+            <div className="related-container slow_reveal">
               <h2>{RELATED_MOVIES}</h2>
               <RelatedMovies genre={Genre} activeMovie={movieID} />
             </div>
