@@ -3,6 +3,7 @@
 Check out the demo version here: http://gronebach-mdb.vercel.app/
 
 ## Tech stack
+
 - TypeScript
 - React
 - Redux

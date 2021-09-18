@@ -1,11 +1,13 @@
 import React from 'react'
-import DetailHeader from './DetailHeader'
+import DetailHeader from './Header/DetailHeader'
 
-export default function PageNotFound() {
-  return (
-    <div>
-      <DetailHeader />
-      <h1>Uh, oh! Deze pagina bestaat niet.</h1>
-    </div>
-  )
-}
+const NOT_FOUND = 'Uh, oh! Deze pagina bestaat niet.'
+
+const PageNotFound = () => (
+  <div>
+    <DetailHeader />
+    <h1>{NOT_FOUND}</h1>
+  </div>
+)
+
+export default PageNotFound
