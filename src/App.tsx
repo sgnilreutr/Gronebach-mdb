@@ -9,25 +9,33 @@ import PageNotFound from './components/PageNotFound'
 import Homepage from './components/Homepage/Homepage'
 import Search from './components/Search/Search'
 import { MovieProvider } from './context/movieDatabaseContext'
+import * as global from './constants/globalConstants'
+import RandomMovieIntro from './components/RandomMovieIntro/randomMovieIntro'
 
 const App = () => {
   const [allMovies, setAllMovies] = useState<Movie[]>([])
+
+  const setLocalStorage = async () => {
+    const movies = await createApiClient().getMovies()
+    if (movies.length > 0) {
+      const moviesLocalstorage = JSON.stringify(movies)
+      localStorage.setItem('movies', moviesLocalstorage)
+      setAllMovies(movies)
+    }
+  }
 
   const fetchData = async () => {
     try {
       const json = localStorage.getItem('movies')
       if (json) {
-        const allMoviesLocalstorage = JSON.parse(json)
-        if (allMoviesLocalstorage && allMoviesLocalstorage.length > 0) {
+        const allMoviesLocalstorage = await JSON.parse(json)
+        if (allMoviesLocalstorage && allMoviesLocalstorage.length === global.NUMBER_OF_FILES) {
           setAllMovies(allMoviesLocalstorage)
+        } else {
+          setLocalStorage()
         }
       } else {
-        const movies = await createApiClient().getMovies()
-        if (movies.length > 0) {
-          const moviesLocalstorage = JSON.stringify(movies)
-          localStorage.setItem('movies', moviesLocalstorage)
-          setAllMovies(movies)
-        }
+        setLocalStorage()
       }
     } catch (err) {
       console.error(err)
@@ -49,6 +57,7 @@ const App = () => {
             <Route path="/item/:movieID" component={MovieDetail} />
             <Route path="/missing" component={MissingTitles} />
             <Route path="/search" component={Search} />
+            <Route path="/random/:movieID" component={RandomMovieIntro} />
             <Route path="*" component={PageNotFound} />
           </Switch>
         </div>
