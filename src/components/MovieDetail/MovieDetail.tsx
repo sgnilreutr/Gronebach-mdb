@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState, useRef } from 'react'
 import './MovieDetail.scss'
 import { FiStar } from 'react-icons/fi'
 import { useParams } from 'react-router-dom'
@@ -20,11 +20,18 @@ const Moviedetail: React.FC<MovieDetail> = () => {
   const { movieID } = useParams<{ movieID: string }>()
   const [movie, setMovie] = useState<any>()
   const [trailerActive, setTrailerActive] = useState(false)
+  const movieTitleRef = useRef<any | null>(null)
   const allMovieList = useContext(MovieDatabaseContext) as Movie[]
 
   useEffect(() => {
+    if (movieID && movieTitleRef.current) {
+      movieTitleRef.current.scrollIntoView()
+    }
+  }, [movieID])
+
+  useEffect(() => {
     if (movieID && allMovieList.length > 0) {
-      setMovie(allMovieList.filter((item) => item.imdbID.toLowerCase().includes(`${movieID}`)))
+      setMovie(allMovieList.filter((item) => item.imdbID.toLowerCase().includes(`${ movieID }`)))
     }
   }, [movieID, allMovieList])
 
@@ -45,7 +52,7 @@ const Moviedetail: React.FC<MovieDetail> = () => {
           <div className="detail-container" key={imdbID}>
             <div className="item-title">
               <div className="text-truncate">
-                <h1>
+                <h1 ref={movieTitleRef}>
                   {Title} ({Year})
                 </h1>
               </div>
