@@ -30,6 +30,15 @@ const useColorScheme = () => {
             if (document.getElementById('title-container')! !== null) {
                 document.getElementById('title-container')!.classList.add("dark")
             }
+            if (document.getElementById('close-button')! !== null) {
+                document.getElementById('close-button')!.classList.add("dark")
+            }
+            if (document.getElementById('search')! !== null) {
+                document.getElementById('search')!.classList.add("dark")
+            }
+            if (document.getElementById('searchBar')! !== null) {
+                document.getElementById('searchBar')!.classList.add("dark")
+            }
         } else {
             document.body.classList.remove("dark")
             if (document.getElementById('title-container')! !== null) {
@@ -40,6 +49,15 @@ const useColorScheme = () => {
             }
             if (document.getElementById('title-container')! !== null) {
                 document.getElementById('title-container')!.classList.remove("dark")
+            }
+            if (document.getElementById('close-button')! !== null) {
+                document.getElementById('close-button')!.classList.remove("dark")
+            }
+            if (document.getElementById('search')! !== null) {
+                document.getElementById('search')!.classList.remove("dark")
+            }
+            if (document.getElementById('searchBar')! !== null) {
+                document.getElementById('searchBar')!.classList.remove("dark")
             }
         }
     }, [value])

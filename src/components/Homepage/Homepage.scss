@@ -1,3 +1,5 @@
+@import '../../breakpoints', '../../fontSizes';
+
 .category-header {
   display: flex;
   align-items: center;
@@ -10,11 +12,11 @@
 }
 
 .category-header__title {
-  @media only screen and (min-width: 416px) {
-    font-size: 24px;
+  @media only screen and (min-width: $BP_S_MIN) {
+    font-size: $h3;
   }
-  @media only screen and (max-width: 414px) {
-    font-size: 1rem;
+  @media only screen and (max-width: $BP_S_MAX) {
+    font-size: $base;
     margin-left: 0.5rem;
   }
 }
@@ -41,7 +43,7 @@
 }
 
 .category-header__subtitle-text {
-  font-size: 1.3rem;
+  font-size: $h3;
 }
 
 .category-header__icon {

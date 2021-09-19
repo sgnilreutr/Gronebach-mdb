@@ -22,6 +22,7 @@ export default function Searchbutton() {
       type="button"
       onMouseOver={preLoadSearch}
       onFocus={preLoadSearch}
+      id="search"
     >
       <FiSearch size={24} />
       <p className="search-label">{SEARCH}</p>

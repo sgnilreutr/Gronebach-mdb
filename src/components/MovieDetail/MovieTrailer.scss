@@ -1,7 +1,9 @@
+@import '../../breakpoints', '../../fontSizes';
+
 .trailer-button {
   display: flex;
   align-items: center;
-  font-size: 0.9rem;
+  font-size: $small;
   font-weight: 500;
   cursor: pointer;
   transition: all 0.3s;
@@ -16,7 +18,7 @@
   display: flex;
   border-radius: 6px;
   margin-bottom: 1rem;
-  @media only screen and (min-width: 416px) {
+  @media only screen and (min-width: $BP_S_MIN) {
     margin-right: 4rem;
   }
 }
