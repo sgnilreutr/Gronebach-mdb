@@ -11,7 +11,7 @@ export default function Closebutton() {
 
   return (
     <div className="close-button-container">
-      <button onClick={returnPage} className="close-button" type="button">
+      <button onClick={returnPage} className="close-button" type="button" id="close-button">
         <FiX size={24} />
       </button>
     </div>

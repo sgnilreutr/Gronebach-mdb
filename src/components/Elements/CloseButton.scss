@@ -1,9 +1,11 @@
+@import '../../breakpoints', '../../colors';
+
 .close-button-container {
   margin-left: auto;
 }
 
 .close-button {
-  background-color: #fff;
+  background-color: $color-white;
   padding: 0.5rem;
   border-radius: 50%;
   border: 0;
@@ -11,11 +13,17 @@
   place-items: center;
   cursor: pointer;
   transition: all ease-in-out 0.1s;
-  @media only screen and (max-width: 414px) {
+  @media only screen and (max-width: $BP_S_MAX) {
     margin-right: 0.5rem;
+  }
+  &.dark {
+    background-color: $color-text-LM !important;
   }
 }
 
 .close-button:hover {
-  background-color: rgb(224, 224, 224);
+  background-color: $color-text-DM;
+  &.dark {
+    background-color: $color-text-LM !important;
+  }
 }

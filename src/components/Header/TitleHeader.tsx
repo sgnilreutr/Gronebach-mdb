@@ -5,6 +5,8 @@ import ModeSwitch from '../Elements/ModeSwitch/modeSwitch'
 
 const GRONEBACH = 'Grönebach'
 const MOVIE_DATABASE = 'Movie Database'
+const EMOJI = <span role="img" aria-label="popcorn">🍿</span>
+const SMALL_TITLE = 'GMDb '
 const ROBBERT_TUERLINGS = 'BY ROBBERT TUERLINGS'
 
 export default function TitleHeader() {
@@ -22,16 +24,14 @@ export default function TitleHeader() {
             <div className="title-1">{GRONEBACH}</div>
             <div className="title-2">
               {MOVIE_DATABASE}{' '}
-              <span role="img" aria-label="popcorn">
-                🍿
-              </span>
+              {EMOJI}
             </div>
           </div>
+          <div className="mobile-title">{SMALL_TITLE}{EMOJI}</div>
         </div>
         <a
           id="personal_link"
           className="personal_link"
-          // style={{ color: '#232323', fontSize: '0.7rem', opacity: '0.7', textDecoration: 'none' }}
           href="https://github.com/sgnilreutr"
         >
           {ROBBERT_TUERLINGS}
