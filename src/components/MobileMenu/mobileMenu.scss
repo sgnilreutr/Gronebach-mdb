@@ -4,13 +4,13 @@
   position: sticky;
   bottom: 0;
   z-index: 1000;
-  background: $color-background-LM;
+  background: #edededf2;
   width: 100%;
   padding: 1px 0;
   @media only screen and (min-width: $BP_S_MIN) {
     display: none;
   }
   &.dark {
-    background: $color-background-DM;
+    background: #0f0f0ff2;
   }
 }
