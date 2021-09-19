@@ -26,7 +26,7 @@ export default function Headeroptions() {
           id={item.name}
           key={item.name}
           onClick={() => setCategory(item.category)}
-          className={`option ${category === item.category && 'option--selected'}`}
+          className={`option ${ category === item.category && 'option--selected' }`}
         >
           {item.name}
         </div>

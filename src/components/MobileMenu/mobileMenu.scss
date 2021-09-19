@@ -1,0 +1,16 @@
+@import '../../breakpoints', '../../colors';
+
+.mobile_menu_wrapper {
+  position: sticky;
+  bottom: 0;
+  z-index: 1000;
+  background: $color-background-LM;
+  width: 100%;
+  padding: 1px 0;
+  @media only screen and (min-width: $BP_S_MIN) {
+    display: none;
+  }
+  &.dark {
+    background: $color-background-DM;
+  }
+}

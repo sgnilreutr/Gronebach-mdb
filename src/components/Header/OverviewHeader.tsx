@@ -10,7 +10,10 @@ export default function Overviewheader() {
     <div>
       <TitleHeader />
       <div className="overviewheader-container">
-        <HeaderOptions />
+        <div className="hide_on_mobile">
+          <HeaderOptions />
+        </div>
+        <div className="placeholder" />
         <RandomButton />
         <Searchbutton />
       </div>
