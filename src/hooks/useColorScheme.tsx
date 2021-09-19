@@ -42,6 +42,9 @@ const useColorScheme = () => {
             if (document.getElementById('mobile_menu_wrapper')! !== null) {
                 document.getElementById('mobile_menu_wrapper')!.classList.add('dark')
             }
+            if (document.getElementById('back')! !== null) {
+                document.getElementById('back')!.classList.add('dark')
+            }
         } else {
             document.body.classList.remove('dark')
             if (document.getElementById('title-container')! !== null) {
@@ -64,6 +67,9 @@ const useColorScheme = () => {
             }
             if (document.getElementById('mobile_menu_wrapper')! !== null) {
                 document.getElementById('mobile_menu_wrapper')!.classList.remove('dark')
+            }
+            if (document.getElementById('back')! !== null) {
+                document.getElementById('back')!.classList.remove('dark')
             }
         }
     }, [value])
