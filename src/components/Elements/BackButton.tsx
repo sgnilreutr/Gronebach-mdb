@@ -24,7 +24,7 @@ const BackButton = () => {
       onFocus={preLoadHomepage}
     >
       <FiArrowLeft style={{ stroke: '#8d8d8d' }} size={24} />
-      <div className="back">
+      <div className="back" id="back">
         <span>{BACK_TO_HOME}</span>
       </div>
     </button>
