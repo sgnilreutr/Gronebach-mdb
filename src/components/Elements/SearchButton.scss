@@ -1,8 +1,14 @@
+@import '../../colors';
+
 .search {
   cursor: pointer;
   border: 0;
   background: transparent;
-  color: black;
+  color: $color-text-LM;
+  transition: color 0.2s ease-out 0s;
+  &.dark {
+    color: $color-text-DM;
+  }
   @media only screen and (min-width: 416px) {
     margin-left: auto;
     display: flex;
