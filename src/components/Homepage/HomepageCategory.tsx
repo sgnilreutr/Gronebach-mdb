@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { FiChevronRight } from 'react-icons/fi'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { MovieSearch } from '../../data/api'
 import MovieList from '../MovieOverview/MovieList'
@@ -8,6 +8,7 @@ import { tenRandomMovies } from '../../utils/randomMovie'
 import * as global from '../../constants/globalConstants'
 
 const CATEGORY_CTA_TEXT = 'Bekijk alles'
+const selectCategory = (state: any) => state.category
 
 const HomepageCategory = ({
   movieList,
@@ -18,35 +19,54 @@ const HomepageCategory = ({
   categoryName: string
   categoryFilter: string
 }) => {
+  const category = useSelector(selectCategory)
   const dispatch = useDispatch()
   const history = useHistory()
+  const [filteredMovies, setFilteredMovies] = useState<MovieSearch[]>([])
+  const [loadingState, setLoadingState] = useState<string>('idle')
 
   const openCategory = (value: string) => {
     dispatch({ type: 'SET_OVERVIEW_QUERY', payload: value })
     history.push({
-      pathname: `/overview/${value}`,
+      pathname: `/overview/${ value }`,
     })
   }
 
+  useEffect(() => {
+    try {
+      if (movieList.length > 0) {
+        setLoadingState('loading')
+        const moviesFiltered = movieList.filter((movie) =>
+          movie.Type.toLowerCase().includes(category.toLowerCase())
+        )
+        setFilteredMovies(moviesFiltered)
+      }
+      setLoadingState('loaded')
+    } catch (err) {
+      console.error(err)
+      setLoadingState('error')
+    }
+  }, [category, movieList])
+
   const filteredList = () => {
-    if (categoryFilter === 'top' && movieList.length > 0) {
-      const filterList = movieList.filter((movie) => parseInt(movie.imdbRating, 10) >= 8.0)
+    if (categoryFilter === 'top' && filteredMovies.length > 0) {
+      const filterList = filteredMovies.filter((movie) => parseInt(movie.imdbRating, 10) >= 8.0)
       return filterList
     }
-    if (categoryFilter === 'kids' && movieList.length > 0) {
-      const filterList = movieList.filter((movie) => movie.Rated === 'PG' && 'G')
+    if (categoryFilter === 'kids' && filteredMovies.length > 0) {
+      const filterList = filteredMovies.filter((movie) => movie.Rated === 'PG' && 'G')
       return filterList
     }
-    const filterList = movieList.filter((movie) =>
+    const filterList = filteredMovies.filter((movie) =>
       movie.Genre.toLowerCase().includes(categoryFilter)
     )
     return filterList
   }
 
   const sliceMovies = () => {
-    if (movieList.length > 0 && filteredList().length > 0) {
-      const filteredMovies = filteredList()
-      return tenRandomMovies(filteredMovies)
+    if (filteredMovies.length > 0 && filteredList().length > 0) {
+      const sectionMovieList = filteredList()
+      return tenRandomMovies(sectionMovieList)
     }
     return []
   }
@@ -64,8 +84,10 @@ const HomepageCategory = ({
           <span className="category-header__subtitle-text">{CATEGORY_CTA_TEXT}</span>
         </div>
       </div>
-      {sliceMovies().length === 0 && <p>{global.LOADING}</p>}
-      {sliceMovies().length > 0 && <MovieList movies={sliceMovies()} />}
+      {loadingState === 'error' && <p>{global.COULD_NOT_LOAD}</p>}
+      {loadingState === 'idle' && <p>{global.LOADING}</p>}
+      {sliceMovies().length === 0 && loadingState === 'loading' && <p>{global.LOADING}</p>}
+      {sliceMovies().length >= 0 && loadingState === 'loaded' && <MovieList movies={sliceMovies()} />}
     </div>
   )
 }
