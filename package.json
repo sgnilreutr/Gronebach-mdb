@@ -10,7 +10,7 @@
     "@types/lodash": "^4.14.173",
     "@types/react-toggle": "^4.0.3",
     "@types/use-persisted-state": "^0.3.0",
-    "axios": "^0.21.2",
+    "axios": "^0.21.4",
     "eslint-config-airbnb-typescript": "^14.0.0",
     "history": "^5.0.0",
     "lodash": "^4.17.21",
