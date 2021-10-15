@@ -9460,10 +9460,10 @@ react-fast-compare@^3.0.1:
   resolved "https://registry.npmjs.org/react-fast-compare/-/react-fast-compare-3.2.0.tgz"
   integrity sha512-rtGImPZ0YyLrscKI9xTpV8psd6I8VAtjKCzQDlzyDvqJA8XOW78TXYQwNRNd8g8JZnDu8q9Fu/1v4HPAVwVdHA==
 
-react-horizontal-scrolling-menu@^0.7.9:
-  version "0.7.9"
-  resolved "https://registry.npmjs.org/react-horizontal-scrolling-menu/-/react-horizontal-scrolling-menu-0.7.9.tgz"
-  integrity sha512-UIsP2FCZTHUymQbYsC0MSkzmhzsDiR0zocSM24WYjhf0/FSdJ/Br7AUP1Gia2nJlXfBX2jD6+I8tZwzVGvPnDA==
+react-horizontal-scrolling-menu@^2.4.4:
+  version "2.4.4"
+  resolved "https://registry.yarnpkg.com/react-horizontal-scrolling-menu/-/react-horizontal-scrolling-menu-2.4.4.tgz#34b89b7f11a95a20475611eadb98d452b64922e1"
+  integrity sha512-wrzwvDL18xd3fmnwrXMPfdfIrhMkynFK4U+Ubab9lsmSTMZW09qoqGGR2vHPLNxlVl71nUj3Scjk9q6Qn2R/aA==
 
 react-icons@^4.1.0:
   version "4.1.0"
