@@ -22,7 +22,7 @@
     "react-image": "^4.0.3",
     "react-lazy-load-image-component": "^1.5.1",
     "react-player": "^2.9.0",
-    "react-redux": "^7.2.5",
+    "react-redux": "^7.2.6",
     "react-responsive": "^9.0.0-beta.4",
     "react-router": "^5.2.1",
     "react-router-dom": "^5.2.0",
