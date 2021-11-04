@@ -1,4 +1,4 @@
-# Gronebach-mdb
+# Gronebach Movie Database
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/7ef1e806b9fa453083b4c3b08164fb51)](https://www.codacy.com/gh/sgnilreutr/Gronebach-mdb/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=sgnilreutr/Gronebach-mdb&amp;utm_campaign=Badge_Grade)
 
 Check out the live version here: http://gronebach-mdb.vercel.app/
