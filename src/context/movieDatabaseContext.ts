@@ -5,7 +5,7 @@ interface IMovieContext {
   movies: Movie[]
 }
 
-const defaultState = Object.freeze({
+const defaultState: IMovieContext = Object.freeze({
   movies: [],
 })
 

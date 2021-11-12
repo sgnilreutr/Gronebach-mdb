@@ -65,7 +65,7 @@ const App = () => {
   return (
     <MovieProvider value={allMovies}>
       <Router>
-        <div className="App">
+        <div className="App" id="App">
           <Suspense fallback={<Loading />}>
             <Switch>
               <Route path="/" exact component={Homepage} />
