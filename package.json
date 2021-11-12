@@ -1,6 +1,7 @@
 {
   "name": "gronebach-mdb",
   "version": "0.1.0",
+  "homepage": "/",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.6.2",

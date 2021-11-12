@@ -45,14 +45,14 @@ export function register(config?: Config) {
         // This is running on localhost. Let's check if a service worker still exists or not.
         checkValidServiceWorker(swUrl, config)
 
-        // Add some additional logging to localhost, pointing developers to the
-        // service worker/PWA documentation.
-        navigator.serviceWorker.ready.then(() => {
-          console.log(
-            'This web app is being served cache-first by a service ' +
-              'worker. To learn more, visit https://cra.link/PWA'
-          )
-        })
+        // // Add some additional logging to localhost, pointing developers to the
+        // // service worker/PWA documentation.
+        // navigator.serviceWorker.ready.then(() => {
+        //   console.log(
+        //     'This web app is being served cache-first by a service ' +
+        //       'worker. To learn more, visit https://cra.link/PWA'
+        //   )
+        // })
       } else {
         // Is not localhost. Just register service worker
         registerValidSW(swUrl, config)
@@ -76,20 +76,25 @@ function registerValidSW(swUrl: string, config?: Config) {
               // At this point, the updated precached content has been fetched,
               // but the previous service worker will still serve the older
               // content until all client tabs are closed.
-              console.log(
-                'New content is available and will be used when all ' +
-                  'tabs for this page are closed. See https://cra.link/PWA.'
-              )
+              // console.log(
+              //   'New content is available and will be used when all ' +
+              //     'tabs for this page are closed. See https://cra.link/PWA.'
+              // )
 
               // Execute callback
               if (config && config.onUpdate) {
                 config.onUpdate(registration)
               }
             } else {
-              // At this point, everything has been precached.
-              // It's the perfect time to display a
-              // "Content is cached for offline use." message.
-              console.log('Content is cached for offline use.')
+              // Create banner to show content is cached for offline use.
+              const banner = document.createElement('div')
+              banner.innerText = 'Inhoud opgeslagen voor offline gebruik.'
+              banner.classList.add('offline-notification-bar')
+              const App = document.getElementById('App')
+              App?.insertBefore(banner, App.childNodes[0])
+              setTimeout(() => {
+                App?.removeChild(App.childNodes[0])
+              }, 5000)
 
               // Execute callback
               if (config && config.onSuccess) {
