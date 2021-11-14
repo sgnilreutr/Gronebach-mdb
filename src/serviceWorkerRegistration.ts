@@ -88,7 +88,7 @@ function registerValidSW(swUrl: string, config?: Config) {
             } else {
               // Create banner to show content is cached for offline use.
               const banner = document.createElement('div')
-              banner.innerText = 'Inhoud opgeslagen voor offline gebruik.'
+              banner.innerText = 'Inhoud opgeslagen voor offline gebruik'
               banner.classList.add('offline-notification-bar')
               const App = document.getElementById('App')
               App?.insertBefore(banner, App.childNodes[0])

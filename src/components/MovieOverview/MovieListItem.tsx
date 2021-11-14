@@ -16,21 +16,22 @@ const MovieListItem: React.FC<Props> = ({ movieInfo: { imdbID, Poster, Title } }
 
   const history = useHistory()
   const openOverviewPage = () => {
-    history.push({ pathname: `/item/${imdbID}/` })
+    history.push({ pathname: `/item/${ imdbID }/` })
   }
 
   return (
     <div aria-hidden="true" onClick={() => openOverviewPage()}>
       <div className="item">
         <div className="item-img">
-          <LazyLoadImage
-            src={getMoviePosterUrl(Poster)}
-            alt={Title}
-            effect="blur"
-            height={itemHeight}
-            width={itemWidth}
-            style={{ borderRadius: `6px` }}
-          />
+          {window.navigator.onLine ?
+            <LazyLoadImage
+              src={getMoviePosterUrl(Poster)}
+              alt={Title}
+              effect="blur"
+              height={itemHeight}
+              width={itemWidth}
+              style={{ borderRadius: `6px` }}
+            /> : <span>{Title}</span>}
         </div>
         <div className="title">
           <div className="text-truncate">
