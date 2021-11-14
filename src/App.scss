@@ -21,7 +21,6 @@
 
 .offline-notification-bar {
   background-color: $color-after-purple;
-  font-size: 1.125rem;
   display: flex;
   justify-content: center;
   padding: 0.3rem;
@@ -29,4 +28,9 @@
   top: 0;
   left: 0;
   z-index: 1000;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  font-size: 1.125rem;
+  color: hsla(0, 0%, 93.3%, 0.85);
+  font-weight: 500;
 }
