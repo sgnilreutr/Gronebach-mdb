@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import MovieList from '../MovieOverview/MovieList'
-import { Movie, MovieSearch } from '../../data/api'
+import { IMovie, IMovieSearch } from '../../data/api'
 import { tenRandomMovies } from '../../utils/randomMovie'
 import MovieDatabaseContext from '../../context/movieDatabaseContext'
 
@@ -10,8 +10,8 @@ interface Props {
 }
 
 const RelatedMovies = ({ genre, activeMovie }: Props) => {
-  const allMovieList = useContext(MovieDatabaseContext) as MovieSearch[]
-  const [relatedMovies, setRelatedMovies] = useState<Movie[]>([])
+  const allMovieList = useContext(MovieDatabaseContext) as IMovieSearch[]
+  const [relatedMovies, setRelatedMovies] = useState<IMovie[]>([])
 
   useEffect(() => {
     // There is no check yet if the genre string does contain a comma

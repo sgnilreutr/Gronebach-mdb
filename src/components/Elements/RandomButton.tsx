@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import MovieDatabaseContext from '../../context/movieDatabaseContext'
-import { MovieSearch } from '../../data/api'
+import { IMovieSearch } from '../../data/api'
 import { randomMovie } from '../../utils/randomMovie'
 import './RandomButton.scss'
 
@@ -12,11 +12,11 @@ const preLoadRandomIntro = () => {
 }
 
 const RandomButton = () => {
-  const allMovieList = useContext(MovieDatabaseContext) as MovieSearch[]
+  const allMovieList = useContext(MovieDatabaseContext) as IMovieSearch[]
 
-  const history = useHistory()
+  const navigate = useNavigate()
   const openIntroPage = (imdbID: string) => {
-    history.push({ pathname: `/random/${imdbID}/` })
+    navigate(`/random/${ imdbID }/`)
   }
 
   const fetchRandomMovie = () => {

@@ -5,10 +5,10 @@ import ScrollMenu from 'react-horizontal-scrolling-menu'
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'
 import MovieListItem from './MovieListItem'
 import * as global from '../../constants/globalConstants'
-import { Movie } from '../../data/api'
+import { IMovie } from '../../data/api'
 
 interface Props {
-  movies: Movie[]
+  movies: IMovie[]
 }
 
 const MovieList: React.FC<Props> = ({ movies }) => {

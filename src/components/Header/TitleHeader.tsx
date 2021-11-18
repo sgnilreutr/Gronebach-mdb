@@ -1,5 +1,5 @@
 import React from 'react'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import './TitleHeader.scss'
 import ModeSwitch from '../Elements/ModeSwitch/modeSwitch'
 
@@ -14,10 +14,10 @@ const SMALL_TITLE = 'GMDb '
 const ROBBERT_TUERLINGS = 'BY ROBBERT TUERLINGS'
 
 export default function TitleHeader() {
-  const history = useHistory()
+  const navigate = useNavigate()
 
   function navigateToHome() {
-    history.push('/')
+    navigate('/')
   }
 
   return (

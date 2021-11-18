@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import './Search.scss'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { MovieSearch } from '../../data/api'
+import { IMovieSearch } from '../../data/api'
 import SearchBar from '../Elements/SearchBar'
 import MovieListItem from '../MovieOverview/MovieListItem'
 import CloseButton from '../Elements/CloseButton'
@@ -15,7 +15,7 @@ const START_SEARCHING = 'Start met zoeken'
 
 export default function Search() {
   const searchTerm = useSelector(selectSearchTerm)
-  const allMovieList = useContext(MovieDatabaseContext) as MovieSearch[]
+  const allMovieList = useContext(MovieDatabaseContext) as IMovieSearch[]
 
   const renderSearchMovies = () => {
     const filteredMovies = allMovieList.filter((movie) =>
