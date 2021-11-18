@@ -62,7 +62,7 @@ export interface IMovieTrailer {
 
 export const options = {
   headers: {
-    'x-api-key': process.env.REACT_APP_IMDB_API_KEY,
+    'x-api-key': process.env.REACT_APP_IMDB_API_KEY!,
   },
 }
 
