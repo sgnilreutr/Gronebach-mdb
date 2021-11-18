@@ -1,12 +1,12 @@
-import { MovieSearch } from '../data/api'
+import { IMovieSearch } from '../data/api'
 
-export const randomMovie = (movies: MovieSearch[]) => {
+export const randomMovie = (movies: IMovieSearch[]) => {
   const randomNumber = Math.floor(Math.random() * (movies.length - 1)) + 1
   return movies[randomNumber]
 }
 
 //  It takes out the movie from the pool of possibilties once it is taken
-export const tenRandomMovies = (movies: MovieSearch[]) => {
+export const tenRandomMovies = (movies: IMovieSearch[]) => {
   const movieProp = movies
   if (movieProp.length > 10) {
     const movieListBuffer = []

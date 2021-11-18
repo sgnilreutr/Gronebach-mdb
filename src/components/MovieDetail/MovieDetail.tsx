@@ -16,7 +16,7 @@ const GENRE = 'Genre'
 const RUNTIME = 'Runtime'
 const RELATED_MOVIES = 'Gerelateerde films'
 
-const MovieDetail: React.FC<IMovieDetail> = () => {
+const MovieDetail = () => {
   const { movieID } = useParams()
   const [movie, setMovie] = useState<any>()
   const [trailerActive, setTrailerActive] = useState(false)
@@ -94,7 +94,7 @@ const MovieDetail: React.FC<IMovieDetail> = () => {
 
             <div className="related-container slow_reveal">
               <h2>{RELATED_MOVIES}</h2>
-              <RelatedMovies genre={Genre} activeMovie={movieID} />
+              {movieID && <RelatedMovies genre={Genre} activeMovie={movieID} />}
             </div>
           </div>
         )

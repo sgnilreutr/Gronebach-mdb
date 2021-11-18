@@ -42,13 +42,8 @@ const randomLoader = () => {
   return LOADERS[randomNumber]
 }
 
-// Make the page show different loaders on different locations on the page
-// One loader is center and big
-// The different loaders are all different in size and color (strenght) - they are never brighter or bigger than the main one
-// The different loaders come in at different times
-
 const RandomMovieIntro = () => {
-  const { movieID } = useParams<{ movieID: string }>()
+  const { movieID } = useParams()
   const navigate = useNavigate()
 
   useEffect(() => {

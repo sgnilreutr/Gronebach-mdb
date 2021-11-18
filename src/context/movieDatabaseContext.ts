@@ -1,8 +1,8 @@
 import React from 'react'
-import { Movie } from '../data/api'
+import { IMovie } from '../data/api'
 
 interface IMovieContext {
-  movies: Movie[]
+  movies: IMovie[]
 }
 
 const defaultState: IMovieContext = Object.freeze({

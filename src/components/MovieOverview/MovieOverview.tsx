@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import './MovieOverview.scss'
 import { Link, useLocation } from 'react-router-dom'
-import { MovieSearch } from '../../data/api'
+import { IMovieSearch } from '../../data/api'
 import MovieListItem from './MovieListItem'
 import DetailHeader from '../Header/DetailHeader'
 import * as global from '../../constants/globalConstants'
@@ -9,7 +9,7 @@ import MovieDatabaseContext from '../../context/movieDatabaseContext'
 
 const MovieOverview: React.FC = () => {
   const location = useLocation()
-  const allMovieList = useContext(MovieDatabaseContext) as MovieSearch[]
+  const allMovieList = useContext(MovieDatabaseContext) as IMovieSearch[]
   const partLoc = location.pathname.split('/')
 
   const filteredList = () => {
@@ -19,7 +19,7 @@ const MovieOverview: React.FC = () => {
     if (partLoc[2] === 'top' && allMovieList.length > 0) {
       return allMovieList.filter((movie) => parseInt(movie.imdbRating, 10) >= 8.0)
     }
-    return allMovieList.filter((movie) => movie.Genre.toLowerCase().includes(`${partLoc[2]}`))
+    return allMovieList.filter((movie) => movie.Genre.toLowerCase().includes(`${ partLoc[2] }`))
   }
 
   const renderMovies = () => {
