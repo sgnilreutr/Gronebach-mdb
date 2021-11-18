@@ -1,12 +1,12 @@
 import React from 'react'
 import { FiX } from 'react-icons/fi'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import './CloseButton.scss'
 
 export default function Closebutton() {
-  const history = useHistory()
+  const navigate = useNavigate()
   const returnPage = () => {
-    history.go(-1)
+    navigate(-1)
   }
 
   return (

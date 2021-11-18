@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import './randomMovieIntro.scss'
-import { useHistory, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import {
   CircleMediumLoader,
   CircleSmallLoader,
@@ -49,11 +49,11 @@ const randomLoader = () => {
 
 const RandomMovieIntro = () => {
   const { movieID } = useParams<{ movieID: string }>()
-  const history = useHistory()
+  const navigate = useNavigate()
 
   useEffect(() => {
     const openOverviewPage = () => {
-      history.push({ pathname: `/item/${movieID}/` })
+      navigate(`/item/${ movieID }/`)
     }
     setTimeout(() => {
       openOverviewPage()

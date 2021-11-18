@@ -1,7 +1,7 @@
 import React from 'react'
 import './SearchButton.scss'
 import { FiSearch } from 'react-icons/fi'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 const SEARCH = 'Zoeken'
 
@@ -10,9 +10,9 @@ const preLoadSearch = () => {
 }
 
 export default function Searchbutton() {
-  const history = useHistory()
+  const navigate = useNavigate()
   const openSearch = () => {
-    history.push(`/search`)
+    navigate(`/search`)
   }
 
   return (

@@ -2,21 +2,21 @@ import React from 'react'
 import './MovieListItem.scss'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import 'react-lazy-load-image-component/src/effects/blur.css'
-import { useHistory } from 'react-router-dom'
-import { getMoviePosterUrl, Movie } from '../../data/api'
+import { useNavigate } from 'react-router-dom'
+import { getMoviePosterUrl, IMovie } from '../../data/api'
 import * as global from '../../constants/globalConstants'
 
 interface Props {
-  movieInfo: Movie
+  movieInfo: IMovie
 }
 
 const MovieListItem: React.FC<Props> = ({ movieInfo: { imdbID, Poster, Title } }) => {
   const itemHeight = window.innerWidth <= global.WINDOW_WIDTH_414 ? 176.72 : 378
   const itemWidth = window.innerWidth <= global.WINDOW_WIDTH_414 ? 120.32 : 258
 
-  const history = useHistory()
+  const navigate = useNavigate()
   const openOverviewPage = () => {
-    history.push({ pathname: `/item/${ imdbID }/` })
+    navigate(`/item/${ imdbID }/`)
   }
 
   return (

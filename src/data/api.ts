@@ -1,12 +1,12 @@
 import axios from 'axios'
 import imageFallback from '../img/placeholder-image.png'
 
-export type Ratings = {
+export interface IRatings {
   Source: string
   Value: string
 }
 
-export type MovieDetail = {
+export interface IMovieDetail {
   imdbID: string
   Title: string
   Year: number
@@ -23,10 +23,10 @@ export type MovieDetail = {
   Awards: string
   Poster: string
   imdbRating: string
-  Ratings?: Ratings
+  Ratings?: IRatings
 }
 
-export type Movie = {
+export interface IMovie {
   Title: string
   Year?: string
   imdbID: string
@@ -41,7 +41,7 @@ export type Movie = {
   Rated?: string
 }
 
-export type MovieSearch = {
+export interface IMovieSearch {
   Title: string
   Year: string
   imdbID: string
@@ -56,7 +56,7 @@ export type MovieSearch = {
   Rated?: string
 }
 
-export type MovieTrailer = {
+export interface IMovieTrailer {
   videoUrl: string
 }
 
@@ -67,8 +67,8 @@ export const options = {
 }
 
 export type ApiClient = {
-  getMovies: () => Promise<Movie[]>
-  getMovieTrailer: (movieId: string) => Promise<MovieTrailer>
+  getMovies: () => Promise<IMovie[]>
+  getMovieTrailer: (movieId: string) => Promise<IMovieTrailer>
 }
 
 export const createApiClient = (): ApiClient => ({
@@ -77,7 +77,8 @@ export const createApiClient = (): ApiClient => ({
       const response = await axios.get('/all_movies_20210202_21-17-10.json')
       return response.data
     } catch (err) {
-      return console.error(err)
+      console.error(err)
+      return null
     }
   },
   getMovieTrailer: async (movieId: string) => {
@@ -88,7 +89,8 @@ export const createApiClient = (): ApiClient => ({
       )
       return response.data
     } catch (err) {
-      return console.error(err)
+      console.error(err)
+      return null
     }
   },
 })

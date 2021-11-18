@@ -1,5 +1,5 @@
 import React from 'react'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { FiArrowLeft } from 'react-icons/fi'
 import './BackButton.scss'
 
@@ -10,10 +10,10 @@ const preLoadHomepage = () => {
 }
 
 const BackButton = () => {
-  const history = useHistory()
+  const navigate = useNavigate()
 
   function navigateBack() {
-    history.push('/')
+    navigate('/')
   }
   return (
     <button

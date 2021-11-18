@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { FiChevronRight } from 'react-icons/fi'
 import { useDispatch, useSelector } from 'react-redux'
-import { useHistory } from 'react-router-dom'
-import { MovieSearch } from '../../data/api'
+import { useNavigate } from 'react-router-dom'
+import { IMovieSearch } from '../../data/api'
 import MovieList from '../MovieOverview/MovieList'
 import { tenRandomMovies } from '../../utils/randomMovie'
 import * as global from '../../constants/globalConstants'
@@ -15,21 +15,19 @@ const HomepageCategory = ({
   categoryName,
   categoryFilter,
 }: {
-  movieList: MovieSearch[]
+  movieList: IMovieSearch[]
   categoryName: string
   categoryFilter: string
 }) => {
   const category = useSelector(selectCategory)
   const dispatch = useDispatch()
-  const history = useHistory()
-  const [filteredMovies, setFilteredMovies] = useState<MovieSearch[]>([])
+  const navigate = useNavigate()
+  const [filteredMovies, setFilteredMovies] = useState<IMovieSearch[]>([])
   const [loadingState, setLoadingState] = useState<string>('idle')
 
   const openCategory = (value: string) => {
     dispatch({ type: 'SET_OVERVIEW_QUERY', payload: value })
-    history.push({
-      pathname: `/overview/${ value }`,
-    })
+    navigate(`/overview/${ value }`)
   }
 
   useEffect(() => {
