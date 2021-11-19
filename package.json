@@ -35,7 +35,7 @@
     "typescript": "^4.5.2",
     "workbox-background-sync": "^5.1.3",
     "workbox-broadcast-update": "^5.1.3",
-    "workbox-cacheable-response": "^5.1.3",
+    "workbox-cacheable-response": "^6.4.1",
     "workbox-core": "^6.4.1",
     "workbox-expiration": "^6.4.1",
     "workbox-google-analytics": "^6.4.1",
