@@ -35,13 +35,13 @@
     "typescript": "^4.5.2",
     "workbox-background-sync": "^5.1.3",
     "workbox-broadcast-update": "^5.1.3",
-    "workbox-cacheable-response": "^5.1.3",
-    "workbox-core": "^5.1.3",
-    "workbox-expiration": "^5.1.3",
+    "workbox-cacheable-response": "^6.4.1",
+    "workbox-core": "^6.4.1",
+    "workbox-expiration": "^6.4.1",
     "workbox-google-analytics": "^6.4.1",
-    "workbox-navigation-preload": "^5.1.3",
+    "workbox-navigation-preload": "^6.4.1",
     "workbox-precaching": "^5.1.3",
-    "workbox-range-requests": "^5.1.3",
+    "workbox-range-requests": "^6.4.1",
     "workbox-routing": "^6.4.1",
     "workbox-strategies": "^6.4.1",
     "workbox-streams": "^5.1.3",
@@ -73,7 +73,7 @@
   },
   "devDependencies": {
     "@types/history": "^4.7.9",
-    "@types/jest": "^27.0.2",
+    "@types/jest": "^27.0.3",
     "@types/node": "^16.11.7",
     "@types/react": "^17.0.35",
     "@types/react-dom": "^17.0.11",
@@ -88,7 +88,7 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.25.3",
     "eslint-plugin-jsx-a11y": "^6.5.1",
-    "eslint-plugin-react": "^7.27.0",
+    "eslint-plugin-react": "^7.27.1",
     "eslint-plugin-react-hooks": "^4.3.0"
   }
 }
