@@ -9,13 +9,13 @@
   &.dark {
     color: $color-text-DM;
   }
-  @media only screen and (min-width: $BP_S_MIN) {
+  @media only screen and (min-width: $BP_M_MIN) {
     margin-left: auto;
     display: flex;
     flex-flow: row;
     align-items: center;
   }
-  @media only screen and (max-width: $BP_S_MAX) {
+  @media only screen and (max-width: $BP_M_MAX) {
     margin-left: 1rem;
     margin-right: 2rem;
   }
@@ -23,10 +23,10 @@
 
 .search-label {
   font-size: $base;
-  @media only screen and (min-width: $BP_S_MIN) {
+  @media only screen and (min-width: $BP_M_MIN) {
     padding-left: 0.5rem;
   }
-  @media only screen and (max-width: $BP_S_MAX) {
+  @media only screen and (max-width: $BP_M_MAX) {
     display: none;
   }
 }

@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './MovieListItem.scss'
+import { useMediaQuery } from 'react-responsive'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import 'react-lazy-load-image-component/src/effects/blur.css'
 import { useNavigate } from 'react-router-dom'
@@ -11,8 +12,16 @@ interface Props {
 }
 
 const MovieListItem: React.FC<Props> = ({ movieInfo: { imdbID, Poster, Title } }) => {
-  const itemHeight = window.innerWidth <= global.WINDOW_WIDTH_414 ? 176.72 : 378
-  const itemWidth = window.innerWidth <= global.WINDOW_WIDTH_414 ? 120.32 : 258
+  const isTabletOrMobile = useMediaQuery({ maxWidth: global.WINDOW_WIDTH_768 })
+  const [itemHeight, setItemHeight] = useState(0)
+  const [itemWidth, setItemWidth] = useState(0)
+
+  useEffect(() => {
+    setItemHeight(isTabletOrMobile ? 176.72 : 378)
+    setItemWidth(isTabletOrMobile ? 120.32 : 258)
+  }, [isTabletOrMobile])
+
+
 
   const navigate = useNavigate()
   const openOverviewPage = () => {

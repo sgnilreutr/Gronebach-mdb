@@ -12,10 +12,10 @@
 }
 
 .category-header__title {
-  @media only screen and (min-width: $BP_S_MIN) {
+  @media only screen and (min-width: $BP_M_MIN) {
     font-size: $h3;
   }
-  @media only screen and (max-width: $BP_S_MAX) {
+  @media only screen and (max-width: $BP_M_MAX) {
     font-size: $base;
     margin-left: 0.5rem;
   }

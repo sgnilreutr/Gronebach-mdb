@@ -4,8 +4,7 @@ export const COULD_NOT_LOAD =
   'Content kon niet geladen worden. Probeer het later nog een keer.'
 export const LINK_MISSING_TITLE = 'Controleer de ontbrekende titels'
 
-export const WINDOW_WIDTH_414 = 414
-export const WINDOW_WIDTH_416 = 416
+export const WINDOW_WIDTH_768 = 768
 
 export const NUMBER_OF_FILES = 235
 export const MOVIE_CATEGORIES = [
