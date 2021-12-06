@@ -7,10 +7,10 @@
   background: #edededf2;
   width: 100%;
   padding: 1px 0;
-  @media only screen and (min-width: $BP_S_MIN) {
+  @media only screen and (min-width: $BP_M_MIN) {
     display: none;
   }
   &.dark {
-    background: #0f0f0ff2;
+    background: #202020f2;
   }
 }

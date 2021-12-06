@@ -13,7 +13,7 @@
   place-items: center;
   cursor: pointer;
   transition: all ease-in-out 0.1s;
-  @media only screen and (max-width: $BP_S_MAX) {
+  @media only screen and (max-width: $BP_M_MAX) {
     margin-right: 0.5rem;
   }
   &.dark {

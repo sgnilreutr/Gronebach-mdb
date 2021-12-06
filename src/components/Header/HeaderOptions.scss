@@ -3,11 +3,11 @@
 .headerOptions-container {
   display: flex;
   margin: 0.375rem 0;
-  @media only screen and (min-width: $BP_S_MIN) {
+  @media only screen and (min-width: $BP_M_MIN) {
     width: 12rem;
     justify-content: space-between;
   }
-  @media only screen and (max-width: $BP_S_MAX) {
+  @media only screen and (max-width: $BP_M_MAX) {
     margin-top: 1rem;
     width: 100%;
     justify-content: space-around;

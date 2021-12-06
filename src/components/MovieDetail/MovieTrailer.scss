@@ -18,7 +18,9 @@
   display: flex;
   border-radius: 6px;
   margin-bottom: 1rem;
-  @media only screen and (min-width: $BP_S_MIN) {
+  place-content: center;
+
+  @media only screen and (min-width: $BP_M_MIN) {
     margin-right: 4rem;
   }
 }

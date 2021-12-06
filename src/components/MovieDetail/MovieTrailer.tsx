@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import isEmpty from 'lodash/isEmpty'
+import { useMediaQuery } from 'react-responsive'
 import ReactPlayer from 'react-player'
 import { MdLocalMovies } from 'react-icons/md'
 import './MovieTrailer.scss'
@@ -25,12 +26,15 @@ export const OpenTrailerButton = (props: TrailerButton) => {
 export const MovieTrailer = ({ movieID }: { movieID: string }) => {
   const [movieTrailer, setMovieTrailer] = useState<any>({})
   const [loadingState, setLoadingState] = useState<string>('idle')
+  const isTabletOrMobile = useMediaQuery({ maxWidth: global.TABLET_MAX_WIDTH })
+  const [itemHeight, setItemHeight] = useState(0)
+  const [itemWidth, setItemWidth] = useState(0)
 
   useEffect(() => {
     const fetchData = async () => {
       setLoadingState('loading')
       try {
-        const response = await createApiClient().getMovieTrailer(`${movieID}`)
+        const response = await createApiClient().getMovieTrailer(`${ movieID }`)
         if (!isEmpty(response)) {
           setMovieTrailer(response)
           setLoadingState('loaded')
@@ -47,8 +51,10 @@ export const MovieTrailer = ({ movieID }: { movieID: string }) => {
     }
   }, [movieID])
 
-  const itemHeight = window.innerWidth <= global.WINDOW_WIDTH_414 ? 193 : 376
-  const itemWidth = window.innerWidth <= global.WINDOW_WIDTH_414 ? 343 : 640
+  useEffect(() => {
+    setItemHeight(isTabletOrMobile ? 193 : 376)
+    setItemWidth(isTabletOrMobile ? 343 : 640)
+  }, [isTabletOrMobile])
 
   return (
     <div>

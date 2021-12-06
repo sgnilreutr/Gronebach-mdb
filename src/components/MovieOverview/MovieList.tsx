@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import './MovieList.scss'
 import { Link } from 'react-router-dom'
+import { useMediaQuery } from 'react-responsive'
 import ScrollMenu from 'react-horizontal-scrolling-menu'
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'
 import MovieListItem from './MovieListItem'
@@ -12,6 +13,7 @@ interface Props {
 }
 
 const MovieList: React.FC<Props> = ({ movies }) => {
+  const isTabletOrMobile = useMediaQuery({ maxWidth: global.TABLET_MAX_WIDTH })
   const [menuItems, setMenuItems] = useState<any>([])
   const isMountedRef = useRef<boolean | null>(null)
 
@@ -51,10 +53,10 @@ const MovieList: React.FC<Props> = ({ movies }) => {
 
   const renderMovies = () => (
     <div>
-      {movies.length > 0 && window.innerWidth >= global.WINDOW_WIDTH_416 && (
+      {movies.length > 0 && !isTabletOrMobile && (
         <ScrollMenu data={menuItems} arrowLeft={ArrowLeft} arrowRight={ArrowRight} wheel={false} />
       )}
-      {movies.length > 0 && window.innerWidth < global.WINDOW_WIDTH_416 && (
+      {movies.length > 0 && isTabletOrMobile && (
         <div className="movie-horizontal-grid">
           <div className="hs hs-scroll">
             {movies.map((movie) => {

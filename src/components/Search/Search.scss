@@ -9,12 +9,12 @@
 }
 
 .search-page-placeholder {
-  @media only screen and (max-width: $BP_S_MAX) {
+  @media only screen and (max-width: $BP_M_MAX) {
     margin-left: 1rem;
   }
 }
 .search-no-results {
-  @media only screen and (max-width: $BP_S_MAX) {
+  @media only screen and (max-width: $BP_M_MAX) {
     margin-left: 1rem;
   }
 }
@@ -23,12 +23,12 @@
   display: grid;
   justify-items: center;
 
-  @media only screen and (min-width: $BP_S_MIN) {
+  @media only screen and (min-width: $BP_M_MIN) {
     grid-template-columns: repeat(auto-fill, minmax(256px, 1fr));
     grid-row-gap: 68px;
     grid-column-gap: 68px;
   }
-  @media only screen and (max-width: $BP_S_MAX) {
+  @media only screen and (max-width: $BP_M_MAX) {
     grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
     grid-row-gap: 1rem;
     grid-column-gap: 0;

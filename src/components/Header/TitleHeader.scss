@@ -9,11 +9,11 @@
     color: $color-text-DM;
   }
 
-  @media only screen and (min-width: $BP_S_MIN) {
+  @media only screen and (min-width: $BP_M_MIN) {
     margin-top: 4rem;
     margin-bottom: 1rem;
   }
-  @media only screen and (max-width: $BP_S_MAX) {
+  @media only screen and (max-width: $BP_M_MAX) {
     margin: 1.3rem 1rem 1rem 1rem;
   }
 }
@@ -25,7 +25,7 @@
   margin-bottom: 0.438rem;
   cursor: pointer;
   user-select: none;
-  @media only screen and (max-width: $BP_S_MAX) {
+  @media only screen and (max-width: $BP_M_MAX) {
     display: none;
   }
 }
@@ -43,7 +43,7 @@
   margin-bottom: 0.438rem;
   cursor: pointer;
   user-select: none;
-  @media only screen and (min-width: $BP_S_MIN) {
+  @media only screen and (min-width: $BP_M_MIN) {
     display: none;
   }
 }

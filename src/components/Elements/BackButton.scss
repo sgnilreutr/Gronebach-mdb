@@ -10,7 +10,7 @@
   border: 0;
   align-items: center;
   min-width: max-content;
-  @media only screen and (max-width: $BP_S_MAX) {
+  @media only screen and (max-width: $BP_M_MAX) {
     margin: 0.375rem auto 0.375rem 1rem;
   }
 }
@@ -32,7 +32,7 @@
   &.dark {
     color: $color-text-DM;
   }
-  @media only screen and (max-width: $BP_S_MAX) {
+  @media only screen and (max-width: $BP_M_MAX) {
     span {
       display: none;
     }
