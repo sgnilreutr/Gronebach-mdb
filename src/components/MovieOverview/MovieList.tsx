@@ -13,7 +13,7 @@ interface Props {
 }
 
 const MovieList: React.FC<Props> = ({ movies }) => {
-  const isTabletOrMobile = useMediaQuery({ maxWidth: global.WINDOW_WIDTH_768 })
+  const isTabletOrMobile = useMediaQuery({ maxWidth: global.TABLET_MAX_WIDTH })
   const [menuItems, setMenuItems] = useState<any>([])
   const isMountedRef = useRef<boolean | null>(null)
 
@@ -54,7 +54,7 @@ const MovieList: React.FC<Props> = ({ movies }) => {
   const renderMovies = () => (
     <div>
       {movies.length > 0 && !isTabletOrMobile && (
-        <ScrollMenu data={menuItems} arrowLeft={ArrowLeft} arrowRight={ArrowRight} wheel />
+        <ScrollMenu data={menuItems} arrowLeft={ArrowLeft} arrowRight={ArrowRight} wheel={false} />
       )}
       {movies.length > 0 && isTabletOrMobile && (
         <div className="movie-horizontal-grid">

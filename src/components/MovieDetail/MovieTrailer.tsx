@@ -26,7 +26,7 @@ export const OpenTrailerButton = (props: TrailerButton) => {
 export const MovieTrailer = ({ movieID }: { movieID: string }) => {
   const [movieTrailer, setMovieTrailer] = useState<any>({})
   const [loadingState, setLoadingState] = useState<string>('idle')
-  const isTabletOrMobile = useMediaQuery({ maxWidth: global.WINDOW_WIDTH_768 })
+  const isTabletOrMobile = useMediaQuery({ maxWidth: global.TABLET_MAX_WIDTH })
   const [itemHeight, setItemHeight] = useState(0)
   const [itemWidth, setItemWidth] = useState(0)
 

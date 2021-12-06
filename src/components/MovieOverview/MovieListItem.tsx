@@ -12,7 +12,7 @@ interface Props {
 }
 
 const MovieListItem: React.FC<Props> = ({ movieInfo: { imdbID, Poster, Title } }) => {
-  const isTabletOrMobile = useMediaQuery({ maxWidth: global.WINDOW_WIDTH_768 })
+  const isTabletOrMobile = useMediaQuery({ maxWidth: global.TABLET_MAX_WIDTH })
   const [itemHeight, setItemHeight] = useState(0)
   const [itemWidth, setItemWidth] = useState(0)
 
