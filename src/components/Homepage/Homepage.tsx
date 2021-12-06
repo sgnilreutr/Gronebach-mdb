@@ -28,7 +28,7 @@ const Homepage = () => {
   )
 
   return (
-    <div style={{ marginBottom: '6rem' }}>
+    <div>
       <Overviewheader />
       {allMovieList ? categoryHomepage() : <h2>{NOTHING_TO_SHOW}</h2>}
       <MobileMenu />
