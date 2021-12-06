@@ -12744,7 +12744,7 @@ workbox-strategies@6.4.1:
   dependencies:
     workbox-core "6.4.1"
 
-workbox-strategies@6.4.2, workbox-strategies@^6.4.1:
+workbox-strategies@6.4.2, workbox-strategies@^6.4.2:
   version "6.4.2"
   resolved "https://registry.yarnpkg.com/workbox-strategies/-/workbox-strategies-6.4.2.tgz#50c02bf2d116918e1a8052df5f2c1e4103c62d5d"
   integrity sha512-YXh9E9dZGEO1EiPC3jPe2CbztO5WT8Ruj8wiYZM56XqEJp5YlGTtqRjghV+JovWOqkWdR+amJpV31KPWQUvn1Q==
@@ -12759,13 +12759,6 @@ workbox-strategies@^5.1.4:
     workbox-core "^5.1.4"
     workbox-routing "^5.1.4"
 
-workbox-strategies@^6.4.2:
-  version "6.4.2"
-  resolved "https://registry.yarnpkg.com/workbox-strategies/-/workbox-strategies-6.4.2.tgz#50c02bf2d116918e1a8052df5f2c1e4103c62d5d"
-  integrity sha512-YXh9E9dZGEO1EiPC3jPe2CbztO5WT8Ruj8wiYZM56XqEJp5YlGTtqRjghV+JovWOqkWdR+amJpV31KPWQUvn1Q==
-  dependencies:
-    workbox-core "6.4.2"
-
 workbox-streams@^5.1.4:
   version "5.1.4"
   resolved "https://registry.npmjs.org/workbox-streams/-/workbox-streams-5.1.4.tgz"
@@ -12774,13 +12767,13 @@ workbox-streams@^5.1.4:
     workbox-core "^5.1.4"
     workbox-routing "^5.1.4"
 
-workbox-streams@^6.4.1:
-  version "6.4.1"
-  resolved "https://registry.yarnpkg.com/workbox-streams/-/workbox-streams-6.4.1.tgz#b0a2b931b697a3cb55b20ad66b3f063747490e69"
-  integrity sha512-0t3QKBml3Qi37JniDfEn0FfN4JRgMK6sEcjGxvmMGwlHAyKukZr0Gj58ax1o1KYGGJr72RDBK+YXI9Sk9cKifw==
+workbox-streams@^6.4.2:
+  version "6.4.2"
+  resolved "https://registry.yarnpkg.com/workbox-streams/-/workbox-streams-6.4.2.tgz#3bc615cccebfd62dedf28315afb7d9ee177912a5"
+  integrity sha512-ROEGlZHGVEgpa5bOZefiJEVsi5PsFjJG9Xd+wnDbApsCO9xq9rYFopF+IRq9tChyYzhBnyk2hJxbQVWphz3sog==
   dependencies:
-    workbox-core "6.4.1"
-    workbox-routing "6.4.1"
+    workbox-core "6.4.2"
+    workbox-routing "6.4.2"
 
 workbox-sw@^5.1.4:
   version "5.1.4"
