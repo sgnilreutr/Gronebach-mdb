@@ -19,6 +19,9 @@ const MovieOverview: React.FC = () => {
     if (partLoc[2] === 'top' && allMovieList.length > 0) {
       return allMovieList.filter((movie) => parseInt(movie.imdbRating, 10) >= 8.0)
     }
+    if (partLoc[2] === 'all' && allMovieList.length > 0) {
+      return allMovieList
+    }
     return allMovieList.filter((movie) => movie.Genre.toLowerCase().includes(`${ partLoc[2] }`))
   }
 
@@ -26,7 +29,7 @@ const MovieOverview: React.FC = () => {
     if (allMovieList) {
       return (
         <div>
-          <h1>Alle {partLoc[2]} items</h1>
+          <h1>Alle {partLoc[2] !== global.ALL_CATEGORY_VALUE && partLoc[2]} items</h1>
           <div className="movie-grid">
             {filteredList().length > 0 ? (
               filteredList().map((movie) => {

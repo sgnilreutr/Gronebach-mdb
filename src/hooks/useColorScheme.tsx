@@ -45,6 +45,9 @@ const useColorScheme = () => {
             if (document.getElementById('back')! !== null) {
                 document.getElementById('back')!.classList.add('dark')
             }
+            if (document.getElementById('all')! !== null) {
+                document.getElementById('all')!.classList.add('dark')
+            }
         } else {
             document.body.classList.remove('dark')
             if (document.getElementById('title-container')! !== null) {
@@ -70,6 +73,9 @@ const useColorScheme = () => {
             }
             if (document.getElementById('back')! !== null) {
                 document.getElementById('back')!.classList.remove('dark')
+            }
+            if (document.getElementById('all')! !== null) {
+                document.getElementById('all')!.classList.remove('dark')
             }
         }
     }, [value])

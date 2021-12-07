@@ -3,6 +3,7 @@ import HeaderOptions from './HeaderOptions'
 import './OverviewHeader.scss'
 import TitleHeader from './TitleHeader'
 import Searchbutton from '../Elements/SearchButton'
+import SeeAllButton from '../Elements/SeeAllButton'
 import RandomButton from '../Elements/RandomButton'
 
 export default function Overviewheader() {
@@ -15,7 +16,10 @@ export default function Overviewheader() {
         </div>
         <div className="placeholder" />
         <RandomButton />
-        <Searchbutton />
+        <div className="options-container">
+          <SeeAllButton />
+          <Searchbutton />
+        </div>
       </div>
     </div>
   )
