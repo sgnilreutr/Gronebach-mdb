@@ -4,6 +4,7 @@ import TitleHeader from './TitleHeader'
 import Searchbutton from '../Elements/SearchButton'
 import RandomButton from '../Elements/RandomButton'
 import BackButton from '../Elements/BackButton'
+import SeeAllButton from '../Elements/SeeAllButton'
 
 export default function Backtooverview() {
   return (
@@ -12,7 +13,10 @@ export default function Backtooverview() {
       <div className="buttons-container">
         <BackButton />
         <RandomButton />
-        <Searchbutton />
+        <div className="options-container-detail">
+          <SeeAllButton />
+          <Searchbutton />
+        </div>
       </div>
     </div>
   )

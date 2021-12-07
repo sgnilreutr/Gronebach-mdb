@@ -5,6 +5,7 @@
   align-items: center;
   margin-top: 2.5rem;
   cursor: pointer;
+  max-width: max-content;
 }
 
 .click {
@@ -28,6 +29,10 @@
   align-items: baseline;
   margin-left: 0.5rem;
   cursor: pointer;
+  @media only screen and (max-width: $BP_M_MAX) {
+    opacity: 1;
+    margin-left: 0.1rem;
+  }
 }
 
 .category-header__subtitle__nohover {
@@ -38,12 +43,21 @@
   margin-left: 0.5rem;
 }
 
-.category-header__subtitle:hover {
-  opacity: 0.5;
+.category-header:hover {
+  * {
+    opacity: 1;
+  }
 }
 
 .category-header__subtitle-text {
-  font-size: $h3;
+  @media only screen and (min-width: $BP_M_MIN) {
+    font-size: $h3;
+  }
+  @media only screen and (max-width: $BP_M_MAX) {
+    font-size: $base;
+    margin-left: 0.5rem;
+    opacity: 1;
+  }
 }
 
 .category-header__icon {

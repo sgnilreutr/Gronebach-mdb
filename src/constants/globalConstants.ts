@@ -16,3 +16,5 @@ export const MOVIE_CATEGORIES = [
   { name: 'Misdaad', filter: 'crime' },
   { name: 'Kijk met de kinderen', filter: 'kids' },
 ]
+
+export const ALL_CATEGORY_VALUE = 'all'

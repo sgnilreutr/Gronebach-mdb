@@ -6,6 +6,15 @@
   align-items: center;
 }
 
+.options-container {
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  button:last-child {
+    margin-left: 1.5rem;
+  }
+}
+
 .placeholder {
   @media only screen and (max-width: $BP_M_MAX) {
     min-width: 41px;

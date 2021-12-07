@@ -9,6 +9,9 @@
   &.dark {
     color: $color-text-DM;
   }
+  &:hover {
+    text-decoration: underline;
+  }
   @media only screen and (min-width: $BP_M_MIN) {
     margin-left: auto;
     display: flex;
