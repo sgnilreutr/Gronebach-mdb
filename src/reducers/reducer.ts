@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/default-param-last */
 export interface AppState {
   searchTerm: string
   category: string
