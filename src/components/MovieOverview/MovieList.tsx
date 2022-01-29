@@ -22,11 +22,11 @@ const MovieList: React.FC<Props> = ({ movies }) => {
       <MovieListItem
         key={movie.imdbID}
         movieInfo={{
-          Title: `${ movie.Title }`,
-          imdbID: `${ movie.imdbID }`,
-          Poster: `${ movie.Poster }`,
-          Genre: `${ movie.Genre }`,
-          Type: `${ movie.Type }`,
+          Title: `${movie.Title}`,
+          imdbID: `${movie.imdbID}`,
+          Poster: `${movie.Poster}`,
+          Genre: `${movie.Genre}`,
+          Type: `${movie.Type}`,
         }}
       />
     ))
@@ -54,7 +54,12 @@ const MovieList: React.FC<Props> = ({ movies }) => {
   const renderMovies = () => (
     <div>
       {movies.length > 0 && !isTabletOrMobile && (
-        <ScrollMenu data={menuItems} arrowLeft={ArrowLeft} arrowRight={ArrowRight} wheel={false} />
+        <ScrollMenu
+          data={menuItems}
+          arrowLeft={ArrowLeft}
+          arrowRight={ArrowRight}
+          wheel={false}
+        />
       )}
       {movies.length > 0 && isTabletOrMobile && (
         <div className="movie-horizontal-grid">

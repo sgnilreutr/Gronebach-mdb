@@ -35,7 +35,11 @@ export default function TitleHeader() {
             {EMOJI}
           </div>
         </div>
-        <a id="personal_link" className="personal_link" href="https://github.com/sgnilreutr">
+        <a
+          id="personal_link"
+          className="personal_link"
+          href="https://github.com/sgnilreutr"
+        >
           {ROBBERT_TUERLINGS}
         </a>
       </div>

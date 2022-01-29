@@ -33,9 +33,11 @@
   }
 }
 
-.details-inner > .img {
+.details-inner > .image-report {
   display: flex;
   border-radius: 6px;
+  flex-flow: column;
+  align-items: center;
   @media only screen and (min-width: $BP_M_MIN) {
     margin-right: 4rem;
     height: auto;
