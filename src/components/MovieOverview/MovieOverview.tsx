@@ -17,19 +17,25 @@ const MovieOverview: React.FC = () => {
       return allMovieList.filter((movie) => movie.Rated === 'PG' && 'G')
     }
     if (partLoc[2] === 'top' && allMovieList.length > 0) {
-      return allMovieList.filter((movie) => parseInt(movie.imdbRating, 10) >= 8.0)
+      return allMovieList.filter(
+        (movie) => parseInt(movie.imdbRating, 10) >= 8.0
+      )
     }
     if (partLoc[2] === 'all' && allMovieList.length > 0) {
       return allMovieList
     }
-    return allMovieList.filter((movie) => movie.Genre.toLowerCase().includes(`${ partLoc[2] }`))
+    return allMovieList.filter((movie) =>
+      movie.Genre.toLowerCase().includes(`${partLoc[2]}`)
+    )
   }
 
   const renderMovies = () => {
     if (allMovieList) {
       return (
         <div>
-          <h1>Alle {partLoc[2] !== global.ALL_CATEGORY_VALUE && partLoc[2]} items</h1>
+          <h1>
+            Alle {partLoc[2] !== global.ALL_CATEGORY_VALUE && partLoc[2]} items
+          </h1>
           <div className="movie-grid">
             {filteredList().length > 0 ? (
               filteredList().map((movie) => {

@@ -34,7 +34,7 @@ export const MovieTrailer = ({ movieID }: { movieID: string }) => {
     const fetchData = async () => {
       setLoadingState('loading')
       try {
-        const response = await createApiClient().getMovieTrailer(`${ movieID }`)
+        const response = await createApiClient().getMovieTrailer(`${movieID}`)
         if (!isEmpty(response)) {
           setMovieTrailer(response)
           setLoadingState('loaded')

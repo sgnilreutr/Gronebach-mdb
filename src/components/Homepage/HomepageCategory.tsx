@@ -27,7 +27,7 @@ const HomepageCategory = ({
 
   const openCategory = (value: string) => {
     dispatch({ type: 'SET_OVERVIEW_QUERY', payload: value })
-    navigate(`/overview/${ value }`)
+    navigate(`/overview/${value}`)
   }
 
   useEffect(() => {
@@ -48,11 +48,15 @@ const HomepageCategory = ({
 
   const filteredList = () => {
     if (categoryFilter === 'top' && filteredMovies.length > 0) {
-      const filterList = filteredMovies.filter((movie) => parseInt(movie.imdbRating, 10) >= 8.0)
+      const filterList = filteredMovies.filter(
+        (movie) => parseInt(movie.imdbRating, 10) >= 8.0
+      )
       return filterList
     }
     if (categoryFilter === 'kids' && filteredMovies.length > 0) {
-      const filterList = filteredMovies.filter((movie) => movie.Rated === 'PG' && 'G')
+      const filterList = filteredMovies.filter(
+        (movie) => movie.Rated === 'PG' && 'G'
+      )
       return filterList
     }
     const filterList = filteredMovies.filter((movie) =>
@@ -79,13 +83,19 @@ const HomepageCategory = ({
         <h2 className="category-header__title">{categoryName}</h2>
         <FiChevronRight className="category-header__icon" size={18} />
         <div className="category-header__subtitle">
-          <span className="category-header__subtitle-text">{CATEGORY_CTA_TEXT}</span>
+          <span className="category-header__subtitle-text">
+            {CATEGORY_CTA_TEXT}
+          </span>
         </div>
       </div>
       {loadingState === 'error' && <p>{global.COULD_NOT_LOAD}</p>}
       {loadingState === 'idle' && <p>{global.LOADING}</p>}
-      {sliceMovies().length === 0 && loadingState === 'loading' && <p>{global.LOADING}</p>}
-      {sliceMovies().length >= 0 && loadingState === 'loaded' && <MovieList movies={sliceMovies()} />}
+      {sliceMovies().length === 0 && loadingState === 'loading' && (
+        <p>{global.LOADING}</p>
+      )}
+      {sliceMovies().length >= 0 && loadingState === 'loaded' && (
+        <MovieList movies={sliceMovies()} />
+      )}
     </div>
   )
 }

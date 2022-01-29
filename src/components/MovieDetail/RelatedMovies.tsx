@@ -20,7 +20,9 @@ const RelatedMovies = ({ genre, activeMovie }: Props) => {
       if (allMovieList.length > 0) {
         const filteredMovies = allMovieList
           .filter((movies) => movies.imdbID !== activeMovie)
-          .filter((movie) => movie.Genre.toLowerCase().includes(query[0].toLowerCase()))
+          .filter((movie) =>
+            movie.Genre.toLowerCase().includes(query[0].toLowerCase())
+          )
         setRelatedMovies(tenRandomMovies(filteredMovies))
       }
     } catch (error) {
@@ -28,7 +30,11 @@ const RelatedMovies = ({ genre, activeMovie }: Props) => {
     }
   }, [genre, allMovieList])
 
-  return <div>{relatedMovies.length > 0 && <MovieList movies={relatedMovies} />}</div>
+  return (
+    <div>
+      {relatedMovies.length > 0 && <MovieList movies={relatedMovies} />}
+    </div>
+  )
 }
 
 export default RelatedMovies

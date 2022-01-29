@@ -16,7 +16,7 @@ const RandomButton = () => {
 
   const navigate = useNavigate()
   const openIntroPage = (imdbID: string) => {
-    navigate(`/random/${ imdbID }/`)
+    navigate(`/random/${imdbID}/`)
   }
 
   const fetchRandomMovie = () => {

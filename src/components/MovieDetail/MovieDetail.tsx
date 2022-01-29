@@ -15,6 +15,7 @@ const DIRECTOR = 'Regisseur'
 const GENRE = 'Genre'
 const RUNTIME = 'Runtime'
 const RELATED_MOVIES = 'Gerelateerde films'
+const REPORT_LINK = 'Report an invalid movie'
 
 const MovieDetail = () => {
   const { movieID } = useParams()
@@ -31,7 +32,11 @@ const MovieDetail = () => {
 
   useEffect(() => {
     if (movieID && allMovieList.length > 0) {
-      setMovie(allMovieList.filter((item) => item.imdbID.toLowerCase().includes(`${ movieID }`)))
+      setMovie(
+        allMovieList.filter((item) =>
+          item.imdbID.toLowerCase().includes(`${movieID}`)
+        )
+      )
     }
   }, [movieID, allMovieList])
 
@@ -46,8 +51,18 @@ const MovieDetail = () => {
   const renderDetail = () => (
     <>
       {movie.map((item: IMovieDetail) => {
-        const { imdbID, Title, Year, Poster, Plot, Actors, Director, Genre, imdbRating, Runtime } =
-          item
+        const {
+          imdbID,
+          Title,
+          Year,
+          Poster,
+          Plot,
+          Actors,
+          Director,
+          Genre,
+          imdbRating,
+          Runtime,
+        } = item
         return (
           <div className="detail-container" key={imdbID}>
             <div className="item-title">
@@ -60,9 +75,25 @@ const MovieDetail = () => {
             <div>
               <div>
                 <div className="details-inner">
-                  <img src={getMoviePosterUrl(Poster)} alt={Title} className="img" />
+                  <div className="image-report">
+                    <img
+                      src={getMoviePosterUrl(Poster)}
+                      alt={Title}
+                      className="img"
+                    />
+                    <a
+                      href={`mailto:robberttg@gmail.com?subject=GMDB melding - ${Title}&body=${Title} (${imdbID}) is incorrect - aub een andere uploaden.`}
+                      style={{ marginTop: '1rem', color: 'white' }}
+                    >
+                      <small>{REPORT_LINK}</small>
+                    </a>
+                  </div>
                   <div className="text-details">
-                    {!trailerActive && <OpenTrailerButton openTrailer={triggerOpenTrailerState} />}
+                    {!trailerActive && (
+                      <OpenTrailerButton
+                        openTrailer={triggerOpenTrailerState}
+                      />
+                    )}
                     {trailerActive && <MovieTrailer movieID={imdbID} />}
                     <div className="rating">
                       <FiStar />

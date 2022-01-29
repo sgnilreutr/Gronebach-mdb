@@ -11,7 +11,9 @@ interface Props {
   movieInfo: IMovie
 }
 
-const MovieListItem: React.FC<Props> = ({ movieInfo: { imdbID, Poster, Title } }) => {
+const MovieListItem: React.FC<Props> = ({
+  movieInfo: { imdbID, Poster, Title },
+}) => {
   const isTabletOrMobile = useMediaQuery({ maxWidth: global.TABLET_MAX_WIDTH })
   const [itemHeight, setItemHeight] = useState(0)
   const [itemWidth, setItemWidth] = useState(0)
@@ -21,18 +23,16 @@ const MovieListItem: React.FC<Props> = ({ movieInfo: { imdbID, Poster, Title } }
     setItemWidth(isTabletOrMobile ? 120.32 : 258)
   }, [isTabletOrMobile])
 
-
-
   const navigate = useNavigate()
   const openOverviewPage = () => {
-    navigate(`/item/${ imdbID }/`)
+    navigate(`/item/${imdbID}/`)
   }
 
   return (
     <div aria-hidden="true" onClick={() => openOverviewPage()}>
       <div className="item">
         <div className="item-img">
-          {window.navigator.onLine ?
+          {window.navigator.onLine ? (
             <LazyLoadImage
               src={getMoviePosterUrl(Poster)}
               alt={Title}
@@ -40,7 +40,10 @@ const MovieListItem: React.FC<Props> = ({ movieInfo: { imdbID, Poster, Title } }
               height={itemHeight}
               width={itemWidth}
               style={{ borderRadius: `6px` }}
-            /> : <span>{Title}</span>}
+            />
+          ) : (
+            <span>{Title}</span>
+          )}
         </div>
         <div className="title">
           <div className="text-truncate">

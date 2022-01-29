@@ -48,7 +48,7 @@ const RandomMovieIntro = () => {
 
   useEffect(() => {
     const openOverviewPage = () => {
-      navigate(`/item/${ movieID }/`)
+      navigate(`/item/${movieID}/`)
     }
     setTimeout(() => {
       openOverviewPage()

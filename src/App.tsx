@@ -22,7 +22,10 @@ const App = () => {
       const json = localStorage.getItem('movies')
       if (json) {
         const allMoviesLocalstorage = await JSON.parse(json)
-        if (allMoviesLocalstorage && allMoviesLocalstorage.length === global.NUMBER_OF_FILES) {
+        if (
+          allMoviesLocalstorage &&
+          allMoviesLocalstorage.length === global.NUMBER_OF_FILES
+        ) {
           setAllMovies(allMoviesLocalstorage)
         } else {
           setLocalStorage()
