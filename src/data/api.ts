@@ -49,6 +49,7 @@ export interface IMovieSearch {
   Poster: string
   Runtime: string
   Genre: string
+  Plot: string
   Actors: string
   Country: string
   imdbRating: string

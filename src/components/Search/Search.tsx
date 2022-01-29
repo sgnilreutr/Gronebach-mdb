@@ -28,6 +28,7 @@ export default function Search() {
         movie.Director.toLowerCase() +
         movie.Actors.toLowerCase() +
         movie.Country.toLowerCase() +
+        movie.Plot.toLowerCase() +
         movie.imdbRating
       ).includes(searchTerm.toLowerCase())
     )
