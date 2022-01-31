@@ -34,7 +34,7 @@ const MovieDetail = () => {
     if (movieID && allMovieList.length > 0) {
       setMovie(
         allMovieList.filter((item) =>
-          item.imdbID.toLowerCase().includes(`${movieID}`)
+          item.imdbID.toLowerCase().includes(`${ movieID }`)
         )
       )
     }
@@ -82,8 +82,8 @@ const MovieDetail = () => {
                       className="img"
                     />
                     <a
-                      href={`mailto:robberttg@gmail.com?subject=GMDB melding - ${Title}&body=${Title} (${imdbID}) is incorrect - aub een andere uploaden.`}
-                      style={{ marginTop: '1rem', color: 'white' }}
+                      href={`mailto:robberttg@gmail.com?subject=GMDB melding - ${ Title }&body=${ Title } (${ imdbID }) is incorrect - aub een andere uploaden.`}
+                      style={{ marginTop: '1rem' }}
                     >
                       <small>{REPORT_LINK}</small>
                     </a>
