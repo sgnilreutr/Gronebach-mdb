@@ -2743,10 +2743,10 @@
   dependencies:
     source-map "^0.6.1"
 
-"@types/use-persisted-state@^0.3.0":
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/@types/use-persisted-state/-/use-persisted-state-0.3.0.tgz#23370e89bd6c8468afdb05dde2d1bab898128229"
-  integrity sha512-ZT98QuckR95qM7W97lGVqc7fFS9TT6f3txp7R40fl0zxa5BLm3GG7j0i51G12h8DkoJxFAf2oQyYKU99h0pxFA==
+"@types/use-persisted-state@^0.3.1":
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/@types/use-persisted-state/-/use-persisted-state-0.3.1.tgz#a630fa77ed628ec12a80f0a597b6daf6a48f6237"
+  integrity sha512-GZtzdCPeR+KZfrzKrVLnbpRcHSCVDHaFCJ0QtkXDAmh5M+eUJqGquFtN+eUOvAMIjwLgTZ2zKq0/JL+e1/gf8g==
   dependencies:
     "@types/react" "*"
 
