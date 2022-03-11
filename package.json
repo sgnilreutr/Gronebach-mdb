@@ -38,10 +38,10 @@
     "workbox-google-analytics": "^6.4.2",
     "workbox-navigation-preload": "^6.5.1",
     "workbox-precaching": "^6.5.1",
-    "workbox-range-requests": "^6.4.2",
+    "workbox-range-requests": "^6.5.1",
     "workbox-routing": "^6.4.1",
     "workbox-strategies": "^6.5.1",
-    "workbox-streams": "^6.4.2"
+    "workbox-streams": "^6.5.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -84,7 +84,7 @@
     "@typescript-eslint/parser": "^4.33.0",
     "eslint": "^7.32.0",
     "eslint-config-airbnb": "^19.0.4",
-    "eslint-config-airbnb-typescript": "^16.1.0",
+    "eslint-config-airbnb-typescript": "^16.1.1",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-jsx-a11y": "^6.5.1",
