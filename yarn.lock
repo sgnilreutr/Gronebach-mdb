@@ -2627,10 +2627,10 @@
   resolved "https://registry.npmjs.org/@types/q/-/q-1.5.4.tgz"
   integrity sha512-1HcDas8SEj4z1Wc696tH56G8OlRaH/sqZOynNNB+HF0WOeXPaxTtbYzJY2oEfiUxjSKjhCKr+MvR7dCHcEelug==
 
-"@types/react-dom@*", "@types/react-dom@^17.0.11":
-  version "17.0.11"
-  resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-17.0.11.tgz#e1eadc3c5e86bdb5f7684e00274ae228e7bcc466"
-  integrity sha512-f96K3k+24RaLGVu/Y2Ng3e1EbZ8/cVJvypZWd7cy0ofCBaf2lcM46xNhycMZ2xGwbBjRql7hOlZ+e2WlJ5MH3Q==
+"@types/react-dom@*", "@types/react-dom@^17.0.13":
+  version "17.0.13"
+  resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-17.0.13.tgz#a3323b974ee4280070982b3112351bb1952a7809"
+  integrity sha512-wEP+B8hzvy6ORDv1QBhcQia4j6ea4SFIBttHYpXKPFZRviBvknq0FRh3VrIxeXUmsPkwuXVZrVGG7KUVONmXCQ==
   dependencies:
     "@types/react" "*"
 
@@ -12606,11 +12606,6 @@ workbox-cacheable-response@^6.5.1:
   dependencies:
     workbox-core "6.5.1"
 
-workbox-core@6.4.2:
-  version "6.4.2"
-  resolved "https://registry.yarnpkg.com/workbox-core/-/workbox-core-6.4.2.tgz#f99fd36a211cc01dce90aa7d5f2c255e8fe9d6bc"
-  integrity sha512-1U6cdEYPcajRXiboSlpJx6U7TvhIKbxRRerfepAJu2hniKwJ3DHILjpU/zx3yvzSBCWcNJDoFalf7Vgd7ey/rw==
-
 workbox-core@6.5.1, workbox-core@^6.4.1:
   version "6.5.1"
   resolved "https://registry.yarnpkg.com/workbox-core/-/workbox-core-6.5.1.tgz#0dba3bccf883a46dfa61cc412eaa3cb09bb549e6"
@@ -12699,13 +12694,6 @@ workbox-range-requests@^6.5.1:
   integrity sha512-57Da/qRbd9v33YlHX0rlSUVFmE4THCjKqwkmfhY3tNLnSKN2L5YBS3qhWeDO0IrMNgUj+rGve2moKYXeUqQt4A==
   dependencies:
     workbox-core "6.5.1"
-
-workbox-routing@6.4.2:
-  version "6.4.2"
-  resolved "https://registry.yarnpkg.com/workbox-routing/-/workbox-routing-6.4.2.tgz#65b1c61e8ca79bb9152f93263c26b1f248d09dcc"
-  integrity sha512-0ss/n9PAcHjTy4Ad7l2puuod4WtsnRYu9BrmHcu6Dk4PgWeJo1t5VnGufPxNtcuyPGQ3OdnMdlmhMJ57sSrrSw==
-  dependencies:
-    workbox-core "6.4.2"
 
 workbox-routing@6.5.1, workbox-routing@^6.4.1:
   version "6.5.1"
