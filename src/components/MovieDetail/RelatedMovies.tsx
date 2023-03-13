@@ -10,23 +10,29 @@ interface IRelatedMovies {
   activeMovie: string
 }
 
+const regex = /,/
+
 const RelatedMovies = ({ genre, activeMovie }: IRelatedMovies) => {
   const { movies } = useContext(MovieDatabaseContext)
   const [relatedMovies, setRelatedMovies] = useState<Array<IMovie>>([])
 
   useEffect(() => {
     try {
-      // There is no check yet if the genre string does contain a comma
-      const query = genre.split(',')
+      const hasComma = regex.test(genre)
+
+      const query = hasComma ? genre.split(',') : genre
+
       const [firstListedGenre] = query
+
       if (!firstListedGenre) {
         return
       }
+
       if (movies.length > 0) {
         const filteredMovies = movies.filter(
-          (movie) =>
-            movie.imdbID !== activeMovie &&
-            movie.Genre.toLowerCase().includes(firstListedGenre.toLowerCase())
+          ({ imdbID, Genre }) =>
+            imdbID !== activeMovie &&
+            Genre.toLowerCase().includes(firstListedGenre.toLowerCase())
         )
         setRelatedMovies(tenRandomMovies(filteredMovies))
       }

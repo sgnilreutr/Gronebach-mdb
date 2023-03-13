@@ -10,7 +10,7 @@ import { getMoviePosterUrl } from '../../data/api'
 import type { IMovie } from '../../data/dataTypes'
 
 interface IMovieListItem {
-  movieInfo: IMovie
+  movieInfo: Pick<IMovie, 'Title' | 'imdbID' | 'Poster'>
 }
 
 const MovieListItem = ({

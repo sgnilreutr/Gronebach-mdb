@@ -1,42 +1,33 @@
-export enum EProduction {
-  G = 'G',
-  Gp = 'GP',
-  NA = 'N/A',
-  Nc17 = 'NC-17',
-  NotRated = 'Not Rated',
-  PG = 'PG',
-  PG13 = 'PG-13',
-  R = 'R',
-  Tv14 = 'TV-14',
-  TvG = 'TV-G',
-  TvMa = 'TV-MA',
-  TvPG = 'TV-PG',
-}
+type TProduction =
+  | 'G'
+  | 'GP'
+  | 'N/A'
+  | 'NC-17'
+  | 'Not Rated'
+  | 'PG'
+  | 'PG-13'
+  | 'R'
+  | 'TV-14'
+  | 'TV-G'
+  | 'TV-MA'
+  | 'TV-PG'
 
-export enum ESource {
-  InternetMovieDatabase = 'Internet Movie Database',
-  Metacritic = 'Metacritic',
-  RottenTomatoes = 'Rotten Tomatoes',
-}
+export type TSource =
+  | 'Internet Movie Database'
+  | 'Metacritic'
+  | 'Rotten Tomatoes'
 
 export interface IRating {
-  Source: ESource
+  Source: TSource
   Value: string
 }
 
-export enum EResponse {
-  True = 'True',
-}
-
-export enum EType {
-  Movie = 'movie',
-  Series = 'series',
-}
+type TType = 'movies' | 'series'
 
 export interface IMovie {
   Title: string
   Year: string
-  Rated: EProduction
+  Rated: TProduction
   Released: string
   Runtime: string
   Genre: string
@@ -53,11 +44,11 @@ export interface IMovie {
   imdbRating: string
   imdbVotes: string
   imdbID: string
-  Type: EType
+  Type: TType
   DVD?: string
   BoxOffice?: string
-  Production?: EProduction
-  Website?: EProduction
+  Production?: TProduction
+  Website?: TProduction
   Response: Response
   totalSeasons?: string
 }

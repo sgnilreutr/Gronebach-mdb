@@ -19,15 +19,13 @@ const MovieList = ({ movies }: IMovieList) => {
   const isMountedRef = useRef<boolean | null>(null)
 
   const Menu = () =>
-    movies.map((movie) => (
+    movies.map(({ Title, imdbID, Poster }) => (
       <MovieListItem
-        key={movie.imdbID}
+        key={imdbID}
         movieInfo={{
-          Title: `${movie.Title}`,
-          imdbID: `${movie.imdbID}`,
-          Poster: `${movie.Poster}`,
-          Genre: `${movie.Genre}`,
-          Type: `${movie.Type}`,
+          Title,
+          imdbID,
+          Poster,
         }}
       />
     ))
@@ -65,15 +63,13 @@ const MovieList = ({ movies }: IMovieList) => {
       {movies.length > 0 && isTabletOrMobile && (
         <div className="movie-horizontal-grid">
           <div className="hs hs-scroll">
-            {movies.map(({ Title, imdbID, Poster, Genre, Type }) => (
+            {movies.map(({ Title, imdbID, Poster }) => (
               <MovieListItem
                 key={imdbID}
                 movieInfo={{
                   Title,
                   imdbID,
                   Poster,
-                  Genre,
-                  Type,
                 }}
               />
             ))}

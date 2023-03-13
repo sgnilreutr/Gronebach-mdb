@@ -10,7 +10,7 @@ const MENU_OPTIONS = [
 const selectCategory = (state: any) => state.category
 
 export default function Headeroptions() {
-  const category = useSelector(selectCategory)
+  const selectedCategory = useSelector(selectCategory)
   const dispatch = useDispatch()
 
   const setCategory = async (value: string) => {
@@ -19,17 +19,17 @@ export default function Headeroptions() {
 
   return (
     <div className="headerOptions-container">
-      {MENU_OPTIONS.map((item) => (
+      {MENU_OPTIONS.map(({ name, category }) => (
         <div
           aria-hidden="true"
-          id={item.name}
-          key={item.name}
-          onClick={() => setCategory(item.category)}
+          id={name}
+          key={name}
+          onClick={() => setCategory(category)}
           className={`option ${
-            category === item.category && 'option--selected'
+            selectedCategory === category && 'option--selected'
           }`}
         >
-          {item.name}
+          {name}
         </div>
       ))}
     </div>

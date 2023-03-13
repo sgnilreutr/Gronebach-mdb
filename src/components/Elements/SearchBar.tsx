@@ -1,12 +1,12 @@
 /* eslint-disable jsx-a11y/no-autofocus */
-import React from 'react'
+import type { FormEvent } from 'react'
 import './SearchBar.scss'
 import { FiSearch } from 'react-icons/fi'
 import { useDispatch, useSelector } from 'react-redux'
 
 const selectSearchTerm = (state: any) => state.searchTerm
 
-const SearchBar: React.FC = () => {
+const SearchBar = () => {
   const dispatch = useDispatch()
 
   const searchTerm = useSelector(selectSearchTerm)
@@ -15,7 +15,7 @@ const SearchBar: React.FC = () => {
     dispatch({ type: 'SEARCH_TERM_SET', payload: value })
   }
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
   }
 
@@ -23,14 +23,14 @@ const SearchBar: React.FC = () => {
     <form className="search-bar" id="searchBar" onSubmit={handleSubmit}>
       <FiSearch style={{ stroke: '#8d8d8d', marginRight: '6px' }} />
       <input
-        type="search"
-        value={searchTerm}
-        placeholder="Titels, genres, personen"
+        autoFocus
         className="placeholder-text ph-size"
         id="searchInput"
         onChange={(e) => onSearch(e.target.value)}
-        autoFocus
+        placeholder="Titels, genres, personen"
         style={{ backgroundColor: '#fff' }}
+        type="search"
+        value={searchTerm}
       />
     </form>
   )

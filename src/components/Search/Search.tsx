@@ -18,58 +18,47 @@ export default function Search() {
   const { movies } = useContext(MovieDatabaseContext)
 
   const renderSearchMovies = () => {
-    const filteredMovies = movies.filter((movie) =>
-      (
-        movie.Title.toLowerCase() +
-        movie.Year +
-        movie.Type.toLowerCase() +
-        movie.Runtime.toLowerCase() +
-        movie.Genre.toLowerCase() +
-        movie.Director.toLowerCase() +
-        movie.Actors.toLowerCase() +
-        movie.Country.toLowerCase() +
-        movie.Plot.toLowerCase() +
-        movie.imdbRating
-      ).includes(searchTerm.toLowerCase())
+    const filteredMovies = movies.filter(
+      ({
+        Title,
+        Year,
+        Type,
+        Runtime,
+        Genre,
+        Director,
+        Actors,
+        Country,
+        Plot,
+        imdbRating,
+      }) =>
+        (
+          Title.toLowerCase() +
+          Year +
+          Type.toLowerCase() +
+          Runtime.toLowerCase() +
+          Genre.toLowerCase() +
+          Director.toLowerCase() +
+          Actors.toLowerCase() +
+          Country.toLowerCase() +
+          Plot.toLowerCase() +
+          imdbRating
+        ).includes(searchTerm.toLowerCase())
     )
 
     return (
       <div className="movie-grid">
         {filteredMovies.length > 0 ? (
-          filteredMovies.map((movie) => {
-            const {
-              Title,
-              Year,
-              imdbID,
-              Type,
-              Poster,
-              Runtime,
-              Genre,
-              Actors,
-              Country,
-              imdbRating,
-              Director,
-            } = movie
-            return (
-              <div key={movie.imdbID}>
-                <MovieListItem
-                  movieInfo={{
-                    Title,
-                    Year,
-                    imdbID,
-                    Type,
-                    Poster,
-                    Runtime,
-                    Genre,
-                    Actors,
-                    Country,
-                    imdbRating,
-                    Director,
-                  }}
-                />
-              </div>
-            )
-          })
+          filteredMovies.map(({ Title, imdbID, Poster }) => (
+            <div key={imdbID}>
+              <MovieListItem
+                movieInfo={{
+                  Title,
+                  imdbID,
+                  Poster,
+                }}
+              />
+            </div>
+          ))
         ) : (
           <div className="search-no-results">
             <p>{global.NO_ITEMS}</p>

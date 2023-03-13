@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'
 
 import * as global from '../../constants/globalConstants'
 import type { IMovie } from '../../data/dataTypes'
+import filteredList from '../../utils/filteredMovieList'
 import { tenRandomMovies } from '../../utils/randomMovie'
 import MovieList from '../MovieOverview/MovieList'
 
@@ -14,13 +15,13 @@ const selectCategory = (state: any) => state.category
 interface IHomepageCategory {
   categoryFilter: string
   categoryName: string
-  movieList: Array<IMovie>
+  movies: Array<IMovie>
 }
 
 const HomepageCategory = ({
   categoryFilter,
   categoryName,
-  movieList,
+  movies,
 }: IHomepageCategory) => {
   const category = useSelector(selectCategory)
   const dispatch = useDispatch()
@@ -34,49 +35,34 @@ const HomepageCategory = ({
   }
 
   useEffect(() => {
-    try {
-      if (movieList.length > 0) {
-        setLoadingState('loading')
-        const moviesFiltered = movieList.filter((movie) =>
-          movie.Type.toLowerCase().includes(category.toLowerCase())
-        )
-        setFilteredMovies(moviesFiltered)
-        setLoadingState('loaded')
-      } else {
-        setLoadingState('error')
-      }
-    } catch (err) {
-      console.error(err)
+    if (!movies || movies.length === 0) {
       setLoadingState('error')
+      return
     }
-  }, [category, movieList])
 
-  const filteredList = () => {
-    if (categoryFilter === 'top' && filteredMovies.length > 0) {
-      const filterList = filteredMovies.filter(
-        (movie) => parseInt(movie.imdbRating, 10) >= 8.0
-      )
-      return filterList
-    }
-    if (categoryFilter === 'kids' && filteredMovies.length > 0) {
-      const filterList = filteredMovies.filter(
-        (movie) => movie.Rated === 'PG' && 'G'
-      )
-      return filterList
-    }
-    const filterList = filteredMovies.filter((movie) =>
-      movie.Genre.toLowerCase().includes(categoryFilter)
+    setLoadingState('loading')
+
+    const moviesFiltered = movies.filter(({ Type }) =>
+      Type.toLowerCase().includes(category.toLowerCase())
     )
-    return filterList
-  }
+
+    setFilteredMovies(moviesFiltered)
+    setLoadingState('loaded')
+  }, [category, movies])
 
   const sliceMovies = () => {
-    if (filteredMovies.length < 1 || filteredList().length < 1) {
+    const sectionMovieList = filteredList({
+      activeFilter: categoryFilter,
+      movies,
+    })
+    if (filteredMovies.length < 1 || sectionMovieList.length < 1) {
       return []
     }
-    const sectionMovieList = filteredList()
     return tenRandomMovies(sectionMovieList)
   }
+
+  const staticSliceMovies = sliceMovies()
+  const hasMovies = staticSliceMovies.length > 0
 
   return (
     <div>
@@ -93,13 +79,11 @@ const HomepageCategory = ({
           </span>
         </div>
       </div>
-      {loadingState === 'error' && <p>{global.COULD_NOT_LOAD}</p>}
       {loadingState === 'idle' && <p>{global.LOADING}</p>}
-      {sliceMovies().length === 0 && loadingState === 'loading' && (
-        <p>{global.LOADING}</p>
-      )}
-      {sliceMovies().length >= 0 && loadingState === 'loaded' && (
-        <MovieList movies={sliceMovies()} />
+      {loadingState === 'error' && <p>{global.COULD_NOT_LOAD}</p>}
+      {!hasMovies && loadingState === 'loading' && <p>{global.LOADING}</p>}
+      {hasMovies && loadingState === 'loaded' && (
+        <MovieList movies={staticSliceMovies} />
       )}
     </div>
   )
