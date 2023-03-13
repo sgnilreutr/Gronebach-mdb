@@ -1,10 +1,9 @@
-import React from 'react'
 import './DetailHeader.scss'
-import TitleHeader from './TitleHeader'
-import Searchbutton from '../Elements/SearchButton'
-import RandomButton from '../Elements/RandomButton'
 import BackButton from '../Elements/BackButton'
+import RandomButton from '../Elements/RandomButton'
+import Searchbutton from '../Elements/SearchButton'
 import SeeAllButton from '../Elements/SeeAllButton'
+import TitleHeader from './TitleHeader'
 
 export default function Backtooverview() {
   return (

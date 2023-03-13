@@ -1,4 +1,3 @@
-import React from 'react'
 import Headeroptions from '../Header/HeaderOptions'
 import './mobileMenu.scss'
 

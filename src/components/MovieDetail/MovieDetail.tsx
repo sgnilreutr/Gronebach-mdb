@@ -1,13 +1,15 @@
-import React, { useContext, useEffect, useState, useRef } from 'react'
+import { useContext, useEffect, useState, useRef } from 'react'
 import './MovieDetail.scss'
 import { FiStar } from 'react-icons/fi'
 import { useParams } from 'react-router-dom'
-import DetailHeader from '../Header/DetailHeader'
-import { getMoviePosterUrl, IMovie, IMovieDetail } from '../../data/api'
-import { MovieTrailer, OpenTrailerButton } from './MovieTrailer'
-import RelatedMovies from './RelatedMovies'
+
 import * as global from '../../constants/globalConstants'
 import MovieDatabaseContext from '../../context/movieDatabaseContext'
+import { getMoviePosterUrl } from '../../data/api'
+import type { IMovie } from '../../data/dataTypes'
+import DetailHeader from '../Header/DetailHeader'
+import { MovieTrailer, OpenTrailerButton } from './MovieTrailer'
+import RelatedMovies from './RelatedMovies'
 
 const RATING = '/ 10'
 const ACTORS = 'Acteurs'
@@ -19,10 +21,10 @@ const REPORT_LINK = 'Report an invalid movie'
 
 const MovieDetail = () => {
   const { movieID } = useParams()
-  const [movie, setMovie] = useState<any>()
+  const [movie, setMovie] = useState<Array<IMovie>>([])
   const [trailerActive, setTrailerActive] = useState(false)
   const movieTitleRef = useRef<any | null>(null)
-  const allMovieList = useContext(MovieDatabaseContext) as IMovie[]
+  const { movies } = useContext(MovieDatabaseContext)
 
   useEffect(() => {
     if (movieID && movieTitleRef.current) {
@@ -31,14 +33,14 @@ const MovieDetail = () => {
   }, [movieID])
 
   useEffect(() => {
-    if (movieID && allMovieList.length > 0) {
+    if (movieID && movies.length > 0) {
       setMovie(
-        allMovieList.filter((item) =>
-          item.imdbID.toLowerCase().includes(`${ movieID }`)
+        movies.filter(({ imdbID }) =>
+          imdbID.toLowerCase().includes(`${movieID}`)
         )
       )
     }
-  }, [movieID, allMovieList])
+  }, [movieID, movies])
 
   useEffect(() => {
     setTrailerActive(false)
@@ -50,7 +52,7 @@ const MovieDetail = () => {
 
   const renderDetail = () => (
     <>
-      {movie.map((item: IMovieDetail) => {
+      {movie.map((item) => {
         const {
           imdbID,
           Title,
@@ -82,7 +84,7 @@ const MovieDetail = () => {
                       className="img"
                     />
                     <a
-                      href={`mailto:robberttg@gmail.com?subject=GMDB melding - ${ Title }&body=${ Title } (${ imdbID }) is incorrect - aub een andere uploaden.`}
+                      href={`mailto:robberttg@gmail.com?subject=GMDB melding - ${Title}&body=${Title} (${imdbID}) is incorrect - aub een andere uploaden.`}
                       style={{ marginTop: '1rem' }}
                     >
                       <small>{REPORT_LINK}</small>

@@ -1,5 +1,3 @@
-import React from 'react'
-
 const NOTIFICATION_INFO =
   'Deze titel kan ik niet vinden. Druk op deze knop om een notificatie naar de beheerder te sturen.'
 

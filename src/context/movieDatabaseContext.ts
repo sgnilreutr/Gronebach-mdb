@@ -1,15 +1,16 @@
-import React from 'react'
-import { IMovie } from '../data/api'
+import { createContext } from 'react'
 
-interface IMovieContext {
-  movies: IMovie[]
+import type { IMovie } from '../data/dataTypes'
+
+export interface IMovieContext {
+  movies: Array<IMovie>
 }
 
-const defaultState: IMovieContext = Object.freeze({
+export const defaultState: IMovieContext = Object.freeze({
   movies: [],
 })
 
-const MovieDatabaseContext: any = React.createContext(defaultState)
+const MovieDatabaseContext = createContext(defaultState)
 
 export const MovieProvider = MovieDatabaseContext.Provider
 

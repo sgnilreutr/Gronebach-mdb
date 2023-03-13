@@ -1,24 +1,25 @@
-import React, { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import './MovieList.scss'
-import { Link } from 'react-router-dom'
-import { useMediaQuery } from 'react-responsive'
 import ScrollMenu from 'react-horizontal-scrolling-menu'
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'
-import MovieListItem from './MovieListItem'
-import * as global from '../../constants/globalConstants'
-import { IMovie } from '../../data/api'
+import { useMediaQuery } from 'react-responsive'
+import { Link } from 'react-router-dom'
 
-interface Props {
-  movies: IMovie[]
+import * as global from '../../constants/globalConstants'
+import type { IMovie } from '../../data/dataTypes'
+import MovieListItem from './MovieListItem'
+
+interface IMovieList {
+  movies: Array<IMovie>
 }
 
-const MovieList: React.FC<Props> = ({ movies }) => {
+const MovieList = ({ movies }: IMovieList) => {
   const isTabletOrMobile = useMediaQuery({ maxWidth: global.TABLET_MAX_WIDTH })
-  const [menuItems, setMenuItems] = useState<any>([])
+  const [menuItems, setMenuItems] = useState<Array<JSX.Element>>([])
   const isMountedRef = useRef<boolean | null>(null)
 
   const Menu = () =>
-    movies.map((movie: any) => (
+    movies.map((movie) => (
       <MovieListItem
         key={movie.imdbID}
         movieInfo={{
@@ -64,21 +65,18 @@ const MovieList: React.FC<Props> = ({ movies }) => {
       {movies.length > 0 && isTabletOrMobile && (
         <div className="movie-horizontal-grid">
           <div className="hs hs-scroll">
-            {movies.map((movie) => {
-              const { Title, imdbID, Poster, Genre, Type } = movie
-              return (
-                <MovieListItem
-                  key={movie.imdbID}
-                  movieInfo={{
-                    Title,
-                    imdbID,
-                    Poster,
-                    Genre,
-                    Type,
-                  }}
-                />
-              )
-            })}
+            {movies.map(({ Title, imdbID, Poster, Genre, Type }) => (
+              <MovieListItem
+                key={imdbID}
+                movieInfo={{
+                  Title,
+                  imdbID,
+                  Poster,
+                  Genre,
+                  Type,
+                }}
+              />
+            ))}
           </div>
         </div>
       )}

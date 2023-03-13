@@ -1,4 +1,3 @@
-import React from 'react'
 import './SearchButton.scss'
 import { FiSearch } from 'react-icons/fi'
 import { useNavigate } from 'react-router-dom'

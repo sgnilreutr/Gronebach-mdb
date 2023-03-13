@@ -1,13 +1,13 @@
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 import './Search.scss'
-import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { IMovieSearch } from '../../data/api'
-import SearchBar from '../Elements/SearchBar'
-import MovieListItem from '../MovieOverview/MovieListItem'
-import CloseButton from '../Elements/CloseButton'
+import { Link } from 'react-router-dom'
+
 import * as global from '../../constants/globalConstants'
 import MovieDatabaseContext from '../../context/movieDatabaseContext'
+import CloseButton from '../Elements/CloseButton'
+import SearchBar from '../Elements/SearchBar'
+import MovieListItem from '../MovieOverview/MovieListItem'
 
 const selectSearchTerm = (state: any) => state.searchTerm
 
@@ -15,10 +15,10 @@ const START_SEARCHING = 'Start met zoeken'
 
 export default function Search() {
   const searchTerm = useSelector(selectSearchTerm)
-  const allMovieList = useContext(MovieDatabaseContext) as IMovieSearch[]
+  const { movies } = useContext(MovieDatabaseContext)
 
   const renderSearchMovies = () => {
-    const filteredMovies = allMovieList.filter((movie) =>
+    const filteredMovies = movies.filter((movie) =>
       (
         movie.Title.toLowerCase() +
         movie.Year +
@@ -86,11 +86,11 @@ export default function Search() {
         <SearchBar />
         <CloseButton />
       </div>
-      {allMovieList.length === 0 && <h2>{global.LOADING}</h2>}
-      {allMovieList.length > 0 && searchTerm && renderSearchMovies()}
-      {allMovieList.length > 0 && !searchTerm && (
+      {movies.length === 0 ? <h2>{global.LOADING}</h2> : null}
+      {movies.length > 0 && searchTerm ? renderSearchMovies() : null}
+      {movies.length > 0 && !searchTerm ? (
         <h2 className="search-page-placeholder">{START_SEARCHING}</h2>
-      )}
+      ) : null}
     </div>
   )
 }

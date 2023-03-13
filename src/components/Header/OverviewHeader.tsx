@@ -1,4 +1,3 @@
-import React from 'react'
 import HeaderOptions from './HeaderOptions'
 import './OverviewHeader.scss'
 import TitleHeader from './TitleHeader'

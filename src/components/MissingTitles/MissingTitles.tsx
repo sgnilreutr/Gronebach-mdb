@@ -1,4 +1,3 @@
-import React from 'react'
 import DetailHeader from '../Header/DetailHeader'
 import './MissingTitles.scss'
 

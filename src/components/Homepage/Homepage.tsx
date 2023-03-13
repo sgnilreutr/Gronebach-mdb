@@ -1,10 +1,11 @@
-import React, { useContext } from 'react'
+import { useContext } from 'react'
+
 import './Homepage.scss'
-import Overviewheader from '../Header/OverviewHeader'
-import HomepageCategory from './HomepageCategory'
 import * as global from '../../constants/globalConstants'
 import MovieDatabaseContext from '../../context/movieDatabaseContext'
+import Overviewheader from '../Header/OverviewHeader'
 import MobileMenu from '../MobileMenu/mobileMenu'
+import HomepageCategory from './HomepageCategory'
 
 const NOTHING_TO_SHOW = 'Nothing to show'
 

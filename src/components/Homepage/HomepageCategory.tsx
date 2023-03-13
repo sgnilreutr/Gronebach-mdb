@@ -1,28 +1,31 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { FiChevronRight } from 'react-icons/fi'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { IMovieSearch } from '../../data/api'
-import MovieList from '../MovieOverview/MovieList'
-import { tenRandomMovies } from '../../utils/randomMovie'
+
 import * as global from '../../constants/globalConstants'
+import type { IMovie } from '../../data/dataTypes'
+import { tenRandomMovies } from '../../utils/randomMovie'
+import MovieList from '../MovieOverview/MovieList'
 
 const CATEGORY_CTA_TEXT = 'Bekijk alles'
 const selectCategory = (state: any) => state.category
 
-const HomepageCategory = ({
-  movieList,
-  categoryName,
-  categoryFilter,
-}: {
-  movieList: IMovieSearch[]
-  categoryName: string
+interface IHomepageCategory {
   categoryFilter: string
-}) => {
+  categoryName: string
+  movieList: Array<IMovie>
+}
+
+const HomepageCategory = ({
+  categoryFilter,
+  categoryName,
+  movieList,
+}: IHomepageCategory) => {
   const category = useSelector(selectCategory)
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const [filteredMovies, setFilteredMovies] = useState<IMovieSearch[]>([])
+  const [filteredMovies, setFilteredMovies] = useState<Array<IMovie>>([])
   const [loadingState, setLoadingState] = useState<string>('idle')
 
   const openCategory = (value: string) => {
@@ -38,8 +41,10 @@ const HomepageCategory = ({
           movie.Type.toLowerCase().includes(category.toLowerCase())
         )
         setFilteredMovies(moviesFiltered)
+        setLoadingState('loaded')
+      } else {
+        setLoadingState('error')
       }
-      setLoadingState('loaded')
     } catch (err) {
       console.error(err)
       setLoadingState('error')
@@ -66,11 +71,11 @@ const HomepageCategory = ({
   }
 
   const sliceMovies = () => {
-    if (filteredMovies.length > 0 && filteredList().length > 0) {
-      const sectionMovieList = filteredList()
-      return tenRandomMovies(sectionMovieList)
+    if (filteredMovies.length < 1 || filteredList().length < 1) {
+      return []
     }
-    return []
+    const sectionMovieList = filteredList()
+    return tenRandomMovies(sectionMovieList)
   }
 
   return (

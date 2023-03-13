@@ -1,9 +1,10 @@
 import React from 'react'
 import Toggle from 'react-toggle'
+
 import 'react-toggle/style.css'
 import useColorScheme from '../../../hooks/useColorScheme'
-import Sun from '../../../img/sun.png'
 import Moon from '../../../img/moon.png'
+import Sun from '../../../img/sun.png'
 import './modeSwitch.scss'
 
 const ModeSwitch = () => {

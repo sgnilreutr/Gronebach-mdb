@@ -1,34 +1,39 @@
-import React, { useContext, useEffect, useState } from 'react'
-import MovieList from '../MovieOverview/MovieList'
-import { IMovie, IMovieSearch } from '../../data/api'
-import { tenRandomMovies } from '../../utils/randomMovie'
-import MovieDatabaseContext from '../../context/movieDatabaseContext'
+import { useContext, useEffect, useState } from 'react'
 
-interface Props {
+import MovieDatabaseContext from '../../context/movieDatabaseContext'
+import type { IMovie } from '../../data/dataTypes'
+import { tenRandomMovies } from '../../utils/randomMovie'
+import MovieList from '../MovieOverview/MovieList'
+
+interface IRelatedMovies {
   genre: string
   activeMovie: string
 }
 
-const RelatedMovies = ({ genre, activeMovie }: Props) => {
-  const allMovieList = useContext(MovieDatabaseContext) as IMovieSearch[]
-  const [relatedMovies, setRelatedMovies] = useState<IMovie[]>([])
+const RelatedMovies = ({ genre, activeMovie }: IRelatedMovies) => {
+  const { movies } = useContext(MovieDatabaseContext)
+  const [relatedMovies, setRelatedMovies] = useState<Array<IMovie>>([])
 
   useEffect(() => {
-    // There is no check yet if the genre string does contain a comma
-    const query = genre.split(',')
     try {
-      if (allMovieList.length > 0) {
-        const filteredMovies = allMovieList
-          .filter((movies) => movies.imdbID !== activeMovie)
-          .filter((movie) =>
-            movie.Genre.toLowerCase().includes(query[0].toLowerCase())
-          )
+      // There is no check yet if the genre string does contain a comma
+      const query = genre.split(',')
+      const [firstListedGenre] = query
+      if (!firstListedGenre) {
+        return
+      }
+      if (movies.length > 0) {
+        const filteredMovies = movies.filter(
+          (movie) =>
+            movie.imdbID !== activeMovie &&
+            movie.Genre.toLowerCase().includes(firstListedGenre.toLowerCase())
+        )
         setRelatedMovies(tenRandomMovies(filteredMovies))
       }
     } catch (error) {
       console.error(error, 'No movies loaded')
     }
-  }, [genre, allMovieList])
+  }, [genre, movies])
 
   return (
     <div>
