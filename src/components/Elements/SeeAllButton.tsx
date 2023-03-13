@@ -1,7 +1,7 @@
-import React from 'react'
 import { FiGrid } from 'react-icons/fi'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+
 import * as global from '../../constants/globalConstants'
 
 const ALL = 'Alles'

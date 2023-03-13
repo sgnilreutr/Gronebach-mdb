@@ -1,7 +1,7 @@
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
+
 import MovieDatabaseContext from '../../context/movieDatabaseContext'
-import { IMovieSearch } from '../../data/api'
 import { randomMovie } from '../../utils/randomMovie'
 import './RandomButton.scss'
 
@@ -12,7 +12,7 @@ const preLoadRandomIntro = () => {
 }
 
 const RandomButton = () => {
-  const allMovieList = useContext(MovieDatabaseContext) as IMovieSearch[]
+  const { movies } = useContext(MovieDatabaseContext)
 
   const navigate = useNavigate()
   const openIntroPage = (imdbID: string) => {
@@ -20,11 +20,11 @@ const RandomButton = () => {
   }
 
   const fetchRandomMovie = () => {
-    const movie = randomMovie(allMovieList)
-    if (Object.keys(movie).length > 0) {
+    const movie = randomMovie(movies)
+    if (movie) {
       openIntroPage(movie.imdbID)
     } else {
-      console.error('Mislukt laden random movie')
+      console.error('Het is niet gelukt om film te laden')
     }
   }
 
@@ -32,10 +32,10 @@ const RandomButton = () => {
     <div className="randombutton_container">
       <button
         className="random"
-        type="button"
         onClick={() => fetchRandomMovie()}
-        onMouseOver={preLoadRandomIntro}
         onFocus={preLoadRandomIntro}
+        onMouseOver={preLoadRandomIntro}
+        type="button"
       >
         {BUTTON_TEXT}
       </button>

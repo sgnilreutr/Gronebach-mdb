@@ -1,19 +1,21 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import './MovieListItem.scss'
-import { useMediaQuery } from 'react-responsive'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
+import { useMediaQuery } from 'react-responsive'
 import 'react-lazy-load-image-component/src/effects/blur.css'
 import { useNavigate } from 'react-router-dom'
-import { getMoviePosterUrl, IMovie } from '../../data/api'
-import * as global from '../../constants/globalConstants'
 
-interface Props {
-  movieInfo: IMovie
+import * as global from '../../constants/globalConstants'
+import { getMoviePosterUrl } from '../../data/api'
+import type { IMovie } from '../../data/dataTypes'
+
+interface IMovieListItem {
+  movieInfo: Pick<IMovie, 'Title' | 'imdbID' | 'Poster'>
 }
 
-const MovieListItem: React.FC<Props> = ({
+const MovieListItem = ({
   movieInfo: { imdbID, Poster, Title },
-}) => {
+}: IMovieListItem) => {
   const isTabletOrMobile = useMediaQuery({ maxWidth: global.TABLET_MAX_WIDTH })
   const [itemHeight, setItemHeight] = useState(0)
   const [itemWidth, setItemWidth] = useState(0)
@@ -28,11 +30,13 @@ const MovieListItem: React.FC<Props> = ({
     navigate(`/item/${imdbID}/`)
   }
 
+  const userHasInternetConnection = window.navigator.onLine
+
   return (
     <div aria-hidden="true" onClick={() => openOverviewPage()}>
       <div className="item">
         <div className="item-img">
-          {window.navigator.onLine ? (
+          {userHasInternetConnection ? (
             <LazyLoadImage
               src={getMoviePosterUrl(Poster)}
               alt={Title}

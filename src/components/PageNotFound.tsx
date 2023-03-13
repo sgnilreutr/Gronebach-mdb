@@ -1,4 +1,3 @@
-import React from 'react'
 import DetailHeader from './Header/DetailHeader'
 
 const NOT_FOUND = 'Uh, oh! Deze pagina bestaat niet.'

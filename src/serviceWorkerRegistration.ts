@@ -91,9 +91,16 @@ function registerValidSW(swUrl: string, config?: Config) {
               banner.innerText = 'Inhoud opgeslagen voor offline gebruik'
               banner.classList.add('offline-notification-bar')
               const App = document.getElementById('App')
-              App?.insertBefore(banner, App.childNodes[0])
+              if (!App) {
+                return
+              }
+              const [firstChildNode] = App.childNodes
+              if (!firstChildNode) {
+                return
+              }
+              App?.insertBefore(banner, firstChildNode)
               setTimeout(() => {
-                App?.removeChild(App.childNodes[0])
+                App?.removeChild(firstChildNode)
               }, 5000)
 
               // Execute callback

@@ -1,6 +1,6 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
 import { FiArrowLeft } from 'react-icons/fi'
+import { useNavigate } from 'react-router-dom'
 import './BackButton.scss'
 
 const BACK_TO_HOME = 'Terug naar homepage'

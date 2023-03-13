@@ -1,0 +1,7 @@
+export const RATING = '/ 10'
+export const ACTORS = 'Acteurs'
+export const DIRECTOR = 'Regisseur'
+export const GENRE = 'Genre'
+export const RUNTIME = 'Runtime'
+export const RELATED_MOVIES = 'Gerelateerde films'
+export const REPORT_LINK = 'Report an invalid movie'
