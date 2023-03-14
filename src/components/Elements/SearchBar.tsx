@@ -2,17 +2,16 @@
 import type { FormEvent } from 'react'
 import './SearchBar.scss'
 import { FiSearch } from 'react-icons/fi'
-import { useDispatch, useSelector } from 'react-redux'
-
-const selectSearchTerm = (state: any) => state.searchTerm
+import { useAppDispatch, useAppSelector } from '../../store/hooks'
+import { selectSearchTerm, setSearchTerm } from '../../store/appSlice'
 
 const SearchBar = () => {
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
-  const searchTerm = useSelector(selectSearchTerm)
+  const searchTerm = useAppSelector(selectSearchTerm)
 
   const onSearch = (value: string) => {
-    dispatch({ type: 'SEARCH_TERM_SET', payload: value })
+    dispatch(setSearchTerm(value))
   }
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {

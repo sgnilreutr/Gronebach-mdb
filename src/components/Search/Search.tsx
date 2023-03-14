@@ -1,6 +1,5 @@
 import { useContext } from 'react'
 import './Search.scss'
-import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 import * as global from '../../constants/globalConstants'
@@ -8,13 +7,13 @@ import MovieDatabaseContext from '../../context/movieDatabaseContext'
 import CloseButton from '../Elements/CloseButton'
 import SearchBar from '../Elements/SearchBar'
 import MovieListItem from '../MovieOverview/MovieListItem'
-
-const selectSearchTerm = (state: any) => state.searchTerm
+import { useAppSelector } from '../../store/hooks'
+import { selectSearchTerm } from '../../store/appSlice'
 
 const START_SEARCHING = 'Start met zoeken'
 
 export default function Search() {
-  const searchTerm = useSelector(selectSearchTerm)
+  const searchTerm = useAppSelector(selectSearchTerm)
   const { movies } = useContext(MovieDatabaseContext)
 
   const renderSearchMovies = () => {

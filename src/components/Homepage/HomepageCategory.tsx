@@ -1,16 +1,16 @@
 import { useEffect, useState } from 'react'
 import { FiChevronRight } from 'react-icons/fi'
-import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
 import * as global from '../../constants/globalConstants'
 import type { IMovie } from '../../data/dataTypes'
+import { selectCategory, setOverviewQuery } from '../../store/appSlice'
+import { useAppDispatch, useAppSelector } from '../../store/hooks'
 import filteredList from '../../utils/filteredMovieList'
 import { tenRandomMovies } from '../../utils/randomMovie'
 import MovieList from '../MovieOverview/MovieList'
 
 const CATEGORY_CTA_TEXT = 'Bekijk alles'
-const selectCategory = (state: any) => state.category
 
 interface IHomepageCategory {
   categoryFilter: string
@@ -23,19 +23,19 @@ const HomepageCategory = ({
   categoryName,
   movies,
 }: IHomepageCategory) => {
-  const category = useSelector(selectCategory)
-  const dispatch = useDispatch()
+  const category = useAppSelector(selectCategory)
+  const dispatch = useAppDispatch()
   const navigate = useNavigate()
   const [filteredMovies, setFilteredMovies] = useState<Array<IMovie>>([])
   const [loadingState, setLoadingState] = useState<string>('idle')
 
   const openCategory = (value: string) => {
-    dispatch({ type: 'SET_OVERVIEW_QUERY', payload: value })
+    dispatch(setOverviewQuery(value))
     navigate(`/overview/${value}`)
   }
 
   useEffect(() => {
-    if (!movies || movies.length === 0) {
+    if (!movies || movies.length === 0 || typeof category !== 'string') {
       setLoadingState('error')
       return
     }

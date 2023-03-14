@@ -1,4 +1,5 @@
-import { useDispatch, useSelector } from 'react-redux'
+import { selectCategory, setCategory } from '../../store/appSlice'
+import { useAppDispatch, useAppSelector } from '../../store/hooks'
 import './HeaderOptions.scss'
 
 const MENU_OPTIONS = [
@@ -7,14 +8,12 @@ const MENU_OPTIONS = [
   { name: 'Series', category: 'Series' },
 ]
 
-const selectCategory = (state: any) => state.category
-
 export default function Headeroptions() {
-  const selectedCategory = useSelector(selectCategory)
-  const dispatch = useDispatch()
+  const selectedCategory = useAppSelector(selectCategory)
+  const dispatch = useAppDispatch()
 
-  const setCategory = async (value: string) => {
-    dispatch({ type: 'SET_CATEGORY', payload: value })
+  const handleOnClick = (value: string) => {
+    dispatch(setCategory(value))
   }
 
   return (
@@ -24,7 +23,7 @@ export default function Headeroptions() {
           aria-hidden="true"
           id={name}
           key={name}
-          onClick={() => setCategory(category)}
+          onClick={() => handleOnClick(category)}
           className={`option ${
             selectedCategory === category && 'option--selected'
           }`}
