@@ -63,3 +63,9 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+.image_placeholder {
+  @media (prefers-color-scheme: dark) {
+    filter: invert(1);
+  }
+}

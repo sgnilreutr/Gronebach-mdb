@@ -1,9 +1,10 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import './MovieListItem.scss'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import { useMediaQuery } from 'react-responsive'
 import 'react-lazy-load-image-component/src/effects/blur.css'
 import { useNavigate } from 'react-router-dom'
+import imageFallback from '../../img/placeholder-image.png'
 
 import * as global from '../../constants/globalConstants'
 import { getMoviePosterUrl } from '../../data/api'
@@ -12,6 +13,8 @@ import type { IMovie } from '../../data/dataTypes'
 interface IMovieListItem {
   movieInfo: Pick<IMovie, 'Title' | 'imdbID' | 'Poster'>
 }
+
+const urlRegex: RegExp = /^(?:\w+:)?\/\/([^\s.]+\.\S{2}|localhost[:?\d]*)\S*$/
 
 const MovieListItem = ({
   movieInfo: { imdbID, Poster, Title },
@@ -31,19 +34,25 @@ const MovieListItem = ({
   }
 
   const userHasInternetConnection = window.navigator.onLine
+  const imageSrc = useMemo(() => getMoviePosterUrl(Poster), [Poster])
 
   return (
     <div aria-hidden="true" onClick={() => openOverviewPage()}>
       <div className="item">
-        <div className="item-img">
+        <div
+          className={`${
+            urlRegex.test(imageSrc) ? undefined : 'image_placeholder'
+          } item-img`}
+        >
           {userHasInternetConnection ? (
             <LazyLoadImage
-              src={getMoviePosterUrl(Poster)}
               alt={Title}
+              className="image"
               effect="blur"
               height={itemHeight}
+              placeholderSrc={imageFallback}
+              src={imageSrc}
               width={itemWidth}
-              style={{ borderRadius: `6px` }}
             />
           ) : (
             <span>{Title}</span>
