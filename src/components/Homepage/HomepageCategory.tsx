@@ -41,13 +41,14 @@ const HomepageCategory = ({
     }
 
     setLoadingState('loading')
+    if (Array.isArray(movies)) {
+      const moviesFiltered = movies.filter(({ Type }) =>
+        Type.toLowerCase().includes(category.toLowerCase())
+      )
 
-    const moviesFiltered = movies.filter(({ Type }) =>
-      Type.toLowerCase().includes(category.toLowerCase())
-    )
-
-    setFilteredMovies(moviesFiltered)
-    setLoadingState('loaded')
+      setFilteredMovies(moviesFiltered)
+      setLoadingState('loaded')
+    }
   }, [category, movies])
 
   const sliceMovies = () => {
