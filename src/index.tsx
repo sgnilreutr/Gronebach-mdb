@@ -6,6 +6,9 @@ import { store } from './store/store'
 
 import App from './App'
 import * as serviceWorkerRegistration from './serviceWorkerRegistration'
+import { inject } from '@vercel/analytics';
+
+inject();
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <StrictMode>
