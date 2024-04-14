@@ -1,5 +1,3 @@
-/* eslint-disable import/prefer-default-export */
-import React from 'react'
 import './Loaders.scss'
 
 export const CircleSmallLoader = ({ size }: { size?: number }) => (

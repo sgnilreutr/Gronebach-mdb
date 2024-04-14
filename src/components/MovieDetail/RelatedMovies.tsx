@@ -1,20 +1,20 @@
 import { useContext, useEffect, useState } from 'react'
 
-import MovieDatabaseContext from '../../context/movieDatabaseContext'
-import type { IMovie } from '../../data/dataTypes'
+import { MovieDatabaseContext } from '../../context/MovieDatabaseContext'
+import type { Movie } from '../../data/dataTypes'
 import { tenRandomMovies } from '../../utils/randomMovie'
-import MovieList from '../MovieOverview/MovieList'
+import { MovieList } from '../MovieOverview/MovieList'
 
-interface IRelatedMovies {
-  genre: string
+interface RelatedMoviesProps {
   activeMovie: string
+  genre: string
 }
 
 const regex = /,/
 
-const RelatedMovies = ({ genre, activeMovie }: IRelatedMovies) => {
-  const { movies } = useContext(MovieDatabaseContext)
-  const [relatedMovies, setRelatedMovies] = useState<Array<IMovie>>([])
+export function RelatedMovies({ genre, activeMovie }: RelatedMoviesProps) {
+  const { allMovies } = useContext(MovieDatabaseContext)
+  const [relatedMovies, setRelatedMovies] = useState<Array<Movie>>([])
 
   useEffect(() => {
     try {
@@ -28,8 +28,8 @@ const RelatedMovies = ({ genre, activeMovie }: IRelatedMovies) => {
         return
       }
 
-      if (movies.length > 0) {
-        const filteredMovies = movies.filter(
+      if (allMovies.length > 0) {
+        const filteredMovies = allMovies.filter(
           ({ imdbID, Genre }) =>
             imdbID !== activeMovie &&
             Genre.toLowerCase().includes(firstListedGenre.toLowerCase())
@@ -39,7 +39,7 @@ const RelatedMovies = ({ genre, activeMovie }: IRelatedMovies) => {
     } catch (error) {
       console.error(error, 'No movies loaded')
     }
-  }, [genre, movies])
+  }, [genre, allMovies])
 
   return (
     <div>
@@ -47,5 +47,3 @@ const RelatedMovies = ({ genre, activeMovie }: IRelatedMovies) => {
     </div>
   )
 }
-
-export default RelatedMovies

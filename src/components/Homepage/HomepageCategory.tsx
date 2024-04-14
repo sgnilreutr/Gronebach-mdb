@@ -1,55 +1,61 @@
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { FiChevronRight } from 'react-icons/fi'
 import { useNavigate } from 'react-router-dom'
 
-import * as global from '../../constants/globalConstants'
-import type { IMovie } from '../../data/dataTypes'
-import { selectCategory, setOverviewQuery } from '../../store/appSlice'
-import { useAppDispatch, useAppSelector } from '../../store/hooks'
-import filteredList from '../../utils/filteredMovieList'
+import type { Movie } from '../../data/dataTypes'
+import { filteredList } from '../../utils/filteredMovieList'
 import { tenRandomMovies } from '../../utils/randomMovie'
-import MovieList from '../MovieOverview/MovieList'
+import { MovieList } from '../MovieOverview/MovieList'
+import {
+  COULD_NOT_LOAD,
+  GENERIC_LOADING_STATES,
+  GenericLoadingState,
+  LOADING,
+  MovieCategoryOptions,
+} from '../../constants/globalConstants'
+import { MovieDatabaseContext } from '../../context/MovieDatabaseContext'
 
 const CATEGORY_CTA_TEXT = 'Bekijk alles'
 
-interface IHomepageCategory {
-  categoryFilter: string
+interface HomepageCategoryProps {
+  categoryFilter: MovieCategoryOptions
   categoryName: string
-  movies: Array<IMovie>
+  movies: Array<Movie>
 }
 
-const HomepageCategory = ({
+export function HomepageCategory({
   categoryFilter,
   categoryName,
   movies,
-}: IHomepageCategory) => {
-  const category = useAppSelector(selectCategory)
-  const dispatch = useAppDispatch()
+}: HomepageCategoryProps) {
   const navigate = useNavigate()
-  const [filteredMovies, setFilteredMovies] = useState<Array<IMovie>>([])
-  const [loadingState, setLoadingState] = useState<string>('idle')
+  const [filteredMovies, setFilteredMovies] = useState<Array<Movie>>([])
+  const [loadingState, setLoadingState] = useState<GenericLoadingState>(
+    GENERIC_LOADING_STATES.idle
+  )
+  const { activeCategory, setOverviewQuery } = useContext(MovieDatabaseContext)
 
-  const openCategory = (value: string) => {
-    dispatch(setOverviewQuery(value))
+  const openCategory = (value: MovieCategoryOptions) => {
+    setOverviewQuery(value)
     navigate(`/overview/${value}`)
   }
 
   useEffect(() => {
-    if (!movies || movies.length === 0 || typeof category !== 'string') {
-      setLoadingState('error')
+    if (!movies || movies.length === 0 || typeof activeCategory !== 'string') {
+      setLoadingState(GENERIC_LOADING_STATES.error)
       return
     }
 
-    setLoadingState('loading')
+    setLoadingState(GENERIC_LOADING_STATES.loading)
     if (Array.isArray(movies)) {
       const moviesFiltered = movies.filter(({ Type }) =>
-        Type.toLowerCase().includes(category.toLowerCase())
+        Type.toLowerCase().includes(activeCategory.toLowerCase())
       )
 
       setFilteredMovies(moviesFiltered)
-      setLoadingState('loaded')
+      setLoadingState(GENERIC_LOADING_STATES.loaded)
     }
-  }, [category, movies])
+  }, [activeCategory, movies])
 
   const sliceMovies = () => {
     const sectionMovieList = filteredList({
@@ -62,8 +68,20 @@ const HomepageCategory = ({
     return tenRandomMovies(sectionMovieList)
   }
 
-  const staticSliceMovies = sliceMovies()
-  const hasMovies = staticSliceMovies.length > 0
+  const renderContent = () => {
+    switch (loadingState) {
+      case GENERIC_LOADING_STATES.idle:
+        return <p>{LOADING}</p>
+      case GENERIC_LOADING_STATES.error:
+        return <p>{COULD_NOT_LOAD}</p>
+      case GENERIC_LOADING_STATES.loading:
+        return <p>{LOADING}</p>
+      case GENERIC_LOADING_STATES.loaded:
+        return <MovieList movies={sliceMovies()} />
+      default:
+        return <p>{COULD_NOT_LOAD}</p>
+    }
+  }
 
   return (
     <div>
@@ -80,14 +98,7 @@ const HomepageCategory = ({
           </span>
         </div>
       </div>
-      {loadingState === 'idle' && <p>{global.LOADING}</p>}
-      {loadingState === 'error' && <p>{global.COULD_NOT_LOAD}</p>}
-      {!hasMovies && loadingState === 'loading' && <p>{global.LOADING}</p>}
-      {hasMovies && loadingState === 'loaded' && (
-        <MovieList movies={staticSliceMovies} />
-      )}
+      {renderContent()}
     </div>
   )
 }
-
-export default HomepageCategory

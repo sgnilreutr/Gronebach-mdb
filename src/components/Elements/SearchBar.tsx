@@ -1,17 +1,14 @@
 /* eslint-disable jsx-a11y/no-autofocus */
-import type { FormEvent } from 'react'
+import { useContext, type FormEvent } from 'react'
 import './SearchBar.scss'
 import { FiSearch } from 'react-icons/fi'
-import { useAppDispatch, useAppSelector } from '../../store/hooks'
-import { selectSearchTerm, setSearchTerm } from '../../store/appSlice'
+import { MovieDatabaseContext } from '../../context/MovieDatabaseContext'
 
-const SearchBar = () => {
-  const dispatch = useAppDispatch()
-
-  const searchTerm = useAppSelector(selectSearchTerm)
+export function SearchBar() {
+  const { searchTerm, setSearchTerm } = useContext(MovieDatabaseContext)
 
   const onSearch = (value: string) => {
-    dispatch(setSearchTerm(value))
+    setSearchTerm(value)
   }
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
@@ -19,7 +16,7 @@ const SearchBar = () => {
   }
 
   return (
-    <form className="search-bar" id="searchBar" onSubmit={handleSubmit}>
+    <form className="search-bar" id="search-bar" onSubmit={handleSubmit}>
       <FiSearch style={{ stroke: '#8d8d8d', marginRight: '6px' }} />
       <input
         autoFocus
@@ -34,5 +31,3 @@ const SearchBar = () => {
     </form>
   )
 }
-
-export default SearchBar

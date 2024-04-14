@@ -1,10 +1,10 @@
 {
   "name": "gronebach-mdb",
   "version": "1.1.0",
+  "type": "module",
   "homepage": "/",
   "dependencies": {
-    "@reduxjs/toolkit": "^1.9.3",
-    "@vercel/analytics": "^1.0.0",
+    "@vitejs/plugin-react": "^4.2.1",
     "axios": "1.3.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -12,42 +12,21 @@
     "react-icons": "4.8.0",
     "react-lazy-load-image-component": "1.5.6",
     "react-player": "2.12.0",
-    "react-redux": "^8.0.5",
     "react-responsive": "9.0.2",
-    "react-router": "6.9.0",
-    "react-router-dom": "6.9.0",
-    "react-scripts": "4.0.3",
+    "react-router": "6.22.3",
+    "react-router-dom": "6.22.3",
     "react-toggle": "4.1.3",
     "sass": "1.59.2",
-    "typescript": "4.9.5",
-    "use-persisted-state": "0.3.3",
-    "workbox-background-sync": "6.5.4",
-    "workbox-broadcast-update": "6.5.4",
-    "workbox-cacheable-response": "6.5.4",
-    "workbox-core": "6.5.4",
-    "workbox-expiration": "6.5.4",
-    "workbox-google-analytics": "6.5.4",
-    "workbox-navigation-preload": "6.5.4",
-    "workbox-precaching": "6.5.4",
-    "workbox-range-requests": "6.5.4",
-    "workbox-routing": "6.5.4",
-    "workbox-strategies": "6.5.4",
-    "workbox-streams": "6.5.4"
+    "vite": "^5.2.8",
+    "vite-tsconfig-paths": "^4.3.2"
   },
   "scripts": {
-    "build": "CI=false && react-scripts build",
-    "eject": "react-scripts eject",
-    "format-check": "dprint check",
-    "format": "dprint fmt",
-    "lint-fix": "eslint ./ --fix",
-    "lint": "eslint ./",
-    "start": "react-scripts start",
-    "test": "react-scripts test",
-    "typecheck": "tsc --incremental --noEmit",
-    "update-deps": "yarn upgrade-interactive --latest"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
+    "build": "CI=false && tsc && vite build",
+    "format-check": "prettier .",
+    "format": "prettier . --write",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 10",
+    "dev": "vite",
+    "typecheck": "tsc --incremental --noEmit"
   },
   "browserslist": {
     "production": [
@@ -63,22 +42,23 @@
   },
   "devDependencies": {
     "@types/node": "18.15.2",
-    "@types/react": "18.0.28",
-    "@types/react-dom": "18.0.11",
+    "@types/react": "^18.2.66",
+    "@types/react-dom": "^18.2.22",
     "@types/react-lazy-load-image-component": "1.5.2",
     "@types/react-router-dom": "5.3.3",
     "@types/react-toggle": "4.0.3",
     "@types/use-persisted-state": "0.3.1",
-    "@typescript-eslint/eslint-plugin": "5.55.0",
-    "@typescript-eslint/parser": "5.55.0",
-    "dprint": "^0.35.3",
-    "eslint": "7.11.0",
+    "@typescript-eslint/eslint-plugin": "^7.2.0",
+    "@typescript-eslint/parser": "^7.2.0",
+    "eslint": "^8.57.0",
     "eslint-config-airbnb": "19.0.4",
     "eslint-config-airbnb-typescript": "17.0.0",
     "eslint-config-prettier": "8.7.0",
     "eslint-plugin-import": "2.27.5",
     "eslint-plugin-jsx-a11y": "6.7.1",
     "eslint-plugin-react": "7.32.2",
-    "eslint-plugin-react-hooks": "4.6.0"
+    "eslint-plugin-react-hooks": "4.6.0",
+    "prettier": "^3.2.5",
+    "typescript": "^5.2.2"
   }
 }

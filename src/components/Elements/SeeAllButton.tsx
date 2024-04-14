@@ -1,19 +1,18 @@
 import { FiGrid } from 'react-icons/fi'
 import { useNavigate } from 'react-router-dom'
-
-import * as global from '../../constants/globalConstants'
-import { setOverviewQuery } from '../../store/appSlice'
-import { useAppDispatch } from '../../store/hooks'
+import { useContext } from 'react'
+import { ALL_CATEGORY_VALUE } from '../../constants/globalConstants'
+import { MovieDatabaseContext } from '../../context/MovieDatabaseContext'
 
 const ALL = 'Alles'
 
-const SeeAllButton = () => {
+export function SeeAllButton() {
   const navigate = useNavigate()
-  const dispatch = useAppDispatch()
+  const { setOverviewQuery } = useContext(MovieDatabaseContext)
 
   const openCategory = () => {
-    dispatch(setOverviewQuery(global.ALL_CATEGORY_VALUE))
-    navigate(`/overview/${global.ALL_CATEGORY_VALUE}`)
+    setOverviewQuery(ALL_CATEGORY_VALUE)
+    navigate(`/overview/${ALL_CATEGORY_VALUE}`)
   }
 
   return (
@@ -23,5 +22,3 @@ const SeeAllButton = () => {
     </button>
   )
 }
-
-export default SeeAllButton

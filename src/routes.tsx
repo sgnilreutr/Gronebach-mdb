@@ -1,7 +1,8 @@
 import { lazy, Suspense } from 'react'
 import { Route, BrowserRouter, Routes } from 'react-router-dom'
-
-import * as global from './constants/globalConstants'
+import { LOADING } from './constants/globalConstants'
+import { ROUTES } from './constants/routeConstants'
+import { Layout } from './components/Layout'
 
 const Homepage = lazy(() => import('./components/Homepage/Homepage'))
 const MovieOverview = lazy(
@@ -17,34 +18,38 @@ const RandomMovieIntro = lazy(
   () => import('./components/RandomMovieIntro/randomMovieIntro')
 )
 
-const Loading = () => (
-  <div
-    style={{
-      width: '100%',
-      height: '100vh',
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-    }}
-  >
-    <p>{global.LOADING}</p>
-  </div>
-)
+function Loading() {
+  return (
+    <div
+      style={{
+        alignItems: 'center',
+        display: 'flex',
+        height: '100vh',
+        justifyContent: 'center',
+        width: '100%',
+      }}
+    >
+      <p>{LOADING}</p>
+    </div>
+  )
+}
 
-const RoutesHandeler = () => (
-  <BrowserRouter>
-    <Suspense fallback={<Loading />}>
-      <Routes>
-        <Route path="/" element={<Homepage />} />
-        <Route path="/overview/*" element={<MovieOverview />} />
-        <Route path="/item/:movieID" element={<MovieDetail />} />
-        <Route path="/missing" element={<MissingTitles />} />
-        <Route path="/search" element={<Search />} />
-        <Route path="/random/:movieID" element={<RandomMovieIntro />} />
-        <Route path="*" element={<PageNotFound />} />
-      </Routes>
-    </Suspense>
-  </BrowserRouter>
-)
-
-export default RoutesHandeler
+export function RoutesHandeler() {
+  return (
+    <BrowserRouter>
+      <Layout>
+        <Suspense fallback={<Loading />}>
+          <Routes>
+            <Route path={ROUTES.homepage} element={<Homepage />} />
+            <Route path={ROUTES.overview} element={<MovieOverview />} />
+            <Route path={ROUTES.item} element={<MovieDetail />} />
+            <Route path={ROUTES.missing} element={<MissingTitles />} />
+            <Route path={ROUTES.search} element={<Search />} />
+            <Route path={ROUTES.random} element={<RandomMovieIntro />} />
+            <Route path={ROUTES.notFound} element={<PageNotFound />} />
+          </Routes>
+        </Suspense>
+      </Layout>
+    </BrowserRouter>
+  )
+}

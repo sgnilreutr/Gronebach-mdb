@@ -1,7 +1,8 @@
-import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import './TitleHeader.scss'
-import ModeSwitch from '../Elements/ModeSwitch/modeSwitch'
+import { ROUTES } from '../../constants/routeConstants'
+import { ModeSwitch } from '../Elements/ModeSwitch/modeSwitch'
 
 const GRONEBACH = 'Grönebach'
 const MOVIE_DATABASE = 'Movie Database'
@@ -13,17 +14,11 @@ const EMOJI = (
 const SMALL_TITLE = 'GMDb '
 const ROBBERT_TUERLINGS = 'BY ROBBERT TUERLINGS'
 
-export default function TitleHeader() {
-  const navigate = useNavigate()
-
-  function navigateToHome() {
-    navigate('/')
-  }
-
+export function TitleHeader() {
   return (
     <div id="title-container" className="title-container">
       <div>
-        <div onClick={navigateToHome} aria-hidden="true">
+        <Link to={ROUTES.homepage} className="link-container">
           <div className="header-title">
             <div className="title-1">{GRONEBACH}</div>
             <div className="title-2">
@@ -34,10 +29,10 @@ export default function TitleHeader() {
             {SMALL_TITLE}
             {EMOJI}
           </div>
-        </div>
+        </Link>
         <a
-          id="personal_link"
-          className="personal_link"
+          id="personal-link"
+          className="personal-link"
           href="https://github.com/sgnilreutr"
         >
           {ROBBERT_TUERLINGS}

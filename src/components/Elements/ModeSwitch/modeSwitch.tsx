@@ -1,14 +1,13 @@
-import React from 'react'
 import Toggle from 'react-toggle'
 
 import 'react-toggle/style.css'
-import useColorScheme from '../../../hooks/useColorScheme'
+import { useColorScheme } from '../../../hooks/useColorScheme'
 import Moon from '../../../img/moon.png'
 import Sun from '../../../img/sun.png'
 import './modeSwitch.scss'
 
-const ModeSwitch = () => {
-  const { isDark, setIsDark } = useColorScheme() as any
+export function ModeSwitch() {
+  const { isDark, setIsDark } = useColorScheme()
 
   return (
     <div>
@@ -24,5 +23,3 @@ const ModeSwitch = () => {
     </div>
   )
 }
-
-export default ModeSwitch

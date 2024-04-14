@@ -1,20 +1,17 @@
-import { selectCategory, setCategory } from '../../store/appSlice'
-import { useAppDispatch, useAppSelector } from '../../store/hooks'
+import { useContext } from 'react'
 import './HeaderOptions.scss'
+import { MovieDatabaseContext } from '../../context/MovieDatabaseContext'
 
 const MENU_OPTIONS = [
   { name: 'Alles', category: '' },
   { name: 'Movies', category: 'Movie' },
   { name: 'Series', category: 'Series' },
-]
+] as const
 
-export default function Headeroptions() {
-  const selectedCategory = useAppSelector(selectCategory)
-  const dispatch = useAppDispatch()
+export type CategoryOptions = (typeof MENU_OPTIONS)[number]['category']
 
-  const handleOnClick = (value: string) => {
-    dispatch(setCategory(value))
-  }
+export function HeaderOptions() {
+  const { activeCategory, setActiveCategory } = useContext(MovieDatabaseContext)
 
   return (
     <div className="headerOptions-container">
@@ -23,9 +20,9 @@ export default function Headeroptions() {
           aria-hidden="true"
           id={name}
           key={name}
-          onClick={() => handleOnClick(category)}
+          onClick={() => setActiveCategory(category)}
           className={`option ${
-            selectedCategory === category && 'option--selected'
+            activeCategory === category && 'option--selected'
           }`}
         >
           {name}
