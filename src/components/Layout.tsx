@@ -1,6 +1,5 @@
 import type { ReactNode } from 'react'
 import { TitleHeader } from './Header/TitleHeader'
-import './Layout.scss'
 
 interface LayoutProps {
   children: ReactNode
