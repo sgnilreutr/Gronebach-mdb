@@ -1,8 +1,5 @@
-import { useEffect, useMemo } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useMediaQuery } from 'react-responsive'
-import createPersistedState from 'use-persisted-state'
-
-const useColorSchemeState = createPersistedState('colorScheme')
 
 export function useColorScheme() {
   const systemPrefersDark = useMediaQuery(
@@ -11,8 +8,20 @@ export function useColorScheme() {
     },
     undefined
   )
+  const [isDark, setIsDark] = useState<boolean | undefined>(undefined)
 
-  const [isDark, setIsDark] = useColorSchemeState()
+  const handleSetIsDark = (newIsDark: boolean) => {
+    localStorage.setItem('colorScheme', newIsDark.toString())
+    setIsDark(newIsDark)
+  }
+
+  useEffect(() => {
+    const localIsDark = localStorage.getItem('colorScheme')
+    if (localIsDark !== null) {
+      setIsDark(localIsDark === 'true')
+    }
+  }, [])
+
   const value = useMemo(
     () => (isDark === undefined ? !!systemPrefersDark : isDark),
     [isDark, systemPrefersDark]
@@ -21,67 +30,36 @@ export function useColorScheme() {
   useEffect(() => {
     if (value) {
       document.body.classList.add('dark')
-      if (document.getElementById('title-container')! !== null) {
-        document.getElementById('title-container')!.classList.add('dark')
-      }
-      if (document.getElementById('personal_link')! !== null) {
-        document.getElementById('personal_link')!.classList.add('dark')
-      }
-      if (document.getElementById('title-container')! !== null) {
-        document.getElementById('title-container')!.classList.add('dark')
-      }
-      if (document.getElementById('close-button')! !== null) {
-        document.getElementById('close-button')!.classList.add('dark')
-      }
-      if (document.getElementById('search')! !== null) {
-        document.getElementById('search')!.classList.add('dark')
-      }
-      if (document.getElementById('searchBar')! !== null) {
-        document.getElementById('searchBar')!.classList.add('dark')
-      }
-      if (document.getElementById('mobile_menu_wrapper')! !== null) {
-        document.getElementById('mobile_menu_wrapper')!.classList.add('dark')
-      }
-      if (document.getElementById('back')! !== null) {
-        document.getElementById('back')!.classList.add('dark')
-      }
-      if (document.getElementById('all')! !== null) {
-        document.getElementById('all')!.classList.add('dark')
-      }
     } else {
       document.body.classList.remove('dark')
-      if (document.getElementById('title-container')! !== null) {
-        document.getElementById('title-container')!.classList.remove('dark')
-      }
-      if (document.getElementById('personal_link')! !== null) {
-        document.getElementById('personal_link')!.classList.remove('dark')
-      }
-      if (document.getElementById('title-container')! !== null) {
-        document.getElementById('title-container')!.classList.remove('dark')
-      }
-      if (document.getElementById('close-button')! !== null) {
-        document.getElementById('close-button')!.classList.remove('dark')
-      }
-      if (document.getElementById('search')! !== null) {
-        document.getElementById('search')!.classList.remove('dark')
-      }
-      if (document.getElementById('searchBar')! !== null) {
-        document.getElementById('searchBar')!.classList.remove('dark')
-      }
-      if (document.getElementById('mobile_menu_wrapper')! !== null) {
-        document.getElementById('mobile_menu_wrapper')!.classList.remove('dark')
-      }
-      if (document.getElementById('back')! !== null) {
-        document.getElementById('back')!.classList.remove('dark')
-      }
-      if (document.getElementById('all')! !== null) {
-        document.getElementById('all')!.classList.remove('dark')
-      }
     }
+    const elements = [
+      'all',
+      'back',
+      'close-button',
+      'mobile-menu-wrapper',
+      'personal-link',
+      'search-bar',
+      'search',
+      'skeleton',
+      'title-container',
+    ]
+    elements.forEach((id) => {
+      const element = document.getElementById(id)
+      if (element) {
+        element.classList.toggle('dark', value)
+        if (id === 'search') {
+          console.error(`Element with id ${id} found`)
+          // element.classList.toggle('search-dark', value)
+        }
+      } else {
+        console.error(`Element with id ${id} not found`)
+      }
+    })
   }, [value])
 
   return {
     isDark: Boolean(value),
-    setIsDark,
+    setIsDark: handleSetIsDark,
   }
 }

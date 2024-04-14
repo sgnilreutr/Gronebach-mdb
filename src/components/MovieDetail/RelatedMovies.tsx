@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react'
 
-import { MovieDatabaseContext } from '../../context/movieDatabaseContext'
+import { MovieDatabaseContext } from '../../context/MovieDatabaseContext'
 import type { Movie } from '../../data/dataTypes'
 import { tenRandomMovies } from '../../utils/randomMovie'
 import { MovieList } from '../MovieOverview/MovieList'
@@ -13,7 +13,7 @@ interface RelatedMoviesProps {
 const regex = /,/
 
 export function RelatedMovies({ genre, activeMovie }: RelatedMoviesProps) {
-  const { movies } = useContext(MovieDatabaseContext)
+  const { allMovies } = useContext(MovieDatabaseContext)
   const [relatedMovies, setRelatedMovies] = useState<Array<Movie>>([])
 
   useEffect(() => {
@@ -28,8 +28,8 @@ export function RelatedMovies({ genre, activeMovie }: RelatedMoviesProps) {
         return
       }
 
-      if (movies.length > 0) {
-        const filteredMovies = movies.filter(
+      if (allMovies.length > 0) {
+        const filteredMovies = allMovies.filter(
           ({ imdbID, Genre }) =>
             imdbID !== activeMovie &&
             Genre.toLowerCase().includes(firstListedGenre.toLowerCase())
@@ -39,7 +39,7 @@ export function RelatedMovies({ genre, activeMovie }: RelatedMoviesProps) {
     } catch (error) {
       console.error(error, 'No movies loaded')
     }
-  }, [genre, movies])
+  }, [genre, allMovies])
 
   return (
     <div>

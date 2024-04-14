@@ -3,7 +3,7 @@ import './MovieDetail.scss'
 import { FiStar } from 'react-icons/fi'
 import { useParams } from 'react-router-dom'
 
-import { MovieDatabaseContext } from '../../context/movieDatabaseContext'
+import { MovieDatabaseContext } from '../../context/MovieDatabaseContext'
 import { getMoviePosterUrl } from '../../data/api'
 import type { Movie } from '../../data/dataTypes'
 import { DetailHeader } from '../Header/DetailHeader'
@@ -123,10 +123,12 @@ const RenderDetail = ({ movie, movieID }: RenderDetailProps) => {
 
 export default function MovieDetail() {
   const { movieID } = useParams()
-  const { movies } = useContext(MovieDatabaseContext)
+  const { allMovies } = useContext(MovieDatabaseContext)
 
   const movie = movieID
-    ? movies.find(({ imdbID }) => imdbID.toLowerCase().includes(`${movieID}`))
+    ? allMovies.find(({ imdbID }) =>
+        imdbID.toLowerCase().includes(`${movieID}`)
+      )
     : 'loading'
 
   return (

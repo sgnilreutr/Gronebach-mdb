@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import { MovieDatabaseContext } from '../../context/movieDatabaseContext'
+import { MovieDatabaseContext } from '../../context/MovieDatabaseContext'
 import { randomMovie } from '../../utils/randomMovie'
 import './RandomButton.scss'
 
@@ -12,15 +12,15 @@ const preLoadRandomIntro = () => {
 }
 
 export function RandomButton() {
-  const { movies } = useContext(MovieDatabaseContext)
-
+  const { allMovies } = useContext(MovieDatabaseContext)
   const navigate = useNavigate()
+
   const openIntroPage = (imdbID: string) => {
     navigate(`/random/${imdbID}/`)
   }
 
   const fetchRandomMovie = () => {
-    const movie = randomMovie(movies)
+    const movie = randomMovie(allMovies)
     if (movie) {
       openIntroPage(movie.imdbID)
     } else {

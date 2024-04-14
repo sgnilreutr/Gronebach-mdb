@@ -1,19 +1,18 @@
-import { useContext } from 'react'
+import { useContext, useMemo } from 'react'
 import './Search.scss'
 import { Link } from 'react-router-dom'
 
-import { MovieDatabaseContext } from '../../context/movieDatabaseContext'
+import { MovieDatabaseContext } from '../../context/MovieDatabaseContext'
 import { CloseButton } from '../Elements/CloseButton'
 import { SearchBar } from '../Elements/SearchBar'
 import { MovieListItem } from '../MovieOverview/MovieListItem'
-import { useAppSelector } from '../../store/hooks'
-import { selectSearchTerm } from '../../store/appSlice'
 import type { Movie } from '../../data/dataTypes'
 import {
   NO_ITEMS,
   LINK_MISSING_TITLE,
   LOADING,
 } from '../../constants/globalConstants'
+import { useDebounce } from '../../hooks/useDebounce'
 
 const START_SEARCHING = 'Start met zoeken'
 
@@ -26,6 +25,7 @@ const RenderSearchMovies = ({
   movies,
   searchTerm,
 }: RenderSearchMoviesProps) => {
+  const debouncedSearchTerm = useDebounce(searchTerm, 500)
   const filteredMovies = movies.filter(
     ({
       Title,
@@ -50,36 +50,43 @@ const RenderSearchMovies = ({
         Country.toLowerCase() +
         Plot.toLowerCase() +
         imdbRating
-      ).includes(searchTerm.toLowerCase())
+      ).includes(debouncedSearchTerm.toLowerCase())
   )
 
-  return (
-    <div className="movie-grid">
-      {filteredMovies.length > 0 ? (
+  const memoizedFilteredMovies = useMemo(
+    () =>
+      filteredMovies.length > 0 ? (
         filteredMovies.map(({ Title, imdbID, Poster }) => (
-          <div key={imdbID}>
-            <MovieListItem
-              movieInfo={{
-                Title,
-                imdbID,
-                Poster,
-              }}
-            />
-          </div>
+          <MovieListItem
+            key={imdbID}
+            movieInfo={{
+              Title,
+              imdbID,
+              Poster,
+            }}
+          />
         ))
       ) : (
         <div className="search-no-results">
           <p>{NO_ITEMS}</p>
           <Link to="/missing">{LINK_MISSING_TITLE}</Link>
         </div>
-      )}
+      ),
+    [filteredMovies]
+  )
+
+  return (
+    <div
+      className="movie-grid"
+      key={filteredMovies.length + debouncedSearchTerm}
+    >
+      {memoizedFilteredMovies}
     </div>
   )
 }
 
 export default function Search() {
-  const searchTerm = useAppSelector(selectSearchTerm)
-  const { movies } = useContext(MovieDatabaseContext)
+  const { allMovies, searchTerm } = useContext(MovieDatabaseContext)
 
   return (
     <div>
@@ -87,11 +94,11 @@ export default function Search() {
         <SearchBar />
         <CloseButton />
       </div>
-      {movies.length === 0 ? <h2>{LOADING}</h2> : null}
-      {movies.length > 0 && searchTerm ? (
-        <RenderSearchMovies movies={movies} searchTerm={searchTerm} />
+      {allMovies.length === 0 ? <h2>{LOADING}</h2> : null}
+      {allMovies.length > 0 && searchTerm ? (
+        <RenderSearchMovies movies={allMovies} searchTerm={searchTerm} />
       ) : null}
-      {movies.length > 0 && !searchTerm ? (
+      {allMovies.length > 0 && !searchTerm ? (
         <h2 className="search-page-placeholder">{START_SEARCHING}</h2>
       ) : null}
     </div>

@@ -1,5 +1,9 @@
 @import '../../breakpoints', '../../fontSizes';
 
+.item-link {
+  all: unset;
+}
+
 .item {
   border-radius: 5px;
   backdrop-filter: blur(28px);

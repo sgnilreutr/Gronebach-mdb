@@ -1,40 +1,31 @@
 import { useContext } from 'react'
 
 import './Homepage.scss'
-import * as global from '../../constants/globalConstants'
-import { MovieDatabaseContext } from '../../context/movieDatabaseContext'
-import type { MovieContext } from '../../context/movieDatabaseContext'
+import { MovieDatabaseContext } from '../../context/MovieDatabaseContext'
 import { Overviewheader } from '../Header/OverviewHeader'
 import { MobileMenu } from '../MobileMenu/mobileMenu'
 import { HomepageCategory } from './HomepageCategory'
+import { MOVIE_CATEGORIES } from '../../constants/globalConstants'
 
 const NOTHING_TO_SHOW = 'Nothing to show'
 
-interface CategoryHomepageProps {
-  movies: MovieContext['movies']
-}
-
-const CategoryHomepage = ({ movies }: CategoryHomepageProps) => (
-  <div>
-    {global.MOVIE_CATEGORIES.map(({ name, filter }) => (
-      <HomepageCategory
-        categoryFilter={filter}
-        categoryName={name}
-        key={name}
-        movies={movies}
-      />
-    ))}
-  </div>
-)
-
 export default function Homepage() {
-  const { movies } = useContext(MovieDatabaseContext)
+  const { allMovies } = useContext(MovieDatabaseContext)
 
   return (
     <div>
       <Overviewheader />
-      {movies ? (
-        <CategoryHomepage movies={movies} />
+      {allMovies ? (
+        <div>
+          {MOVIE_CATEGORIES.map(({ name, filter }) => (
+            <HomepageCategory
+              categoryFilter={filter}
+              categoryName={name}
+              key={name}
+              movies={allMovies}
+            />
+          ))}
+        </div>
       ) : (
         <h2>{NOTHING_TO_SHOW}</h2>
       )}

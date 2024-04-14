@@ -1,7 +1,8 @@
 import { lazy, Suspense } from 'react'
 import { Route, BrowserRouter, Routes } from 'react-router-dom'
-
-import * as global from './constants/globalConstants'
+import { LOADING } from './constants/globalConstants'
+import { ROUTES } from './constants/routeConstants'
+import { Layout } from './components/Layout'
 
 const Homepage = lazy(() => import('./components/Homepage/Homepage'))
 const MovieOverview = lazy(
@@ -28,7 +29,7 @@ function Loading() {
         width: '100%',
       }}
     >
-      <p>{global.LOADING}</p>
+      <p>{LOADING}</p>
     </div>
   )
 }
@@ -36,17 +37,19 @@ function Loading() {
 export function RoutesHandeler() {
   return (
     <BrowserRouter>
-      <Suspense fallback={<Loading />}>
-        <Routes>
-          <Route path="/" element={<Homepage />} />
-          <Route path="/overview/*" element={<MovieOverview />} />
-          <Route path="/item/:movieID" element={<MovieDetail />} />
-          <Route path="/missing" element={<MissingTitles />} />
-          <Route path="/search" element={<Search />} />
-          <Route path="/random/:movieID" element={<RandomMovieIntro />} />
-          <Route path="*" element={<PageNotFound />} />
-        </Routes>
-      </Suspense>
+      <Layout>
+        <Suspense fallback={<Loading />}>
+          <Routes>
+            <Route path={ROUTES.homepage} element={<Homepage />} />
+            <Route path={ROUTES.overview} element={<MovieOverview />} />
+            <Route path={ROUTES.item} element={<MovieDetail />} />
+            <Route path={ROUTES.missing} element={<MissingTitles />} />
+            <Route path={ROUTES.search} element={<Search />} />
+            <Route path={ROUTES.random} element={<RandomMovieIntro />} />
+            <Route path={ROUTES.notFound} element={<PageNotFound />} />
+          </Routes>
+        </Suspense>
+      </Layout>
     </BrowserRouter>
   )
 }

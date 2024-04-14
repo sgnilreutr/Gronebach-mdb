@@ -2,7 +2,7 @@ import { useContext } from 'react'
 import './MovieOverview.scss'
 import { Link, useLocation } from 'react-router-dom'
 
-import { MovieDatabaseContext } from '../../context/movieDatabaseContext'
+import { MovieDatabaseContext } from '../../context/MovieDatabaseContext'
 import { filteredList } from '../../utils/filteredMovieList'
 import { DetailHeader } from '../Header/DetailHeader'
 import { MovieListItem } from './MovieListItem'
@@ -15,16 +15,16 @@ import {
 
 const MovieOverview = () => {
   const location = useLocation()
-  const { movies } = useContext(MovieDatabaseContext)
+  const { allMovies } = useContext(MovieDatabaseContext)
   const partLoc = location.pathname.split('/')
 
   const renderMovies = () => {
-    if (!movies) {
+    if (!allMovies) {
       return null
     }
     const staticFilteredList = filteredList({
       activeFilter: partLoc[2],
-      movies,
+      movies: allMovies,
     })
     return (
       <div>
@@ -56,7 +56,7 @@ const MovieOverview = () => {
   return (
     <div>
       <DetailHeader />
-      {movies.length > 0 ? renderMovies() : <h2>{LOADING}</h2>}
+      {allMovies.length > 0 ? renderMovies() : <h2>{LOADING}</h2>}
     </div>
   )
 }

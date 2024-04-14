@@ -3,7 +3,7 @@ import './mobileMenu.scss'
 
 export function MobileMenu() {
   return (
-    <div className="mobile_menu_wrapper" id="mobile_menu_wrapper">
+    <div className="mobile-menu-wrapper" id="mobile-menu-wrapper">
       <HeaderOptions />
     </div>
   )
