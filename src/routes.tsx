@@ -1,5 +1,6 @@
-import React, { lazy, Suspense } from 'react'
+import { lazy, Suspense } from 'react'
 import { Route, BrowserRouter, Routes } from 'react-router-dom'
+
 import * as global from './constants/globalConstants'
 
 const Homepage = lazy(() => import('./components/Homepage/Homepage'))

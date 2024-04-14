@@ -1,21 +1,21 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
+import { StrictMode } from 'react'
+import ReactDOM from 'react-dom/client'
 import './index.scss'
 import { Provider } from 'react-redux'
-import { createStore } from 'redux'
+import { inject } from '@vercel/analytics'
+import { store } from './store/store'
+
 import App from './App'
-import RootReducer from './reducers/reducer'
 import * as serviceWorkerRegistration from './serviceWorkerRegistration'
 
-const store = createStore(RootReducer)
+inject()
 
-ReactDOM.render(
-  <React.StrictMode>
+ReactDOM.createRoot(document.getElementById('root')!).render(
+  <StrictMode>
     <Provider store={store}>
       <App />
     </Provider>
-  </React.StrictMode>,
-  document.getElementById('root')
+  </StrictMode>
 )
 
 serviceWorkerRegistration.register()

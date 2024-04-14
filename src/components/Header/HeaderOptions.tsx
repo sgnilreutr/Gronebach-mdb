@@ -1,5 +1,5 @@
-import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { selectCategory, setCategory } from '../../store/appSlice'
+import { useAppDispatch, useAppSelector } from '../../store/hooks'
 import './HeaderOptions.scss'
 
 const MENU_OPTIONS = [
@@ -8,29 +8,27 @@ const MENU_OPTIONS = [
   { name: 'Series', category: 'Series' },
 ]
 
-const selectCategory = (state: any) => state.category
-
 export default function Headeroptions() {
-  const category = useSelector(selectCategory)
-  const dispatch = useDispatch()
+  const selectedCategory = useAppSelector(selectCategory)
+  const dispatch = useAppDispatch()
 
-  const setCategory = async (value: string) => {
-    dispatch({ type: 'SET_CATEGORY', payload: value })
+  const handleOnClick = (value: string) => {
+    dispatch(setCategory(value))
   }
 
   return (
     <div className="headerOptions-container">
-      {MENU_OPTIONS.map((item) => (
+      {MENU_OPTIONS.map(({ name, category }) => (
         <div
           aria-hidden="true"
-          id={item.name}
-          key={item.name}
-          onClick={() => setCategory(item.category)}
+          id={name}
+          key={name}
+          onClick={() => handleOnClick(category)}
           className={`option ${
-            category === item.category && 'option--selected'
+            selectedCategory === category && 'option--selected'
           }`}
         >
-          {item.name}
+          {name}
         </div>
       ))}
     </div>

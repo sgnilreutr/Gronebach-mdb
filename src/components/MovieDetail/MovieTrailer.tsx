@@ -1,30 +1,32 @@
-import React, { useEffect, useState } from 'react'
-import isEmpty from 'lodash/isEmpty'
-import { useMediaQuery } from 'react-responsive'
-import ReactPlayer from 'react-player'
-import { MdLocalMovies } from 'react-icons/md'
 import './MovieTrailer.scss'
-import { createApiClient } from '../../data/api'
+
+import { useEffect, useState } from 'react'
+import { MdLocalMovies } from 'react-icons/md'
+import ReactPlayer from 'react-player'
+import { useMediaQuery } from 'react-responsive'
+
 import * as global from '../../constants/globalConstants'
+import { createApiClient } from '../../data/api'
+import type { IMovieTrailer } from '../../data/dataTypes'
+import isEmpty from '../../utils/isEmpty'
 
 const WATCH_TRAILER_BUTTON = 'Bekijk Trailer'
 
-interface TrailerButton {
-  openTrailer(): any
+interface IOpenTrailerButton {
+  openTrailer: () => void
 }
 
-export const OpenTrailerButton = (props: TrailerButton) => {
-  const { openTrailer } = props
-  return (
-    <div aria-hidden="true" className="trailer-button" onClick={openTrailer}>
-      <MdLocalMovies />
-      {WATCH_TRAILER_BUTTON}
-    </div>
-  )
-}
+export const OpenTrailerButton = ({ openTrailer }: IOpenTrailerButton) => (
+  <div aria-hidden="true" className="trailer-button" onClick={openTrailer}>
+    <MdLocalMovies />
+    {WATCH_TRAILER_BUTTON}
+  </div>
+)
 
 export const MovieTrailer = ({ movieID }: { movieID: string }) => {
-  const [movieTrailer, setMovieTrailer] = useState<any>({})
+  const [movieTrailer, setMovieTrailer] = useState<IMovieTrailer | undefined>(
+    undefined
+  )
   const [loadingState, setLoadingState] = useState<string>('idle')
   const isTabletOrMobile = useMediaQuery({ maxWidth: global.TABLET_MAX_WIDTH })
   const [itemHeight, setItemHeight] = useState(0)
@@ -59,7 +61,7 @@ export const MovieTrailer = ({ movieID }: { movieID: string }) => {
   return (
     <div>
       <div className="movie-player">
-        {loadingState === 'loaded' && movieTrailer.videoUrl && (
+        {loadingState === 'loaded' && movieTrailer?.videoUrl && (
           <ReactPlayer
             url={movieTrailer.videoUrl}
             style={{ borderRadius: '6px' }}
@@ -68,6 +70,7 @@ export const MovieTrailer = ({ movieID }: { movieID: string }) => {
           />
         )}
         {loadingState === 'loading' && <p>{global.LOADING}</p>}
+        {loadingState === 'idle' && <p>{global.LOADING}</p>}
         {loadingState === 'error' && <p>{global.COULD_NOT_LOAD}</p>}
       </div>
     </div>

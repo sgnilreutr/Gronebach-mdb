@@ -1,10 +1,9 @@
-import React from 'react'
-import HeaderOptions from './HeaderOptions'
 import './OverviewHeader.scss'
-import TitleHeader from './TitleHeader'
+import RandomButton from '../Elements/RandomButton'
 import Searchbutton from '../Elements/SearchButton'
 import SeeAllButton from '../Elements/SeeAllButton'
-import RandomButton from '../Elements/RandomButton'
+import HeaderOptions from './HeaderOptions'
+import TitleHeader from './TitleHeader'
 
 export default function Overviewheader() {
   return (
