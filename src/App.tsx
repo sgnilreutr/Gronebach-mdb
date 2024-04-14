@@ -4,14 +4,14 @@ import './App.scss'
 import * as global from './constants/globalConstants'
 import {
   defaultState,
-  IMovieContext,
+  MovieContext,
   MovieProvider,
 } from './context/movieDatabaseContext'
 import { createApiClient } from './data/api'
-import Routes from './routes'
+import { RoutesHandeler } from './routes'
 
-const App = () => {
-  const [allMovies, setAllMovies] = useState<IMovieContext>(defaultState)
+export function App() {
+  const [allMovies, setAllMovies] = useState<MovieContext>(defaultState)
 
   // Load in all movies and store it in the localstorage
   useEffect(() => {
@@ -50,10 +50,8 @@ const App = () => {
   return (
     <MovieProvider value={allMovies}>
       <div className="App" id="App">
-        <Routes />
+        <RoutesHandeler />
       </div>
     </MovieProvider>
   )
 }
-
-export default App

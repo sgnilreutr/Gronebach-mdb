@@ -2,19 +2,19 @@ import { useContext } from 'react'
 
 import './Homepage.scss'
 import * as global from '../../constants/globalConstants'
-import MovieDatabaseContext from '../../context/movieDatabaseContext'
-import type { IMovieContext } from '../../context/movieDatabaseContext'
-import Overviewheader from '../Header/OverviewHeader'
-import MobileMenu from '../MobileMenu/mobileMenu'
-import HomepageCategory from './HomepageCategory'
+import { MovieDatabaseContext } from '../../context/movieDatabaseContext'
+import type { MovieContext } from '../../context/movieDatabaseContext'
+import { Overviewheader } from '../Header/OverviewHeader'
+import { MobileMenu } from '../MobileMenu/mobileMenu'
+import { HomepageCategory } from './HomepageCategory'
 
 const NOTHING_TO_SHOW = 'Nothing to show'
 
-interface ICategoryHomepage {
-  movies: IMovieContext['movies']
+interface CategoryHomepageProps {
+  movies: MovieContext['movies']
 }
 
-const CategoryHomepage = ({ movies }: ICategoryHomepage) => (
+const CategoryHomepage = ({ movies }: CategoryHomepageProps) => (
   <div>
     {global.MOVIE_CATEGORIES.map(({ name, filter }) => (
       <HomepageCategory
@@ -27,7 +27,7 @@ const CategoryHomepage = ({ movies }: ICategoryHomepage) => (
   </div>
 )
 
-const Homepage = () => {
+export default function Homepage() {
   const { movies } = useContext(MovieDatabaseContext)
 
   return (
@@ -42,5 +42,3 @@ const Homepage = () => {
     </div>
   )
 }
-
-export default Homepage

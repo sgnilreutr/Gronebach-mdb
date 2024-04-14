@@ -52,8 +52,10 @@
   font-size: $base;
   font-weight: bold;
   border-radius: 6px;
-  box-shadow: 1.2px 1.1px 1.1px rgba(0, 0, 0, 0.022),
-    2.8px 2.7px 2.7px rgba(0, 0, 0, 0.032), 5.3px 5px 5px rgba(0, 0, 0, 0.04),
+  box-shadow:
+    1.2px 1.1px 1.1px rgba(0, 0, 0, 0.022),
+    2.8px 2.7px 2.7px rgba(0, 0, 0, 0.032),
+    5.3px 5px 5px rgba(0, 0, 0, 0.04),
     9.4px 8.9px 8.9px rgba(0, 0, 0, 0.048),
     17.5px 16.7px 16.7px rgba(0, 0, 0, 0.058),
     42px 40px 40px rgba(0, 0, 0, 0.08);

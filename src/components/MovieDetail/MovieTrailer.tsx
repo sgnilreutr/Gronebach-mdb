@@ -7,24 +7,30 @@ import { useMediaQuery } from 'react-responsive'
 
 import * as global from '../../constants/globalConstants'
 import { createApiClient } from '../../data/api'
-import type { IMovieTrailer } from '../../data/dataTypes'
-import isEmpty from '../../utils/isEmpty'
+import type { MovieTrailer } from '../../data/dataTypes'
+import { isEmpty } from '../../utils/isEmpty'
 
 const WATCH_TRAILER_BUTTON = 'Bekijk Trailer'
 
-interface IOpenTrailerButton {
+interface OpenTrailerButtonProps {
   openTrailer: () => void
 }
 
-export const OpenTrailerButton = ({ openTrailer }: IOpenTrailerButton) => (
-  <div aria-hidden="true" className="trailer-button" onClick={openTrailer}>
-    <MdLocalMovies />
-    {WATCH_TRAILER_BUTTON}
-  </div>
-)
+export function OpenTrailerButton({ openTrailer }: OpenTrailerButtonProps) {
+  return (
+    <div aria-hidden="true" className="trailer-button" onClick={openTrailer}>
+      <MdLocalMovies />
+      {WATCH_TRAILER_BUTTON}
+    </div>
+  )
+}
 
-export const MovieTrailer = ({ movieID }: { movieID: string }) => {
-  const [movieTrailer, setMovieTrailer] = useState<IMovieTrailer | undefined>(
+interface MovieTrailerProps {
+  movieID: string
+}
+
+export function MovieTrailerComponent({ movieID }: MovieTrailerProps) {
+  const [movieTrailer, setMovieTrailer] = useState<MovieTrailer | undefined>(
     undefined
   )
   const [loadingState, setLoadingState] = useState<string>('idle')

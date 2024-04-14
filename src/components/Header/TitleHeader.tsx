@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 
 import './TitleHeader.scss'
-import ModeSwitch from '../Elements/ModeSwitch/modeSwitch'
+// import { ModeSwitch } from '../Elements/ModeSwitch/modeSwitch'
 
 const GRONEBACH = 'Grönebach'
 const MOVIE_DATABASE = 'Movie Database'
@@ -13,7 +13,7 @@ const EMOJI = (
 const SMALL_TITLE = 'GMDb '
 const ROBBERT_TUERLINGS = 'BY ROBBERT TUERLINGS'
 
-export default function TitleHeader() {
+export function TitleHeader() {
   const navigate = useNavigate()
 
   function navigateToHome() {
@@ -43,7 +43,7 @@ export default function TitleHeader() {
           {ROBBERT_TUERLINGS}
         </a>
       </div>
-      <ModeSwitch />
+      {/* <ModeSwitch /> */}
     </div>
   )
 }

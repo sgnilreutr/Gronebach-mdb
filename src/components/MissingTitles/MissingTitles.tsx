@@ -1,4 +1,4 @@
-import DetailHeader from '../Header/DetailHeader'
+import { DetailHeader } from '../Header/DetailHeader'
 import './MissingTitles.scss'
 
 const MISSING_TITLES = [
@@ -19,7 +19,7 @@ const MISSING_TITLES = [
 const MISSING_HEADER = 'Ontbrekende titels'
 const MISSING_SUB = 'Onderstaande titels konden online niet gevonden worden.'
 
-export default function Missingtitles() {
+export default function MissingTitles() {
   return (
     <div>
       <DetailHeader />

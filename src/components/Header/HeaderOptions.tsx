@@ -8,7 +8,7 @@ const MENU_OPTIONS = [
   { name: 'Series', category: 'Series' },
 ]
 
-export default function Headeroptions() {
+export function HeaderOptions() {
   const selectedCategory = useAppSelector(selectCategory)
   const dispatch = useAppDispatch()
 

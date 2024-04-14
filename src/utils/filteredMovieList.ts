@@ -1,11 +1,11 @@
-import type { IMovie } from '../data/dataTypes'
+import type { Movie } from '../data/dataTypes'
 
 interface IFilteredList {
   activeFilter: string | undefined
-  movies: Array<IMovie>
+  movies: Array<Movie>
 }
 
-export default function filteredList({ activeFilter, movies }: IFilteredList) {
+export function filteredList({ activeFilter, movies }: IFilteredList) {
   switch (activeFilter) {
     case 'kids':
       return Array.isArray(movies)

@@ -2,24 +2,30 @@ import { useContext } from 'react'
 import './Search.scss'
 import { Link } from 'react-router-dom'
 
-import * as global from '../../constants/globalConstants'
-import MovieDatabaseContext from '../../context/movieDatabaseContext'
-import CloseButton from '../Elements/CloseButton'
-import SearchBar from '../Elements/SearchBar'
-import MovieListItem from '../MovieOverview/MovieListItem'
+import { MovieDatabaseContext } from '../../context/movieDatabaseContext'
+import { CloseButton } from '../Elements/CloseButton'
+import { SearchBar } from '../Elements/SearchBar'
+import { MovieListItem } from '../MovieOverview/MovieListItem'
 import { useAppSelector } from '../../store/hooks'
 import { selectSearchTerm } from '../../store/appSlice'
-import type { IMovie } from '../../data/dataTypes'
+import type { Movie } from '../../data/dataTypes'
+import {
+  NO_ITEMS,
+  LINK_MISSING_TITLE,
+  LOADING,
+} from '../../constants/globalConstants'
 
 const START_SEARCHING = 'Start met zoeken'
+
+interface RenderSearchMoviesProps {
+  movies: Array<Movie>
+  searchTerm: string
+}
 
 const RenderSearchMovies = ({
   movies,
   searchTerm,
-}: {
-  movies: Array<IMovie>
-  searchTerm: string
-}) => {
+}: RenderSearchMoviesProps) => {
   const filteredMovies = movies.filter(
     ({
       Title,
@@ -63,8 +69,8 @@ const RenderSearchMovies = ({
         ))
       ) : (
         <div className="search-no-results">
-          <p>{global.NO_ITEMS}</p>
-          <Link to="/missing">{global.LINK_MISSING_TITLE}</Link>
+          <p>{NO_ITEMS}</p>
+          <Link to="/missing">{LINK_MISSING_TITLE}</Link>
         </div>
       )}
     </div>
@@ -81,7 +87,7 @@ export default function Search() {
         <SearchBar />
         <CloseButton />
       </div>
-      {movies.length === 0 ? <h2>{global.LOADING}</h2> : null}
+      {movies.length === 0 ? <h2>{LOADING}</h2> : null}
       {movies.length > 0 && searchTerm ? (
         <RenderSearchMovies movies={movies} searchTerm={searchTerm} />
       ) : null}

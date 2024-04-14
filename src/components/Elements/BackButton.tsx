@@ -1,4 +1,3 @@
-import React from 'react'
 import { FiArrowLeft } from 'react-icons/fi'
 import { useNavigate } from 'react-router-dom'
 import './BackButton.scss'
@@ -9,7 +8,7 @@ const preLoadHomepage = () => {
   import('../Homepage/Homepage')
 }
 
-const BackButton = () => {
+export function BackButton() {
   const navigate = useNavigate()
 
   function navigateBack() {
@@ -30,4 +29,3 @@ const BackButton = () => {
     </button>
   )
 }
-export default BackButton

@@ -4,7 +4,7 @@ import createPersistedState from 'use-persisted-state'
 
 const useColorSchemeState = createPersistedState('colorScheme')
 
-const useColorScheme = () => {
+export function useColorScheme() {
   const systemPrefersDark = useMediaQuery(
     {
       query: '(prefers-color-scheme: dark)',
@@ -81,9 +81,7 @@ const useColorScheme = () => {
   }, [value])
 
   return {
-    isDark: value,
+    isDark: Boolean(value),
     setIsDark,
   }
 }
-
-export default useColorScheme

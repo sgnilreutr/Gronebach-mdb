@@ -8,8 +8,11 @@
     width: 16rem;
     height: 23.5rem;
     margin: 0 0 1rem;
-    transition: transform 0.3s ease-in-out, -webkit-transform 0.3s ease-in-out,
-      box-shadow 0.2s ease-in-out, -webkit-transform 0.2s ease-in-out;
+    transition:
+      transform 0.3s ease-in-out,
+      -webkit-transform 0.3s ease-in-out,
+      box-shadow 0.2s ease-in-out,
+      -webkit-transform 0.2s ease-in-out;
   }
   @media only screen and (max-width: $BP_M_MAX) {
     height: 176.72px;

@@ -1,4 +1,4 @@
-type TProduction =
+type Production =
   | 'G'
   | 'GP'
   | 'N/A'
@@ -12,22 +12,22 @@ type TProduction =
   | 'TV-MA'
   | 'TV-PG'
 
-export type TSource =
+export type Source =
   | 'Internet Movie Database'
   | 'Metacritic'
   | 'Rotten Tomatoes'
 
 export interface IRating {
-  Source: TSource
+  Source: Source
   Value: string
 }
 
 type TType = 'movies' | 'series'
 
-export interface IMovie {
+export interface Movie {
   Title: string
   Year: string
-  Rated: TProduction
+  Rated: Production
   Released: string
   Runtime: string
   Genre: string
@@ -47,12 +47,12 @@ export interface IMovie {
   Type: TType
   DVD?: string
   BoxOffice?: string
-  Production?: TProduction
-  Website?: TProduction
+  Production?: Production
+  Website?: Production
   Response: Response
   totalSeasons?: string
 }
 
-export interface IMovieTrailer {
+export interface MovieTrailer {
   videoUrl: string
 }

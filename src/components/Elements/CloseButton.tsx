@@ -1,9 +1,8 @@
-import React from 'react'
 import { FiX } from 'react-icons/fi'
 import { useNavigate } from 'react-router-dom'
 import './CloseButton.scss'
 
-export default function Closebutton() {
+export function CloseButton() {
   const navigate = useNavigate()
   const returnPage = () => {
     navigate(-1)

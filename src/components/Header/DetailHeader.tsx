@@ -1,11 +1,11 @@
 import './DetailHeader.scss'
-import BackButton from '../Elements/BackButton'
-import RandomButton from '../Elements/RandomButton'
-import Searchbutton from '../Elements/SearchButton'
-import SeeAllButton from '../Elements/SeeAllButton'
-import TitleHeader from './TitleHeader'
+import { BackButton } from '../Elements/BackButton'
+import { RandomButton } from '../Elements/RandomButton'
+import { Searchbutton } from '../Elements/SearchButton'
+import { SeeAllButton } from '../Elements/SeeAllButton'
+import { TitleHeader } from './TitleHeader'
 
-export default function Backtooverview() {
+export function DetailHeader() {
   return (
     <div>
       <TitleHeader />

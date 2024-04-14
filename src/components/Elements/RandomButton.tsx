@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import MovieDatabaseContext from '../../context/movieDatabaseContext'
+import { MovieDatabaseContext } from '../../context/movieDatabaseContext'
 import { randomMovie } from '../../utils/randomMovie'
 import './RandomButton.scss'
 
@@ -11,7 +11,7 @@ const preLoadRandomIntro = () => {
   import('../RandomMovieIntro/randomMovieIntro')
 }
 
-const RandomButton = () => {
+export function RandomButton() {
   const { movies } = useContext(MovieDatabaseContext)
 
   const navigate = useNavigate()
@@ -42,5 +42,3 @@ const RandomButton = () => {
     </div>
   )
 }
-
-export default RandomButton

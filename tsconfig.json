@@ -10,13 +10,17 @@
     "module": "ESNext",
     "moduleResolution": "Node",
     "noEmit": true,
+    "noErrorTruncation": true,
+    "noFallthroughCasesInSwitch": true,
     "noImplicitAny": true,
     "noUncheckedIndexedAccess": true,
-    "noFallthroughCasesInSwitch": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": true,
     "target": "ESNext"
   },
-  "include": ["src"]
+  "include": ["src/**/*", "vite.config.ts", "vite-env.d.ts"],
+  "exclude": ["node_modules"]
 }

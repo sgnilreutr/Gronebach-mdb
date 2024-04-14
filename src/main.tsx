@@ -2,13 +2,9 @@ import { StrictMode } from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.scss'
 import { Provider } from 'react-redux'
-import { inject } from '@vercel/analytics'
 import { store } from './store/store'
 
-import App from './App'
-import * as serviceWorkerRegistration from './serviceWorkerRegistration'
-
-inject()
+import { App } from './App'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -17,5 +13,3 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     </Provider>
   </StrictMode>
 )
-
-serviceWorkerRegistration.register()

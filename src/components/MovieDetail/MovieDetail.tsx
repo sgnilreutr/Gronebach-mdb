@@ -3,13 +3,12 @@ import './MovieDetail.scss'
 import { FiStar } from 'react-icons/fi'
 import { useParams } from 'react-router-dom'
 
-import * as global from '../../constants/globalConstants'
-import MovieDatabaseContext from '../../context/movieDatabaseContext'
+import { MovieDatabaseContext } from '../../context/movieDatabaseContext'
 import { getMoviePosterUrl } from '../../data/api'
-import type { IMovie } from '../../data/dataTypes'
-import DetailHeader from '../Header/DetailHeader'
-import { MovieTrailer, OpenTrailerButton } from './MovieTrailer'
-import RelatedMovies from './RelatedMovies'
+import type { Movie } from '../../data/dataTypes'
+import { DetailHeader } from '../Header/DetailHeader'
+import { MovieTrailerComponent, OpenTrailerButton } from './MovieTrailer'
+import { RelatedMovies } from './RelatedMovies'
 import {
   REPORT_LINK,
   RATING,
@@ -19,15 +18,16 @@ import {
   RUNTIME,
   RELATED_MOVIES,
 } from './MovieDetailConstants'
+import { LOADING, COULD_NOT_LOAD } from '../../constants/globalConstants'
 
-interface IRenderDetail {
-  movie: IMovie
+interface RenderDetailProps {
+  movie: Movie
   movieID: string | undefined
 }
 
-const RenderDetail = ({ movie, movieID }: IRenderDetail) => {
+const RenderDetail = ({ movie, movieID }: RenderDetailProps) => {
   const [trailerActive, setTrailerActive] = useState(false)
-  const movieTitleRef = useRef<any>(null)
+  const movieTitleRef = useRef<HTMLHeadingElement | null>(null)
   const {
     imdbID,
     Title,
@@ -84,7 +84,7 @@ const RenderDetail = ({ movie, movieID }: IRenderDetail) => {
               {!trailerActive && (
                 <OpenTrailerButton openTrailer={triggerOpenTrailerState} />
               )}
-              {trailerActive && <MovieTrailer movieID={imdbID} />}
+              {trailerActive && <MovieTrailerComponent movieID={imdbID} />}
               <div className="rating">
                 <FiStar />
                 <span style={{ marginLeft: `8px` }}>
@@ -121,7 +121,7 @@ const RenderDetail = ({ movie, movieID }: IRenderDetail) => {
   )
 }
 
-const MovieDetail = () => {
+export default function MovieDetail() {
   const { movieID } = useParams()
   const { movies } = useContext(MovieDatabaseContext)
 
@@ -132,13 +132,11 @@ const MovieDetail = () => {
   return (
     <div>
       <DetailHeader />
-      {movie === 'loading' ? <h2>{global.LOADING}</h2> : null}
+      {movie === 'loading' ? <h2>{LOADING}</h2> : null}
       {typeof movie === 'object' ? (
         <RenderDetail movie={movie} movieID={movieID} />
       ) : null}
-      {movie === undefined ? <h2>{global.COULD_NOT_LOAD}</h2> : null}
+      {movie === undefined ? <h2>{COULD_NOT_LOAD}</h2> : null}
     </div>
   )
 }
-
-export default MovieDetail

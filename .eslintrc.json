@@ -1,4 +1,13 @@
 {
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended",
+    "plugin:react/jsx-runtime",
+    "airbnb",
+    "airbnb-typescript",
+    "prettier"
+  ],
   "settings": {
     "import/extensions": [".js", ".jsx", ".ts", ".tsx", ".scss"],
     "import/parsers": {
@@ -18,14 +27,6 @@
     "browser": true,
     "es2021": true
   },
-  "extends": [
-    "plugin:react/recommended",
-    "plugin:react/jsx-runtime",
-    "airbnb",
-    "airbnb-typescript",
-    "prettier"
-  ],
-
   "parser": "@typescript-eslint/parser",
   "overrides": [
     {
@@ -39,7 +40,7 @@
     "ecmaFeatures": {
       "jsx": true
     },
-    "ecmaVersion": 12,
+    "ecmaVersion": "latest",
     "sourceType": "module",
     "project": "./tsconfig.json"
   },
@@ -63,8 +64,9 @@
       { "allowShortCircuit": true }
     ],
     "@typescript-eslint/no-useless-concat": "off",
-    "@typescript-eslint/no-use-before-define": ["error"],
+    "@typescript-eslint/no-use-before-define": "error",
     "import/no-cycle": "off",
+    "import/prefer-default-export": "off",
     "import/no-extraneous-dependencies": [
       "error",
       {

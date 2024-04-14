@@ -1,11 +1,11 @@
 import './OverviewHeader.scss'
-import RandomButton from '../Elements/RandomButton'
-import Searchbutton from '../Elements/SearchButton'
-import SeeAllButton from '../Elements/SeeAllButton'
-import HeaderOptions from './HeaderOptions'
-import TitleHeader from './TitleHeader'
+import { RandomButton } from '../Elements/RandomButton'
+import { Searchbutton } from '../Elements/SearchButton'
+import { SeeAllButton } from '../Elements/SeeAllButton'
+import { HeaderOptions } from './HeaderOptions'
+import { TitleHeader } from './TitleHeader'
 
-export default function Overviewheader() {
+export function Overviewheader() {
   return (
     <div>
       <TitleHeader />

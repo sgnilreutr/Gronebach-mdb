@@ -1,20 +1,20 @@
 import { useContext, useEffect, useState } from 'react'
 
-import MovieDatabaseContext from '../../context/movieDatabaseContext'
-import type { IMovie } from '../../data/dataTypes'
+import { MovieDatabaseContext } from '../../context/movieDatabaseContext'
+import type { Movie } from '../../data/dataTypes'
 import { tenRandomMovies } from '../../utils/randomMovie'
-import MovieList from '../MovieOverview/MovieList'
+import { MovieList } from '../MovieOverview/MovieList'
 
-interface IRelatedMovies {
-  genre: string
+interface RelatedMoviesProps {
   activeMovie: string
+  genre: string
 }
 
 const regex = /,/
 
-const RelatedMovies = ({ genre, activeMovie }: IRelatedMovies) => {
+export function RelatedMovies({ genre, activeMovie }: RelatedMoviesProps) {
   const { movies } = useContext(MovieDatabaseContext)
-  const [relatedMovies, setRelatedMovies] = useState<Array<IMovie>>([])
+  const [relatedMovies, setRelatedMovies] = useState<Array<Movie>>([])
 
   useEffect(() => {
     try {
@@ -47,5 +47,3 @@ const RelatedMovies = ({ genre, activeMovie }: IRelatedMovies) => {
     </div>
   )
 }
-
-export default RelatedMovies

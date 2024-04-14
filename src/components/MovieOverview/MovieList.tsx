@@ -6,14 +6,14 @@ import { useMediaQuery } from 'react-responsive'
 import { Link } from 'react-router-dom'
 
 import * as global from '../../constants/globalConstants'
-import type { IMovie } from '../../data/dataTypes'
-import MovieListItem from './MovieListItem'
+import type { Movie } from '../../data/dataTypes'
+import { MovieListItem } from './MovieListItem'
 
-interface IMovieList {
-  movies: Array<IMovie>
+interface MovieListProps {
+  movies: Array<Movie>
 }
 
-const MovieList = ({ movies }: IMovieList) => {
+export function MovieList({ movies }: MovieListProps) {
   const isTabletOrMobile = useMediaQuery({ maxWidth: global.TABLET_MAX_WIDTH })
   const [menuItems, setMenuItems] = useState<Array<JSX.Element>>([])
   const isMountedRef = useRef<boolean | null>(null)
@@ -87,5 +87,3 @@ const MovieList = ({ movies }: IMovieList) => {
 
   return <div>{movies ? renderMovies() : <h2>{global.LOADING}</h2>}</div>
 }
-
-export default MovieList

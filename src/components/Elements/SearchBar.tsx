@@ -5,7 +5,7 @@ import { FiSearch } from 'react-icons/fi'
 import { useAppDispatch, useAppSelector } from '../../store/hooks'
 import { selectSearchTerm, setSearchTerm } from '../../store/appSlice'
 
-const SearchBar = () => {
+export function SearchBar() {
   const dispatch = useAppDispatch()
 
   const searchTerm = useAppSelector(selectSearchTerm)
@@ -34,5 +34,3 @@ const SearchBar = () => {
     </form>
   )
 }
-
-export default SearchBar

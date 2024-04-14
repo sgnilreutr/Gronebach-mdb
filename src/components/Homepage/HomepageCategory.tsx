@@ -2,31 +2,31 @@ import { useEffect, useState } from 'react'
 import { FiChevronRight } from 'react-icons/fi'
 import { useNavigate } from 'react-router-dom'
 
-import * as global from '../../constants/globalConstants'
-import type { IMovie } from '../../data/dataTypes'
+import type { Movie } from '../../data/dataTypes'
 import { selectCategory, setOverviewQuery } from '../../store/appSlice'
 import { useAppDispatch, useAppSelector } from '../../store/hooks'
-import filteredList from '../../utils/filteredMovieList'
+import { filteredList } from '../../utils/filteredMovieList'
 import { tenRandomMovies } from '../../utils/randomMovie'
-import MovieList from '../MovieOverview/MovieList'
+import { MovieList } from '../MovieOverview/MovieList'
+import { COULD_NOT_LOAD, LOADING } from '../../constants/globalConstants'
 
 const CATEGORY_CTA_TEXT = 'Bekijk alles'
 
-interface IHomepageCategory {
+interface HomepageCategoryProps {
   categoryFilter: string
   categoryName: string
-  movies: Array<IMovie>
+  movies: Array<Movie>
 }
 
-const HomepageCategory = ({
+export function HomepageCategory({
   categoryFilter,
   categoryName,
   movies,
-}: IHomepageCategory) => {
+}: HomepageCategoryProps) {
   const category = useAppSelector(selectCategory)
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
-  const [filteredMovies, setFilteredMovies] = useState<Array<IMovie>>([])
+  const [filteredMovies, setFilteredMovies] = useState<Array<Movie>>([])
   const [loadingState, setLoadingState] = useState<string>('idle')
 
   const openCategory = (value: string) => {
@@ -80,14 +80,12 @@ const HomepageCategory = ({
           </span>
         </div>
       </div>
-      {loadingState === 'idle' && <p>{global.LOADING}</p>}
-      {loadingState === 'error' && <p>{global.COULD_NOT_LOAD}</p>}
-      {!hasMovies && loadingState === 'loading' && <p>{global.LOADING}</p>}
+      {loadingState === 'idle' && <p>{LOADING}</p>}
+      {loadingState === 'error' && <p>{COULD_NOT_LOAD}</p>}
+      {!hasMovies && loadingState === 'loading' && <p>{LOADING}</p>}
       {hasMovies && loadingState === 'loaded' && (
         <MovieList movies={staticSliceMovies} />
       )}
     </div>
   )
 }
-
-export default HomepageCategory

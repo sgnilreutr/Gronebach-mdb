@@ -8,7 +8,7 @@ const preLoadSearch = () => {
   import('../Search/Search')
 }
 
-export default function Searchbutton() {
+export function Searchbutton() {
   const navigate = useNavigate()
   const openSearch = () => {
     navigate(`/search`)

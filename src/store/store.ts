@@ -16,10 +16,10 @@ export const setupStore = (preloadedState?: PreloadedState<RootState>) =>
   })
 export type AppStore = ReturnType<typeof setupStore>
 export type AppDispatch = AppStore['dispatch']
-export type AppThunk<ReturnType = void | Promise<any | void>> = ThunkAction<
+export type AppThunk<ReturnType = void | Promise<unknown | void>> = ThunkAction<
   ReturnType,
   RootState,
-  any,
+  unknown,
   Action<string>
 >
 export const store = setupStore()

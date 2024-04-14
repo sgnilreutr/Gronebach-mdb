@@ -1,17 +1,17 @@
 import axios from 'axios'
 
 import imageFallback from '../img/placeholder-image.png'
-import type { IMovie, IMovieTrailer } from './dataTypes'
+import type { Movie, MovieTrailer } from './dataTypes'
 
 export const options = {
   headers: {
-    'x-api-key': process.env.REACT_APP_IMDB_API_KEY!,
+    'x-api-key': import.meta.env.REACT_APP_IMDB_API_KEY!,
   },
 }
 
 export type ApiClient = {
-  getMovies: () => Promise<Array<IMovie>>
-  getMovieTrailer: (movieId: string) => Promise<IMovieTrailer>
+  getMovies: () => Promise<Array<Movie>>
+  getMovieTrailer: (movieId: string) => Promise<MovieTrailer>
 }
 
 export const createApiClient = (): ApiClient => ({

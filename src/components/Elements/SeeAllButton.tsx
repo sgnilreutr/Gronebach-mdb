@@ -7,7 +7,7 @@ import { useAppDispatch } from '../../store/hooks'
 
 const ALL = 'Alles'
 
-const SeeAllButton = () => {
+export function SeeAllButton() {
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
 
@@ -23,5 +23,3 @@ const SeeAllButton = () => {
     </button>
   )
 }
-
-export default SeeAllButton
