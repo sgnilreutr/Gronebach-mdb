@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 import imageFallback from '../img/placeholder-image.png'
-import type { Movie, MovieTrailer } from './dataTypes'
+import type { Movie } from './dataTypes'
 
 export const options = {
   headers: {
@@ -11,7 +11,7 @@ export const options = {
 
 export type ApiClient = {
   getMovies: () => Promise<Array<Movie>>
-  getMovieTrailer: (movieId: string) => Promise<MovieTrailer>
+  // getMovieTrailer: (movieId: string) => Promise<MovieTrailer>
 }
 
 export const createApiClient = (): ApiClient => ({
@@ -24,18 +24,7 @@ export const createApiClient = (): ApiClient => ({
     } catch (err) {
       return null
     }
-  },
-  getMovieTrailer: async (movieId: string) => {
-    try {
-      const response = await axios.get(
-        `https://imdb-api.com/en/API/YoutubeTrailer/k_8ao1gjen/${movieId}`,
-        options
-      )
-      return response.data
-    } catch (err) {
-      return null
-    }
-  },
+  }
 })
 
 export function getMoviePosterUrl(Poster: string) {

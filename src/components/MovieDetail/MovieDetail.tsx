@@ -7,7 +7,7 @@ import { MovieDatabaseContext } from '../../context/MovieDatabaseContext'
 import { getMoviePosterUrl } from '../../data/api'
 import type { Movie } from '../../data/dataTypes'
 import { DetailHeader } from '../Header/DetailHeader'
-import { MovieTrailerComponent, OpenTrailerButton } from './MovieTrailer'
+// import { MovieTrailerComponent, OpenTrailerButton } from './MovieTrailer'
 import { RelatedMovies } from './RelatedMovies'
 import {
   REPORT_LINK,
@@ -81,10 +81,10 @@ const RenderDetail = ({ movie, movieID }: RenderDetailProps) => {
               </a>
             </div>
             <div className="text-details">
-              {!trailerActive && (
+              {/* {!trailerActive && (
                 <OpenTrailerButton openTrailer={triggerOpenTrailerState} />
               )}
-              {trailerActive && <MovieTrailerComponent movieID={imdbID} />}
+              {trailerActive && <MovieTrailerComponent movieID={imdbID} />} */}
               <div className="rating">
                 <FiStar />
                 <span style={{ marginLeft: `8px` }}>
