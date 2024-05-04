@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState, useRef } from 'react'
+import { useContext, useEffect, useRef } from 'react'
 import './MovieDetail.scss'
 import { FiStar } from 'react-icons/fi'
 import { useParams } from 'react-router-dom'
@@ -26,7 +26,6 @@ interface RenderDetailProps {
 }
 
 const RenderDetail = ({ movie, movieID }: RenderDetailProps) => {
-  const [trailerActive, setTrailerActive] = useState(false)
   const movieTitleRef = useRef<HTMLHeadingElement | null>(null)
   const {
     imdbID,
@@ -40,14 +39,6 @@ const RenderDetail = ({ movie, movieID }: RenderDetailProps) => {
     imdbRating,
     Runtime,
   } = movie
-
-  useEffect(() => {
-    setTrailerActive(false)
-  }, [movieID])
-
-  const triggerOpenTrailerState = () => {
-    setTrailerActive(!trailerActive)
-  }
 
   useEffect(() => {
     if (movieID && movieTitleRef.current) {

@@ -24,7 +24,7 @@ export const createApiClient = (): ApiClient => ({
     } catch (err) {
       return null
     }
-  }
+  },
 })
 
 export function getMoviePosterUrl(Poster: string) {
