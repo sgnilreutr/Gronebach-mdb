@@ -37,6 +37,7 @@ export function RelatedMovies({ genre, activeMovie }: RelatedMoviesProps) {
         setRelatedMovies(tenRandomMovies(filteredMovies))
       }
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error(error, 'No movies loaded')
     }
   }, [genre, allMovies])
