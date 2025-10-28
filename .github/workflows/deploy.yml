@@ -63,3 +63,16 @@ jobs:
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
           REMOTE_PORT: ${{ secrets.REMOTE_PORT }}
           TARGET: '/var/www/gronebach'
+    
+      - name: Fix file permissions for nginx
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.REMOTE_HOST }}
+          username: ${{ secrets.REMOTE_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.REMOTE_PORT }}
+          script: |
+            echo "🔧 Setting correct ownership and permissions for nginx..."
+            sudo chown -R deploy:www-data /var/www/gronebach
+            sudo chmod -R 755 /var/www/gronebach
+            echo "✅ Permissions updated successfully"
