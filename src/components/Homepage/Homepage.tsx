@@ -18,12 +18,7 @@ export default function Homepage() {
       {allMovies ? (
         <div>
           {MOVIE_CATEGORIES.map(({ name, filter }) => (
-            <HomepageCategory
-              categoryFilter={filter}
-              categoryName={name}
-              key={name}
-              movies={allMovies}
-            />
+            <HomepageCategory categoryFilter={filter} categoryName={name} key={name} movies={allMovies} />
           ))}
         </div>
       ) : (

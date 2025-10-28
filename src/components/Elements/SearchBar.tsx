@@ -16,16 +16,16 @@ export function SearchBar() {
   }
 
   return (
-    <form className="search-bar" id="search-bar" onSubmit={handleSubmit}>
+    <form className='search-bar' id='search-bar' onSubmit={handleSubmit}>
       <FiSearch style={{ stroke: '#8d8d8d', marginRight: '6px' }} />
       <input
         autoFocus
-        className="placeholder-text ph-size"
-        id="searchInput"
+        className='placeholder-text ph-size'
+        id='searchInput'
         onChange={(e) => onSearch(e.target.value)}
-        placeholder="Titels, genres, personen"
+        placeholder='Titels, genres, personen'
         style={{ backgroundColor: '#fff' }}
-        type="search"
+        type='search'
         value={searchTerm}
       />
     </form>

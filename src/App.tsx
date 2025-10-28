@@ -5,7 +5,7 @@ import { RoutesHandeler } from './routes'
 export function App() {
   return (
     <MovieProvider>
-      <div className="App" id="App">
+      <div className='App' id='App'>
         <RoutesHandeler />
       </div>
     </MovieProvider>

@@ -12,10 +12,7 @@ type Production =
   | 'TV-MA'
   | 'TV-PG'
 
-export type Source =
-  | 'Internet Movie Database'
-  | 'Metacritic'
-  | 'Rotten Tomatoes'
+export type Source = 'Internet Movie Database' | 'Metacritic' | 'Rotten Tomatoes'
 
 export interface IRating {
   Source: Source

@@ -1,12 +1,16 @@
 import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import react from '@vitejs/plugin-react-swc'
+import tailwindcss from '@tailwindcss/vite'
 import viteTsconfigPaths from 'vite-tsconfig-paths'
 
-// https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), viteTsconfigPaths()],
+  plugins: [tailwindcss(), react(), viteTsconfigPaths()],
   server: {
     host: '0.0.0.0',
     port: 3000,
+  },
+  build: {
+    target: 'esnext',
+    sourcemap: true,
   },
 })

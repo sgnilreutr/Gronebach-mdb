@@ -30,9 +30,7 @@ export function RelatedMovies({ genre, activeMovie }: RelatedMoviesProps) {
 
       if (allMovies.length > 0) {
         const filteredMovies = allMovies.filter(
-          ({ imdbID, Genre }) =>
-            imdbID !== activeMovie &&
-            Genre.toLowerCase().includes(firstListedGenre.toLowerCase())
+          ({ imdbID, Genre }) => imdbID !== activeMovie && Genre.toLowerCase().includes(firstListedGenre.toLowerCase())
         )
         setRelatedMovies(tenRandomMovies(filteredMovies))
       }
@@ -42,9 +40,5 @@ export function RelatedMovies({ genre, activeMovie }: RelatedMoviesProps) {
     }
   }, [genre, allMovies])
 
-  return (
-    <div>
-      {relatedMovies.length > 0 && <MovieList movies={relatedMovies} />}
-    </div>
-  )
+  return <div>{relatedMovies.length > 0 && <MovieList movies={relatedMovies} />}</div>
 }

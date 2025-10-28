@@ -1,7 +1,6 @@
 export const LOADING = 'Aan het laden...'
 export const NO_ITEMS = 'Geen items gevonden.'
-export const COULD_NOT_LOAD =
-  'Content kon niet geladen worden. Probeer het later nog een keer.'
+export const COULD_NOT_LOAD = 'Content kon niet geladen worden. Probeer het later nog een keer.'
 export const LINK_MISSING_TITLE = 'Controleer de ontbrekende titels'
 
 export const TABLET_MAX_WIDTH = 810
@@ -18,9 +17,7 @@ export const MOVIE_CATEGORIES = [
 
 export const ALL_CATEGORY_VALUE = 'all' as const
 
-export type MovieCategoryOptions =
-  | (typeof MOVIE_CATEGORIES)[number]['filter']
-  | typeof ALL_CATEGORY_VALUE
+export type MovieCategoryOptions = (typeof MOVIE_CATEGORIES)[number]['filter'] | typeof ALL_CATEGORY_VALUE
 
 export const GENERIC_LOADING_STATES = {
   idle: 'idle',
@@ -29,5 +26,4 @@ export const GENERIC_LOADING_STATES = {
   error: 'error',
 } as const
 
-export type GenericLoadingState =
-  (typeof GENERIC_LOADING_STATES)[keyof typeof GENERIC_LOADING_STATES]
+export type GenericLoadingState = (typeof GENERIC_LOADING_STATES)[keyof typeof GENERIC_LOADING_STATES]

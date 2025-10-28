@@ -26,13 +26,13 @@ export default function MissingTitles() {
       <div>
         <h1>
           {MISSING_HEADER}{' '}
-          <span role="img" aria-label="magnifying_glass_tilted_right">
+          <span role='img' aria-label='magnifying_glass_tilted_right'>
             🔍
           </span>
         </h1>
         <p>{MISSING_SUB}</p>
         {MISSING_TITLES.map((title) => (
-          <li key={title.substr(0, 4)} className="missing_title">
+          <li key={title.substr(0, 4)} className='missing_title'>
             {title}
           </li>
         ))}

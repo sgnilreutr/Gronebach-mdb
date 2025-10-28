@@ -16,9 +16,9 @@ export function SeeAllButton() {
   }
 
   return (
-    <button onClick={openCategory} type="button" className="search" id="all">
+    <button onClick={openCategory} type='button' className='search' id='all'>
       <FiGrid size={24} />
-      <p className="search-label">{ALL}</p>
+      <p className='search-label'>{ALL}</p>
     </button>
   )
 }

@@ -22,10 +22,7 @@ export function useColorScheme() {
     }
   }, [])
 
-  const value = useMemo(
-    () => (isDark === undefined ? !!systemPrefersDark : isDark),
-    [isDark, systemPrefersDark]
-  )
+  const value = useMemo(() => (isDark === undefined ? !!systemPrefersDark : isDark), [isDark, systemPrefersDark])
 
   useEffect(() => {
     if (value) {

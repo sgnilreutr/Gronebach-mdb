@@ -17,14 +17,13 @@ export function BackButton() {
   }
   return (
     <button
-      className="back-button"
+      className='back-button'
       onClick={navigateBack}
       onFocus={preLoadHomepage}
       onMouseOver={preLoadHomepage}
-      type="button"
-    >
+      type='button'>
       <FiArrowLeft style={{ stroke: '#8d8d8d' }} size={24} />
-      <div className="back" id="back">
+      <div className='back' id='back'>
         <span>{BACK_TO_HOME}</span>
       </div>
     </button>

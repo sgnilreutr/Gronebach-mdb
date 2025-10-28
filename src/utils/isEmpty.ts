@@ -1,14 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/ban-types */
 
-const isSymbol = (value: any): value is symbol =>
-  !!value && value.constructor === Symbol
+const isSymbol = (value: any): value is symbol => !!value && value.constructor === Symbol
 
-const isFunction = (value: any): value is Function =>
-  !!(value?.constructor && value.call && value.apply)
+const isFunction = (value: any): value is Function => !!(value?.constructor && value.call && value.apply)
 
-const isDate = (value: any): value is Date =>
-  Object.prototype.toString.call(value) === '[object Date]'
+const isDate = (value: any): value is Date => Object.prototype.toString.call(value) === '[object Date]'
 
 const isNumber = (value: any): value is number => {
   try {

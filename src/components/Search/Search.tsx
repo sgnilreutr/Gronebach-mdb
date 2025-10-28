@@ -7,11 +7,7 @@ import { CloseButton } from '../Elements/CloseButton'
 import { SearchBar } from '../Elements/SearchBar'
 import { MovieListItem } from '../MovieOverview/MovieListItem'
 import type { Movie } from '../../data/dataTypes'
-import {
-  NO_ITEMS,
-  LINK_MISSING_TITLE,
-  LOADING,
-} from '../../constants/globalConstants'
+import { NO_ITEMS, LINK_MISSING_TITLE, LOADING } from '../../constants/globalConstants'
 import { useDebounce } from '../../hooks/useDebounce'
 
 const START_SEARCHING = 'Start met zoeken'
@@ -21,24 +17,10 @@ interface RenderSearchMoviesProps {
   searchTerm: string
 }
 
-const RenderSearchMovies = ({
-  movies,
-  searchTerm,
-}: RenderSearchMoviesProps) => {
+function RenderSearchMovies({ movies, searchTerm }: RenderSearchMoviesProps) {
   const debouncedSearchTerm = useDebounce(searchTerm, 500)
   const filteredMovies = movies.filter(
-    ({
-      Title,
-      Year,
-      Type,
-      Runtime,
-      Genre,
-      Director,
-      Actors,
-      Country,
-      Plot,
-      imdbRating,
-    }) =>
+    ({ Title, Year, Type, Runtime, Genre, Director, Actors, Country, Plot, imdbRating }) =>
       (
         Title.toLowerCase() +
         Year +
@@ -67,19 +49,16 @@ const RenderSearchMovies = ({
           />
         ))
       ) : (
-        <div className="search-no-results">
+        <div className='search-no-results'>
           <p>{NO_ITEMS}</p>
-          <Link to="/missing">{LINK_MISSING_TITLE}</Link>
+          <Link to='/missing'>{LINK_MISSING_TITLE}</Link>
         </div>
       ),
     [filteredMovies]
   )
 
   return (
-    <div
-      className="movie-grid"
-      key={filteredMovies.length + debouncedSearchTerm}
-    >
+    <div className='movie-grid' key={filteredMovies.length + debouncedSearchTerm}>
       {memoizedFilteredMovies}
     </div>
   )
@@ -90,17 +69,13 @@ export default function Search() {
 
   return (
     <div>
-      <div className="search-options">
+      <div className='search-options'>
         <SearchBar />
         <CloseButton />
       </div>
       {allMovies.length === 0 ? <h2>{LOADING}</h2> : null}
-      {allMovies.length > 0 && searchTerm ? (
-        <RenderSearchMovies movies={allMovies} searchTerm={searchTerm} />
-      ) : null}
-      {allMovies.length > 0 && !searchTerm ? (
-        <h2 className="search-page-placeholder">{START_SEARCHING}</h2>
-      ) : null}
+      {allMovies.length > 0 && searchTerm ? <RenderSearchMovies movies={allMovies} searchTerm={searchTerm} /> : null}
+      {allMovies.length > 0 && !searchTerm ? <h2 className='search-page-placeholder'>{START_SEARCHING}</h2> : null}
     </div>
   )
 }

@@ -6,13 +6,13 @@ import { HeaderOptions } from './HeaderOptions'
 
 export function Overviewheader() {
   return (
-    <div className="overviewheader-container">
-      <div className="hide_on_mobile">
+    <div className='overviewheader-container'>
+      <div className='hide_on_mobile'>
         <HeaderOptions />
       </div>
-      <div className="placeholder" />
+      <div className='placeholder' />
       <RandomButton />
-      <div className="options-container">
+      <div className='options-container'>
         <SeeAllButton />
         <Searchbutton />
       </div>

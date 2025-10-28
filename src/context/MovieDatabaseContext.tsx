@@ -1,17 +1,9 @@
-import {
-  Dispatch,
-  ReactNode,
-  SetStateAction,
-  createContext,
-  useEffect,
-  useMemo,
-  useState,
-} from 'react'
+import { type Dispatch, type ReactNode, type SetStateAction, createContext, useEffect, useMemo, useState } from 'react'
 
 import type { Movie } from '../data/dataTypes'
 import { createApiClient } from '../data/api'
-import { MovieCategoryOptions } from '../constants/globalConstants'
-import { CategoryOptions } from '../components/Header/HeaderOptions'
+import type { MovieCategoryOptions } from '../constants/globalConstants'
+import type { CategoryOptions } from '../components/Header/HeaderOptions'
 
 interface MovieDatabaseContextHandelers {
   setActiveCategory: Dispatch<SetStateAction<CategoryOptions>>
@@ -28,8 +20,7 @@ interface MovieDatabaseContextData {
   searchTerm: string
 }
 
-export type MovieDatabaseContextProps = MovieDatabaseContextData &
-  MovieDatabaseContextHandelers
+export type MovieDatabaseContextProps = MovieDatabaseContextData & MovieDatabaseContextHandelers
 
 export const defaultState: MovieDatabaseContextData = {
   activeCategory: '',
@@ -38,27 +29,21 @@ export const defaultState: MovieDatabaseContextData = {
   searchTerm: '',
 }
 
-export const MovieDatabaseContext = createContext(
-  {} as MovieDatabaseContextProps
-)
+export const MovieDatabaseContext = createContext({} as MovieDatabaseContextProps)
 
 interface MovieProviderProps {
   children: ReactNode
 }
 
 export function MovieProvider({ children }: MovieProviderProps) {
-  const [allMovies, setAllMovies] = useState<
-    MovieDatabaseContextProps['allMovies']
-  >(defaultState.allMovies)
-  const [activeCategory, setActiveCategory] = useState<
-    MovieDatabaseContextProps['activeCategory']
-  >(defaultState.activeCategory)
-  const [overviewQuery, setOverviewQuery] = useState<
-    MovieDatabaseContextProps['overviewQuery']
-  >(defaultState.overviewQuery)
-  const [searchTerm, setSearchTerm] = useState<
-    MovieDatabaseContextProps['searchTerm']
-  >(defaultState.searchTerm)
+  const [allMovies, setAllMovies] = useState<MovieDatabaseContextProps['allMovies']>(defaultState.allMovies)
+  const [activeCategory, setActiveCategory] = useState<MovieDatabaseContextProps['activeCategory']>(
+    defaultState.activeCategory
+  )
+  const [overviewQuery, setOverviewQuery] = useState<MovieDatabaseContextProps['overviewQuery']>(
+    defaultState.overviewQuery
+  )
+  const [searchTerm, setSearchTerm] = useState<MovieDatabaseContextProps['searchTerm']>(defaultState.searchTerm)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -85,9 +70,5 @@ export function MovieProvider({ children }: MovieProviderProps) {
     [activeCategory, allMovies, overviewQuery, searchTerm]
   )
 
-  return (
-    <MovieDatabaseContext.Provider value={contextValue}>
-      {children}
-    </MovieDatabaseContext.Provider>
-  )
+  return <MovieDatabaseContext.Provider value={contextValue}>{children}</MovieDatabaseContext.Provider>
 }
