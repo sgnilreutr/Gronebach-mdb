@@ -16,9 +16,7 @@ interface MovieListItemProps {
 
 const urlRegex: RegExp = /^(?:\w+:)?\/\/([^\s.]+\.\S{2}|localhost[:?\d]*)\S*$/
 
-export function MovieListItem({
-  movieInfo: { imdbID, Poster, Title },
-}: MovieListItemProps) {
+export function MovieListItem({ movieInfo: { imdbID, Poster, Title } }: MovieListItemProps) {
   const isTabletOrMobile = useMediaQuery({ maxWidth: TABLET_MAX_WIDTH })
   const [itemHeight, setItemHeight] = useState(0)
   const [itemWidth, setItemWidth] = useState(0)
@@ -32,16 +30,14 @@ export function MovieListItem({
   const imageSrc = useMemo(() => getMoviePosterUrl(Poster), [Poster])
 
   return (
-    <Link to={`/item/${imdbID}/`} className="item-link">
-      <div className="item">
-        <div
-          className={`${urlRegex.test(imageSrc) ? undefined : 'image_placeholder'} item-img`}
-        >
+    <Link to={`/item/${imdbID}/`} className='item-link'>
+      <div className='item'>
+        <div className={`${urlRegex.test(imageSrc) ? undefined : 'image_placeholder'} item-img`}>
           {userHasInternetConnection ? (
             <LazyLoadImage
               alt={Title}
-              className="image"
-              effect="blur"
+              className='image'
+              effect='blur'
               height={itemHeight}
               placeholderSrc={imageFallback}
               src={imageSrc}
@@ -51,9 +47,9 @@ export function MovieListItem({
             <span>{Title}</span>
           )}
         </div>
-        <div className="title">
-          <div className="text-truncate">
-            <span className="no-style">{Title}</span>
+        <div className='title'>
+          <div className='text-truncate'>
+            <span className='no-style'>{Title}</span>
           </div>
         </div>
       </div>

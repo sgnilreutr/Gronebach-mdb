@@ -14,17 +14,14 @@ export function HeaderOptions() {
   const { activeCategory, setActiveCategory } = useContext(MovieDatabaseContext)
 
   return (
-    <div className="headerOptions-container">
+    <div className='headerOptions-container'>
       {MENU_OPTIONS.map(({ name, category }) => (
         <div
-          aria-hidden="true"
+          aria-hidden='true'
           id={name}
           key={name}
           onClick={() => setActiveCategory(category)}
-          className={`option ${
-            activeCategory === category && 'option--selected'
-          }`}
-        >
+          className={`option ${activeCategory === category && 'option--selected'}`}>
           {name}
         </div>
       ))}

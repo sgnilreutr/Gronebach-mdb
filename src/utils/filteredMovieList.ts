@@ -8,20 +8,12 @@ interface IFilteredList {
 export function filteredList({ activeFilter, movies }: IFilteredList) {
   switch (activeFilter) {
     case 'kids':
-      return Array.isArray(movies)
-        ? movies.filter(({ Rated }) => Rated === 'PG' && 'G')
-        : []
+      return Array.isArray(movies) ? movies.filter(({ Rated }) => Rated === 'PG' && 'G') : []
     case 'top':
-      return Array.isArray(movies)
-        ? movies.filter(({ imdbRating }) => parseInt(imdbRating, 10) >= 8.0)
-        : []
+      return Array.isArray(movies) ? movies.filter(({ imdbRating }) => parseInt(imdbRating, 10) >= 8.0) : []
     case 'all':
       return movies
     default:
-      return Array.isArray(movies)
-        ? movies.filter(({ Genre }) =>
-            Genre.toLowerCase().includes(`${activeFilter}`)
-          )
-        : []
+      return Array.isArray(movies) ? movies.filter(({ Genre }) => Genre.toLowerCase().includes(`${activeFilter}`)) : []
   }
 }

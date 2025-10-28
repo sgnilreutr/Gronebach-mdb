@@ -17,9 +17,7 @@ export type ApiClient = {
 export const createApiClient = (): ApiClient => ({
   getMovies: async () => {
     try {
-      const response = await axios.get(
-        '/all_movies_20230318_11-52-08-filtered.json'
-      )
+      const response = await axios.get('/all_movies_20230318_11-52-08-filtered.json')
       return response.data
     } catch (err) {
       return null

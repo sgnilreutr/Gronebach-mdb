@@ -16,23 +16,17 @@ import {
 const MAX_TIME = 1000
 
 const LOADERS = [
-  <CircleSmallLoader size={40} />,
-  <CircleMediumLoader size={40} />,
-  <CircleLargeLoader size={40} />,
-  <BarsDownLoader size={40} />,
-  <BarsUpDownLoader size={40} />,
-  <BarsPulseSizeLoader size={40} />,
-  <BarsPulseDarkLoader size={40} />,
-  <BarsPulseSizeDarkLoader size={40} />,
+  <CircleSmallLoader size={40} key='cirleSmallLoader' />,
+  <CircleMediumLoader size={40} key='cirleMediumLoader' />,
+  <CircleLargeLoader size={40} key='cirleLargeLoader' />,
+  <BarsDownLoader size={40} key='barsDownLoader' />,
+  <BarsUpDownLoader size={40} key='barsUpDownLoader' />,
+  <BarsPulseSizeLoader size={40} key='barsPulseSizeLoader' />,
+  <BarsPulseDarkLoader size={40} key='barsPulseDarkLoader' />,
+  <BarsPulseSizeDarkLoader size={40} key='barsPulseSizeDarkLoader' />,
 ]
 
-const LOADERS_TEXT = [
-  'Het is...',
-  'Deze is goed!',
-  'Veel plezier',
-  '1..2...3...',
-  '<3 Serendipiteit',
-]
+const LOADERS_TEXT = ['Het is...', 'Deze is goed!', 'Veel plezier', '1..2...3...', '<3 Serendipiteit']
 
 const randomText = () => {
   const randomNumber = Math.floor(Math.random() * (LOADERS_TEXT.length - 1)) + 1
@@ -43,7 +37,7 @@ const randomLoader = () => {
   return LOADERS[randomNumber]
 }
 
-const RandomMovieIntro = () => {
+export default function RandomMovieIntro() {
   const { movieID } = useParams()
   const navigate = useNavigate()
 
@@ -57,13 +51,11 @@ const RandomMovieIntro = () => {
   }, [])
 
   return (
-    <div className="wrapper">
-      <div className="loader_container">
+    <div className='wrapper'>
+      <div className='loader_container'>
         <h1>{randomText()}</h1>
         {randomLoader()}
       </div>
     </div>
   )
 }
-
-export default RandomMovieIntro

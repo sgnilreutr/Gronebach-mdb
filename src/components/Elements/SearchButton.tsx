@@ -17,15 +17,14 @@ export function Searchbutton() {
 
   return (
     <button
-      className="search"
-      id="search"
+      className='search'
+      id='search'
       onClick={openSearch}
       onFocus={preLoadSearch}
       onMouseOver={preLoadSearch}
-      type="button"
-    >
+      type='button'>
       <FiSearch size={24} />
-      <p className="search-label">{SEARCH}</p>
+      <p className='search-label'>{SEARCH}</p>
     </button>
   )
 }

@@ -29,14 +29,13 @@ export function RandomButton() {
   }
 
   return (
-    <div className="randombutton_container">
+    <div className='randombutton_container'>
       <button
-        className="random"
+        className='random'
         onClick={() => fetchRandomMovie()}
         onFocus={preLoadRandomIntro}
         onMouseOver={preLoadRandomIntro}
-        type="button"
-      >
+        type='button'>
         {BUTTON_TEXT}
       </button>
     </div>

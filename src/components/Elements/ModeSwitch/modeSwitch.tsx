@@ -15,10 +15,10 @@ export function ModeSwitch() {
         checked={isDark}
         onChange={(event) => setIsDark(event.target.checked)}
         icons={{
-          checked: <img className="mode_switch_img" src={Moon} alt="Moon" />,
-          unchecked: <img className="mode_switch_img" src={Sun} alt="Sun" />,
+          checked: <img className='mode_switch_img' src={Moon} alt='Moon' />,
+          unchecked: <img className='mode_switch_img' src={Sun} alt='Sun' />,
         }}
-        aria-label="Dark mode"
+        aria-label='Dark mode'
       />
     </div>
   )

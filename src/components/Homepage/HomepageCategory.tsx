@@ -9,9 +9,9 @@ import { MovieList } from '../MovieOverview/MovieList'
 import {
   COULD_NOT_LOAD,
   GENERIC_LOADING_STATES,
-  GenericLoadingState,
+  type GenericLoadingState,
   LOADING,
-  MovieCategoryOptions,
+  type MovieCategoryOptions,
 } from '../../constants/globalConstants'
 import { MovieDatabaseContext } from '../../context/MovieDatabaseContext'
 
@@ -23,16 +23,10 @@ interface HomepageCategoryProps {
   movies: Array<Movie>
 }
 
-export function HomepageCategory({
-  categoryFilter,
-  categoryName,
-  movies,
-}: HomepageCategoryProps) {
+export function HomepageCategory({ categoryFilter, categoryName, movies }: HomepageCategoryProps) {
   const navigate = useNavigate()
   const [filteredMovies, setFilteredMovies] = useState<Array<Movie>>([])
-  const [loadingState, setLoadingState] = useState<GenericLoadingState>(
-    GENERIC_LOADING_STATES.idle
-  )
+  const [loadingState, setLoadingState] = useState<GenericLoadingState>(GENERIC_LOADING_STATES.idle)
   const { activeCategory, setOverviewQuery } = useContext(MovieDatabaseContext)
 
   const openCategory = (value: MovieCategoryOptions) => {
@@ -48,9 +42,7 @@ export function HomepageCategory({
 
     setLoadingState(GENERIC_LOADING_STATES.loading)
     if (Array.isArray(movies)) {
-      const moviesFiltered = movies.filter(({ Type }) =>
-        Type.toLowerCase().includes(activeCategory.toLowerCase())
-      )
+      const moviesFiltered = movies.filter(({ Type }) => Type.toLowerCase().includes(activeCategory.toLowerCase()))
 
       setFilteredMovies(moviesFiltered)
       setLoadingState(GENERIC_LOADING_STATES.loaded)
@@ -85,17 +77,11 @@ export function HomepageCategory({
 
   return (
     <div>
-      <div
-        onClick={() => openCategory(categoryFilter)}
-        className="category-header"
-        aria-hidden="true"
-      >
-        <h2 className="category-header__title">{categoryName}</h2>
-        <FiChevronRight className="category-header__icon" size={18} />
-        <div className="category-header__subtitle">
-          <span className="category-header__subtitle-text">
-            {CATEGORY_CTA_TEXT}
-          </span>
+      <div onClick={() => openCategory(categoryFilter)} className='category-header' aria-hidden='true'>
+        <h2 className='category-header__title'>{categoryName}</h2>
+        <FiChevronRight className='category-header__icon' size={18} />
+        <div className='category-header__subtitle'>
+          <span className='category-header__subtitle-text'>{CATEGORY_CTA_TEXT}</span>
         </div>
       </div>
       {renderContent()}

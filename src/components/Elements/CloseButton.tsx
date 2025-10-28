@@ -9,13 +9,8 @@ export function CloseButton() {
   }
 
   return (
-    <div className="close-button-container">
-      <button
-        onClick={returnPage}
-        className="close-button"
-        type="button"
-        id="close-button"
-      >
+    <div className='close-button-container'>
+      <button onClick={returnPage} className='close-button' type='button' id='close-button'>
         <FiX size={24} />
       </button>
     </div>
