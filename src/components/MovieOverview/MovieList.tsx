@@ -1,19 +1,19 @@
 import { type ReactNode, useEffect, useState } from 'react'
 import './MovieList.scss'
-import { useMediaQuery } from 'react-responsive'
 import { Link } from 'react-router-dom'
 
 import type { Movie } from '../../data/dataTypes'
 import { MovieListItem } from './MovieListItem'
-import { TABLET_MAX_WIDTH, NO_ITEMS, LINK_MISSING_TITLE, LOADING } from '../../constants/globalConstants'
+import { NO_ITEMS, LINK_MISSING_TITLE, LOADING } from '../../constants/globalConstants'
 import { ScrollMenu } from './ScrollMenu'
+import { useBreakpoint } from '../../hooks/useBreakPoint'
 
 interface MovieListProps {
   movies: Array<Movie>
 }
 
 export function MovieList({ movies }: MovieListProps) {
-  const isTabletOrMobile = useMediaQuery({ maxWidth: TABLET_MAX_WIDTH })
+  const isTabletOrMobile = useBreakpoint('md')
   const [menuItems, setMenuItems] = useState<Array<ReactNode>>([])
 
   useEffect(() => {

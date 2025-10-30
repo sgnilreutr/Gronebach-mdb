@@ -1,7 +1,6 @@
-import './SearchButton.scss'
 import { FiSearch } from 'react-icons/fi'
-import { useNavigate } from 'react-router-dom'
 import { ROUTES } from '../../constants/routeConstants'
+import { Link } from 'react-router-dom'
 
 const SEARCH = 'Zoeken'
 
@@ -10,21 +9,12 @@ const preLoadSearch = () => {
 }
 
 export function Searchbutton() {
-  const navigate = useNavigate()
-  const openSearch = () => {
-    navigate(ROUTES.search)
-  }
-
   return (
-    <button
-      className='search'
-      id='search'
-      onClick={openSearch}
-      onFocus={preLoadSearch}
-      onMouseOver={preLoadSearch}
-      type='button'>
-      <FiSearch size={24} />
-      <p className='search-label'>{SEARCH}</p>
-    </button>
+    <Link to={{ pathname: ROUTES.search }} onFocus={preLoadSearch} onMouseOver={preLoadSearch} className="cursor-pointer">
+      <button className='flex flex-row gap-2 md:mx-0 ml-2 mr-4' type='button'>
+        <FiSearch size={24} />
+        <p>{SEARCH}</p>
+      </button>
+    </Link>
   )
 }

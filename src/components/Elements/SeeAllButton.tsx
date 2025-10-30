@@ -1,5 +1,5 @@
 import { FiGrid } from 'react-icons/fi'
-import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useContext } from 'react'
 import { ALL_CATEGORY_VALUE } from '../../constants/globalConstants'
 import { MovieDatabaseContext } from '../../context/MovieDatabaseContext'
@@ -7,18 +7,14 @@ import { MovieDatabaseContext } from '../../context/MovieDatabaseContext'
 const ALL = 'Alles'
 
 export function SeeAllButton() {
-  const navigate = useNavigate()
   const { setOverviewQuery } = useContext(MovieDatabaseContext)
-
-  const openCategory = () => {
-    setOverviewQuery(ALL_CATEGORY_VALUE)
-    navigate(`/overview/${ALL_CATEGORY_VALUE}`)
-  }
-
+  
   return (
-    <button onClick={openCategory} type='button' className='search' id='all'>
+    <Link to={{ pathname: `/overview/${ALL_CATEGORY_VALUE}` }} onClick={() => setOverviewQuery(ALL_CATEGORY_VALUE)} className="cursor-pointer">
+    <button className='flex flex-row gap-2 md:mx-0 ml-2 mr-4' type='button'>
       <FiGrid size={24} />
-      <p className='search-label'>{ALL}</p>
+      <p>{ALL}</p>
     </button>
+    </Link>
   )
 }

@@ -1,8 +1,7 @@
 import { Link } from 'react-router-dom'
-
 import './TitleHeader.scss'
 import { ROUTES } from '../../constants/routeConstants'
-import { ModeSwitch } from '../Elements/ModeSwitch/modeSwitch'
+import { SwitchDarkMode } from '../Elements/ModeSwitch/SwitchDarkMode'
 
 const GRONEBACH = 'Grönebach'
 const MOVIE_DATABASE = 'Movie Database'
@@ -12,7 +11,6 @@ const EMOJI = (
   </span>
 )
 const SMALL_TITLE = 'GMDb '
-const ROBBERT_TUERLINGS = 'BY ROBBERT TUERLINGS'
 
 export function TitleHeader() {
   return (
@@ -30,11 +28,8 @@ export function TitleHeader() {
             {EMOJI}
           </div>
         </Link>
-        <a id='personal-link' className='personal-link' href='https://github.com/sgnilreutr'>
-          {ROBBERT_TUERLINGS}
-        </a>
       </div>
-      <ModeSwitch />
+      <SwitchDarkMode />
     </div>
   )
 }

@@ -1,6 +1,5 @@
 import { FiArrowLeft } from 'react-icons/fi'
 import { useNavigate } from 'react-router-dom'
-import './BackButton.scss'
 import { ROUTES } from '../../constants/routeConstants'
 
 const BACK_TO_HOME = 'Terug naar homepage'
@@ -17,15 +16,13 @@ export function BackButton() {
   }
   return (
     <button
-      className='back-button'
+      className='flex flex-row items-center justify-center cursor-pointer bg-transparent border-none'
       onClick={navigateBack}
       onFocus={preLoadHomepage}
       onMouseOver={preLoadHomepage}
       type='button'>
       <FiArrowLeft style={{ stroke: '#8d8d8d' }} size={24} />
-      <div className='back' id='back'>
-        <span>{BACK_TO_HOME}</span>
-      </div>
+      <span className='whitespace-nowrap'>{BACK_TO_HOME}</span>
     </button>
   )
 }

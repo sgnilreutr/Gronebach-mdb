@@ -1,14 +1,13 @@
 import { useEffect, useMemo, useState } from 'react'
 import './MovieListItem.scss'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
-import { useMediaQuery } from 'react-responsive'
 import 'react-lazy-load-image-component/src/effects/blur.css'
 import { Link } from 'react-router-dom'
 import imageFallback from '../../img/placeholder-image.png'
 
 import { getMoviePosterUrl } from '../../data/api'
 import type { Movie } from '../../data/dataTypes'
-import { TABLET_MAX_WIDTH } from '../../constants/globalConstants'
+import { useBreakpoint } from '../../hooks/useBreakPoint'
 
 interface MovieListItemProps {
   movieInfo: Pick<Movie, 'Title' | 'imdbID' | 'Poster'>
@@ -17,7 +16,7 @@ interface MovieListItemProps {
 const urlRegex: RegExp = /^(?:\w+:)?\/\/([^\s.]+\.\S{2}|localhost[:?\d]*)\S*$/
 
 export function MovieListItem({ movieInfo: { imdbID, Poster, Title } }: MovieListItemProps) {
-  const isTabletOrMobile = useMediaQuery({ maxWidth: TABLET_MAX_WIDTH })
+  const isTabletOrMobile = useBreakpoint('md')
   const [itemHeight, setItemHeight] = useState(0)
   const [itemWidth, setItemWidth] = useState(0)
 
@@ -36,7 +35,7 @@ export function MovieListItem({ movieInfo: { imdbID, Poster, Title } }: MovieLis
           {userHasInternetConnection ? (
             <LazyLoadImage
               alt={Title}
-              className='image'
+              className='rounded'
               effect='blur'
               height={itemHeight}
               placeholderSrc={imageFallback}
