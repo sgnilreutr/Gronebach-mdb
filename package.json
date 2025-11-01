@@ -3,6 +3,9 @@
 	"version": "2.0.0",
 	"type": "module",
 	"homepage": "/",
+	"engines": {
+		"node": ">=22.0.0"
+	},
 	"dependencies": {
 		"@radix-ui/react-switch": "^1.2.6",
 		"@tailwindcss/vite": "4.1.16",
