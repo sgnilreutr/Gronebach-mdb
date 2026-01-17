@@ -6,11 +6,11 @@ on:
   workflow_dispatch:
     inputs:
       reason:
-        description: 'Deployment reason'
+        description: "Deployment reason"
         required: false
-        default: 'Manual deployment'
+        default: "Manual deployment"
       timestamp:
-        description: 'Event timestamp'
+        description: "Event timestamp"
         required: false
 
 jobs:
@@ -57,13 +57,17 @@ jobs:
         uses: easingthemes/ssh-deploy@v5.1.0
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          ARGS: '-avzr --delete'
-          SOURCE: 'dist/'
+          ARGS: "-avzr --delete"
+          SOURCE: "dist/"
           REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
           REMOTE_PORT: ${{ secrets.REMOTE_PORT }}
-          TARGET: '/var/www/gronebach'
-    
+          TARGET: "/var/www/gronebach"
+
+  fix-file-permissions:
+    runs-on: ubuntu-latest
+    needs: build-and-deploy
+    steps:
       - name: Fix file permissions for nginx
         uses: appleboy/ssh-action@master
         with:
@@ -72,7 +76,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.REMOTE_PORT }}
           script: |
-            echo "🔧 Setting correct ownership and permissions for nginx..."
+            echo "Setting correct ownership and permissions for nginx..."
             sudo chown -R deploy:www-data /var/www/gronebach
             sudo chmod -R 755 /var/www/gronebach
-            echo "✅ Permissions updated successfully"
+            echo "Permissions updated successfully"
