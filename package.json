@@ -6,22 +6,6 @@
 	"engines": {
 		"node": ">=22.0.0"
 	},
-	"dependencies": {
-		"@radix-ui/react-switch": "^1.2.6",
-		"@tailwindcss/vite": "4.1.16",
-		"axios": "1.13.1",
-		"react": "19.2.0",
-		"react-dom": "19.2.0",
-		"react-icons": "5.5.0",
-		"react-lazy-load-image-component": "1.6.3",
-		"react-responsive": "10.0.1",
-		"react-router": "7.9.5",
-		"react-router-dom": "7.9.5",
-		"sass": "1.93.3",
-		"tailwindcss": "4.1.16",
-		"vite": "7.1.12",
-		"vite-tsconfig-paths": "5.1.4"
-	},
 	"scripts": {
 		"build": "CI=false && tsc && vite build",
 		"format": "biome format --write",
@@ -29,16 +13,30 @@
 		"dev": "vite",
 		"typecheck": "tsc --incremental --noEmit"
 	},
+	"dependencies": {
+		"@radix-ui/react-switch": "^1.2.6",
+		"@tailwindcss/vite": "4.1.18",
+		"axios": "1.13.2",
+		"react": "19.2.3",
+		"react-dom": "19.2.3",
+		"react-icons": "5.5.0",
+		"react-lazy-load-image-component": "1.6.3",
+		"react-responsive": "10.0.1",
+		"react-router": "7.12.0",
+		"react-router-dom": "7.12.0",
+		"tailwindcss": "4.1.18",
+		"vite": "7.3.1",
+		"vite-tsconfig-paths": "6.0.4"
+	},
 	"devDependencies": {
-		"@biomejs/biome": "2.3.2",
-		"@types/node": "24.9.2",
-		"@types/react": "19.2.2",
-		"@types/react-dom": "19.2.2",
-		"@types/react-lazy-load-image-component": "1.6.4",
+		"@biomejs/biome": "2.3.11",
+		"@types/node": "25.0.9",
+		"@types/react": "19.2.8",
+		"@types/react-dom": "19.2.3",
+		"@types/react-lazy-load-image-component": "1.6.5",
 		"@types/react-router-dom": "5.3.3",
 		"@types/react-toggle": "4.0.5",
-		"@types/use-persisted-state": "0.3.5",
-		"@vitejs/plugin-react-swc": "4.2.0",
+		"@vitejs/plugin-react-swc": "4.2.2",
 		"typescript": "5.9.3"
 	}
 }

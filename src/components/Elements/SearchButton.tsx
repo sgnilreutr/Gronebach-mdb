@@ -10,10 +10,14 @@ const preLoadSearch = () => {
 
 export function Searchbutton() {
   return (
-    <Link to={{ pathname: ROUTES.search }} onFocus={preLoadSearch} onMouseOver={preLoadSearch} className="cursor-pointer">
-      <button className='flex flex-row gap-2 md:mx-0 ml-2 mr-4' type='button'>
+    <Link
+      to={{ pathname: ROUTES.search }}
+      onFocus={preLoadSearch}
+      onMouseOver={preLoadSearch}
+      className='cursor-pointer'>
+      <button className='flex flex-row gap-2' type='button'>
         <FiSearch size={24} />
-        <p>{SEARCH}</p>
+        <p className='hidden md:block'>{SEARCH}</p>
       </button>
     </Link>
   )

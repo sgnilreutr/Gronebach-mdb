@@ -1,1 +1,145 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-bright-blue-400: #0058ff;
+  --color-bright-blue-500: #004ddf;
+  --color-text-lm: #353535;
+  --color-text-dm: rgba(238, 238, 238, 0.85);
+  --color-background-dm: #0f0f0f;
+  --color-background-lm: #ededed;
+  --color-after-purple: #7600ff;
+
+  --font-family-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  --font-family-mono: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+
+  --font-size-xs: 0.78rem;
+  --font-size-xs--line-height: 1rem;
+  --font-size-sm: 0.875rem;
+  --font-size-sm--line-height: 1.25rem;
+  --font-size-base: 1rem;
+  --font-size-base--line-height: 1.5rem;
+  --font-size-lg: 1.125rem;
+  --font-size-lg--line-height: 1.75rem;
+  --font-size-xl: 1.25rem;
+  --font-size-xl--line-height: 1.75rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-2xl--line-height: 2rem;
+  --font-size-3xl: 1.875rem;
+  --font-size-3xl--line-height: 2.25rem;
+  --font-size-4xl: 2.25rem;
+  --font-size-4xl--line-height: 2.5rem;
+  --font-size-5xl: 3rem;
+  --font-size-5xl--line-height: 1;
+  --font-size-6xl: 3.75rem;
+  --font-size-6xl--line-height: 1;
+  --font-size-7xl: 4.5rem;
+  --font-size-7xl--line-height: 1;
+  --font-size-8xl: 6rem;
+  --font-size-8xl--line-height: 1;
+  --font-size-9xl: 8rem;
+  --font-size-9xl--line-height: 1;
+
+  --animate-wiggle: wiggle 0.5s ease-in infinite;
+  --animate-slow-reveal: reveal 1.8s ease-in;
+
+  @keyframes wiggle {
+    0% {
+      transform: rotateZ(0.356deg) translateZ(0);
+    }
+    10% {
+      transform: rotateZ(1.856deg) translateZ(0);
+    }
+    20% {
+      transform: rotateZ(0.656deg) translateZ(0);
+    }
+    30% {
+      transform: rotateZ(0.256deg) translateZ(0);
+    }
+    40% {
+      transform: rotateZ(-0.156deg) translateZ(0);
+    }
+    50% {
+      transform: rotateZ(-0.356deg) translateZ(0);
+    }
+    60% {
+      transform: rotateZ(-1.656deg) translateZ(0);
+    }
+    70% {
+      transform: rotateZ(-1.856deg) translateZ(0);
+    }
+    80% {
+      transform: rotateZ(-0.556deg) translateZ(0);
+    }
+    90% {
+      transform: rotateZ(-0.256deg) translateZ(0);
+    }
+    100% {
+      transform: rotateZ(0deg) translateZ(0);
+    }
+  }
+
+  @keyframes reveal {
+    0% {
+      opacity: 0;
+      user-select: none;
+      pointer-events: none;
+    }
+    70% {
+      opacity: 1;
+      user-select: auto;
+      pointer-events: auto;
+    }
+    100% {
+      opacity: 1;
+      user-select: auto;
+      pointer-events: auto;
+    }
+  }
+}
+
+@layer utilities {
+  .all-unset {
+    all: unset;
+  }
+
+  .hs-scroll {
+    scrollbar-width: none;
+  }
+  
+  .hs-scroll::-webkit-scrollbar {
+    width: 0;
+  }
+  
+  .hs::before,
+  .hs::after {
+    content: '';
+    width: 10px;
+  }
+}
+
+@layer base {
+  body {
+    margin: 0;
+    font-family: var(--font-family-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: var(--color-background-lm);
+    color: var(--color-text-lm);
+    transition: color 0.2s ease-out 0s, background 0.2s ease-out 0s;
+  }
+
+  body.dark {
+    color: var(--color-text-dm);
+    background-color: var(--color-background-dm);
+  }
+
+  code {
+    font-family: var(--font-family-mono);
+  }
+
+  input:focus {
+    outline: none;
+  }
+}

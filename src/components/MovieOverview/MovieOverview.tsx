@@ -1,30 +1,35 @@
-import { useContext } from 'react'
-import './MovieOverview.scss'
 import { Link, useLocation } from 'react-router-dom'
-
-import { MovieDatabaseContext } from '../../context/MovieDatabaseContext'
 import { filteredList } from '../../utils/filteredMovieList'
 import { DetailHeader } from '../Header/DetailHeader'
 import { MovieListItem } from './MovieListItem'
-import { ALL_CATEGORY_VALUE, NO_ITEMS, LINK_MISSING_TITLE, LOADING } from '../../constants/globalConstants'
+import { ALL_CATEGORY_VALUE, NO_ITEMS, LINK_MISSING_TITLE } from '../../constants/globalConstants'
+import type { Movie } from '../../data/dataTypes'
 
-const MovieOverview = () => {
+function derivePartialLocation(pathname: string): Array<string> | null {
+  const splittedPathname = pathname.split('/')
+  if (splittedPathname.length === 0) {
+    return null
+  } else {
+    return splittedPathname
+  }
+}
+
+export default function MovieOverview({ allMovies }: { allMovies: Array<Movie> }) {
   const location = useLocation()
-  const { allMovies } = useContext(MovieDatabaseContext)
-  const partLoc = location.pathname.split('/')
+  const possiblePartialLocation = derivePartialLocation(location.pathname)
 
   const renderMovies = () => {
-    if (!allMovies) {
+    if (possiblePartialLocation === null) {
       return null
     }
     const staticFilteredList = filteredList({
-      activeFilter: partLoc[2],
+      activeFilter: possiblePartialLocation.at(2),
       movies: allMovies,
     })
     return (
       <div>
-        <h1>Alle {partLoc[2] !== ALL_CATEGORY_VALUE && partLoc[2]} items</h1>
-        <div className='movie-grid'>
+        <h1>Alle {possiblePartialLocation.at(2) !== ALL_CATEGORY_VALUE && possiblePartialLocation.at(2)} items</h1>
+        <div className='grid justify-items-center grid-cols-[repeat(auto-fill,minmax(120px,1fr))] gap-y-4 gap-x-0 md:grid-cols-[repeat(auto-fill,minmax(256px,1fr))] md:gap-y-[68px] md:gap-x-[68px] grid-rows-[auto]'>
           {staticFilteredList.length > 0 ? (
             staticFilteredList.map(({ Title, imdbID, Poster }) => (
               <div key={imdbID}>
@@ -49,11 +54,9 @@ const MovieOverview = () => {
   }
 
   return (
-    <div>
-      <DetailHeader />
-      {allMovies.length > 0 ? renderMovies() : <h2>{LOADING}</h2>}
+    <div className='relative'>
+      <DetailHeader allMovies={allMovies} />
+      {renderMovies()}
     </div>
   )
 }
-
-export default MovieOverview

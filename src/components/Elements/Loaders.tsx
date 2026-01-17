@@ -1,7 +1,7 @@
-import './Loaders.scss'
+const defaulLoaderClass = 'h-[100px] text-center mx-auto inline-block align-top'
 
 export const CircleSmallLoader = ({ size }: { size?: number }) => (
-  <div className='loader loader--style1' title='0'>
+  <div className={`${defaulLoaderClass} loader--style1`} title='0'>
     <svg
       version='1.1'
       id='loader-1'
@@ -11,6 +11,7 @@ export const CircleSmallLoader = ({ size }: { size?: number }) => (
       height={`${size}px`}
       viewBox='0 0 40 40'
       enableBackground='new 0 0 40 40'>
+      <title>loading</title>
       <path
         opacity='0.2'
         fill='#000'
@@ -41,7 +42,7 @@ CircleSmallLoader.defaultProps = {
 }
 
 export const CircleMediumLoader = ({ size }: { size?: number }) => (
-  <div className='loader loader--style2' title='1'>
+  <div className={`${defaulLoaderClass} loader--style2`} title='1'>
     <svg
       version='1.1'
       id='loader-1'
@@ -52,6 +53,7 @@ export const CircleMediumLoader = ({ size }: { size?: number }) => (
       height={`${size}px`}
       viewBox='0 0 50 50'
       enableBackground='new 0 0 50 50;'>
+      <title>loading</title>
       <path
         fill='#000'
         d='M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z'>
@@ -74,7 +76,7 @@ CircleMediumLoader.defaultProps = {
 }
 
 export const CircleLargeLoader = ({ size }: { size?: number }) => (
-  <div className='loader loader--style3' title='2'>
+  <div className={`${defaulLoaderClass} loader--style3`} title='2'>
     <svg
       version='1.1'
       id='loader-1'
@@ -85,6 +87,7 @@ export const CircleLargeLoader = ({ size }: { size?: number }) => (
       height={`${size}px`}
       viewBox='0 0 50 50'
       enableBackground="new '0 0 50 50">
+      <title>loading</title>
       <path
         fill='#000'
         d='M43.935,25.145c0-10.318-8.364-18.683-18.683-18.683c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615c8.072,0,14.615,6.543,14.615,14.615H43.935z'>
@@ -107,7 +110,7 @@ CircleLargeLoader.defaultProps = {
 }
 
 export const BarsDownLoader = ({ size }: { size?: number }) => (
-  <div className='loader loader--style4' title='3'>
+  <div className={`${defaulLoaderClass} loader--style4`} title='3'>
     <svg
       version='1.1'
       id='Layer_1'
@@ -118,6 +121,7 @@ export const BarsDownLoader = ({ size }: { size?: number }) => (
       height={`${size}px`}
       viewBox='0 0 24 24'
       enableBackground='new 0 0 50 50;'>
+      <title>loading</title>
       <rect x='0' y='0' width='4' height='7' fill='#333'>
         <animateTransform
           attributeType='xml'
@@ -160,7 +164,7 @@ BarsDownLoader.defaultProps = {
 }
 
 export const BarsUpDownLoader = ({ size }: { size?: number }) => (
-  <div className='loader loader--style5' title='4'>
+  <div className={`${defaulLoaderClass} loader--style5`} title='4'>
     <svg
       version='1.1'
       id='Layer_1'
@@ -171,6 +175,7 @@ export const BarsUpDownLoader = ({ size }: { size?: number }) => (
       height={`${size}px`}
       viewBox='0 0 24 30'
       enableBackground='new 0 0 50 50'>
+      <title>loading</title>
       <rect x='0' y='0' width='4' height='10' fill='#333'>
         <animateTransform
           attributeType='xml'
@@ -213,7 +218,7 @@ BarsUpDownLoader.defaultProps = {
 }
 
 export const BarsPulseSizeLoader = ({ size }: { size?: number }) => (
-  <div className='loader loader--style6' title='5'>
+  <div className={`${defaulLoaderClass} loader--style6`} title='5'>
     <svg
       version='1.1'
       id='Layer_1'
@@ -224,6 +229,7 @@ export const BarsPulseSizeLoader = ({ size }: { size?: number }) => (
       height={`${size}px`}
       viewBox='0 0 24 30'
       enableBackground='new 0 0 50 50'>
+      <title>loading</title>
       <rect x='0' y='13' width='4' height='5' fill='#333'>
         <animate
           attributeName='height'
@@ -286,7 +292,7 @@ BarsPulseSizeLoader.defaultProps = {
 }
 
 export const BarsPulseDarkLoader = ({ size }: { size?: number }) => (
-  <div className='loader loader--style7' title='6'>
+  <div className={`${defaulLoaderClass} loader--style7`} title='6'>
     <svg
       version='1.1'
       id='Layer_1'
@@ -297,6 +303,7 @@ export const BarsPulseDarkLoader = ({ size }: { size?: number }) => (
       height={`${size}px`}
       viewBox='0 0 24 30'
       enableBackground='new 0 0 50 50'>
+      <title>loading</title>
       <rect x='0' y='0' width='4' height='20' fill='#333'>
         <animate
           attributeName='opacity'
@@ -335,7 +342,7 @@ BarsPulseDarkLoader.defaultProps = {
 }
 
 export const BarsPulseSizeDarkLoader = ({ size }: { size?: number }) => (
-  <div className='loader loader--style8' title='7'>
+  <div className={`${defaulLoaderClass} loader--style8`} title='7'>
     <svg
       version='1.1'
       id='Layer_1'
@@ -346,6 +353,7 @@ export const BarsPulseSizeDarkLoader = ({ size }: { size?: number }) => (
       height={`${size}px`}
       viewBox='0 0 24 30'
       enableBackground='new 0 0 50 50'>
+      <title>loading</title>
       <rect x='0' y='10' width='4' height='10' fill='#333' opacity='0.2'>
         <animate
           attributeName='opacity'

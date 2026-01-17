@@ -1,9 +1,7 @@
-import { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
-
-import { MovieDatabaseContext } from '../../context/MovieDatabaseContext'
 import { randomMovie } from '../../utils/randomMovie'
-import './RandomButton.scss'
+import type { Movie } from '../../data/dataTypes'
+import { GiPerspectiveDiceSixFacesRandom } from 'react-icons/gi'
 
 const BUTTON_TEXT = 'Suprise me!'
 
@@ -11,15 +9,14 @@ const preLoadRandomIntro = () => {
   import('../RandomMovieIntro/randomMovieIntro')
 }
 
-export function RandomButton() {
-  const { allMovies } = useContext(MovieDatabaseContext)
+export function RandomButton({ allMovies }: { allMovies: Array<Movie> }) {
   const navigate = useNavigate()
 
   const openIntroPage = (imdbID: string) => {
     navigate(`/random/${imdbID}/`)
   }
 
-  const fetchRandomMovie = () => {
+  const fetchRandomMovie = (allMovies: Movie[]) => {
     const movie = randomMovie(allMovies)
     if (movie) {
       openIntroPage(movie.imdbID)
@@ -29,14 +26,17 @@ export function RandomButton() {
   }
 
   return (
-    <div className='randombutton_container'>
+    <div className='w-full flex items-center justify-center'>
       <button
-        className='random'
-        onClick={() => fetchRandomMovie()}
+        className='hover:animate-wiggle border border-bright-blue-500 rounded shadow-md px-3 py-2 bg-bright-blue-400 text-white font-semibold'
+        onClick={() => fetchRandomMovie(allMovies)}
         onFocus={preLoadRandomIntro}
         onMouseOver={preLoadRandomIntro}
         type='button'>
-        {BUTTON_TEXT}
+        <div className='grid grid-cols-1 gap-2 md:grid-cols-[24px_1fr]'>
+          <GiPerspectiveDiceSixFacesRandom size='24' />
+          <span className='hidden md:block justify-left'>{BUTTON_TEXT}</span>
+        </div>
       </button>
     </div>
   )
