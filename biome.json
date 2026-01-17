@@ -27,6 +27,15 @@
       "recommended": true
     }
   },
+  "css": {
+    "parser": {
+      "cssModules": true,
+      "tailwindDirectives": true
+    },
+    "formatter": {
+      "quoteStyle": "single"
+    }
+  },
   "javascript": {
     "formatter": {
       "jsxQuoteStyle": "single",

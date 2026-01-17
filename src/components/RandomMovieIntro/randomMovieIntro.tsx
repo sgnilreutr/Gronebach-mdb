@@ -1,5 +1,4 @@
 import { useEffect } from 'react'
-import './randomMovieIntro.scss'
 import { useNavigate, useParams } from 'react-router-dom'
 
 import {
@@ -48,11 +47,11 @@ export default function RandomMovieIntro() {
     setTimeout(() => {
       openOverviewPage()
     }, MAX_TIME)
-  }, [])
+  }, [movieID, navigate])
 
   return (
-    <div className='wrapper'>
-      <div className='loader_container'>
+    <div className='w-full h-[100vh] flex items-center justify-center'>
+      <div className='flex flex-col justify-center gap-2'>
         <h1>{randomText()}</h1>
         {randomLoader()}
       </div>

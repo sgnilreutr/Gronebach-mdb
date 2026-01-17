@@ -1,5 +1,4 @@
 import { useContext, useMemo } from 'react'
-import './Search.scss'
 import { Link } from 'react-router-dom'
 
 import { MovieDatabaseContext } from '../../context/MovieDatabaseContext'
@@ -7,17 +6,15 @@ import { CloseButton } from '../Elements/CloseButton'
 import { SearchBar } from '../Elements/SearchBar'
 import { MovieListItem } from '../MovieOverview/MovieListItem'
 import type { Movie } from '../../data/dataTypes'
-import { NO_ITEMS, LINK_MISSING_TITLE, LOADING } from '../../constants/globalConstants'
+import { NO_ITEMS, LINK_MISSING_TITLE } from '../../constants/globalConstants'
 import { useDebounce } from '../../hooks/useDebounce'
 
-const START_SEARCHING = 'Start met zoeken'
-
-interface RenderSearchMoviesProps {
+interface SearchMoviesProps {
   movies: Array<Movie>
   searchTerm: string
 }
 
-function RenderSearchMovies({ movies, searchTerm }: RenderSearchMoviesProps) {
+function SearchMovies({ movies, searchTerm }: SearchMoviesProps) {
   const debouncedSearchTerm = useDebounce(searchTerm, 500)
   const filteredMovies = movies.filter(
     ({ Title, Year, Type, Runtime, Genre, Director, Actors, Country, Plot, imdbRating }) =>
@@ -49,33 +46,35 @@ function RenderSearchMovies({ movies, searchTerm }: RenderSearchMoviesProps) {
           />
         ))
       ) : (
-        <div className='search-no-results'>
+        <div className='w-full col-span-3'>
           <p>{NO_ITEMS}</p>
-          <Link to='/missing'>{LINK_MISSING_TITLE}</Link>
+          <Link to='/missing' className='font-semibold underline'>
+            {LINK_MISSING_TITLE}
+          </Link>
         </div>
       ),
     [filteredMovies]
   )
 
   return (
-    <div className='movie-grid' key={filteredMovies.length + debouncedSearchTerm}>
+    <div
+      className='mx-3 lg:mx-0 grid justify-items-center grid-cols-[repeat(auto-fill,minmax(120px,1fr))] gap-y-4 gap-x-0 md:grid-cols-[repeat(auto-fill,minmax(256px,1fr))] md:gap-y-[68px] md:gap-x-[68px] grid-rows-[auto]'
+      key={filteredMovies.length + debouncedSearchTerm}>
       {memoizedFilteredMovies}
     </div>
   )
 }
 
-export default function Search() {
-  const { allMovies, searchTerm } = useContext(MovieDatabaseContext)
+export default function Search({ allMovies }: { allMovies: Array<Movie> }) {
+  const { searchTerm } = useContext(MovieDatabaseContext)
 
   return (
-    <div>
-      <div className='search-options'>
+    <div className='flex flex-col gap-2'>
+      <div className='mx-3 lg:mx-0 flex flex-row items-center gap-4 px-1'>
         <SearchBar />
         <CloseButton />
       </div>
-      {allMovies.length === 0 ? <h2>{LOADING}</h2> : null}
-      {allMovies.length > 0 && searchTerm ? <RenderSearchMovies movies={allMovies} searchTerm={searchTerm} /> : null}
-      {allMovies.length > 0 && !searchTerm ? <h2 className='search-page-placeholder'>{START_SEARCHING}</h2> : null}
+      <SearchMovies movies={allMovies} searchTerm={searchTerm} />
     </div>
   )
 }

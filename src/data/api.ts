@@ -1,17 +1,9 @@
 import axios from 'axios'
 
-import imageFallback from '../img/placeholder-image.png'
 import type { Movie } from './dataTypes'
 
-export const options = {
-  headers: {
-    'x-api-key': import.meta.env.REACT_APP_IMDB_API_KEY!,
-  },
-}
-
 export type ApiClient = {
-  getMovies: () => Promise<Array<Movie>>
-  // getMovieTrailer: (movieId: string) => Promise<MovieTrailer>
+  getMovies: () => Promise<Array<Movie>> | null
 }
 
 export const createApiClient = (): ApiClient => ({
@@ -19,15 +11,15 @@ export const createApiClient = (): ApiClient => ({
     try {
       const response = await axios.get('/all_movies_20230318_11-52-08-filtered.json')
       return response.data
-    } catch (err) {
+    } catch {
       return null
     }
   },
 })
 
-export function getMoviePosterUrl(Poster: string) {
-  if (Poster === 'N/A') {
-    return imageFallback
+export function getMoviePosterUrl(poster: string): string | undefined {
+  if (poster === 'N/A') {
+    return undefined
   }
-  return `${Poster}`
+  return poster
 }

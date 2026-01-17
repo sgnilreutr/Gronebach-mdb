@@ -1,30 +1,50 @@
-import { type Dispatch, type ReactNode, type SetStateAction, createContext, useEffect, useMemo, useState } from 'react'
+import { type Dispatch, type ReactNode, type SetStateAction, createContext, useEffect, useState } from 'react'
 
 import type { Movie } from '../data/dataTypes'
 import { createApiClient } from '../data/api'
-import type { MovieCategoryOptions } from '../constants/globalConstants'
+import {
+  GENERIC_LOADING_STATES,
+  type GenericLoadingState,
+  type MovieCategoryOptions,
+} from '../constants/globalConstants'
 import type { CategoryOptions } from '../components/Header/HeaderOptions'
 
 interface MovieDatabaseContextHandelers {
-  setActiveCategory: Dispatch<SetStateAction<CategoryOptions>>
-  setAllMovies: Dispatch<SetStateAction<Array<Movie>>>
-  setOverviewQuery: Dispatch<SetStateAction<MovieCategoryOptions | null>>
-  setSearchTerm: Dispatch<SetStateAction<string>>
+  setMovieDatabaseContextData: Dispatch<SetStateAction<MovieDatabaseContextData>>
 }
 
-// TODO: Narrow down the category type
-interface MovieDatabaseContextData {
+interface UserInteractions {
   activeCategory: CategoryOptions
-  allMovies: Array<Movie>
   overviewQuery: MovieCategoryOptions | null
   searchTerm: string
 }
 
-export type MovieDatabaseContextProps = MovieDatabaseContextData & MovieDatabaseContextHandelers
+export type MovieDatabaseData =
+  | {
+      movieDatabaseLoadingState: GenericLoadingState & 'idle'
+      allMovies: null
+    }
+  | {
+      movieDatabaseLoadingState: GenericLoadingState & 'pending'
+      allMovies: null
+    }
+  | {
+      movieDatabaseLoadingState: GenericLoadingState & 'error'
+      allMovies: null
+    }
+  | {
+      movieDatabaseLoadingState: GenericLoadingState & 'success'
+      allMovies: Array<Movie>
+    }
 
-export const defaultState: MovieDatabaseContextData = {
+type MovieDatabaseContextData = MovieDatabaseData & UserInteractions
+
+type MovieDatabaseContextProps = MovieDatabaseContextData & MovieDatabaseContextHandelers
+
+const defaultState: MovieDatabaseContextData = {
+  movieDatabaseLoadingState: 'idle',
   activeCategory: '',
-  allMovies: [],
+  allMovies: null,
   overviewQuery: null,
   searchTerm: '',
 }
@@ -36,39 +56,36 @@ interface MovieProviderProps {
 }
 
 export function MovieProvider({ children }: MovieProviderProps) {
-  const [allMovies, setAllMovies] = useState<MovieDatabaseContextProps['allMovies']>(defaultState.allMovies)
-  const [activeCategory, setActiveCategory] = useState<MovieDatabaseContextProps['activeCategory']>(
-    defaultState.activeCategory
-  )
-  const [overviewQuery, setOverviewQuery] = useState<MovieDatabaseContextProps['overviewQuery']>(
-    defaultState.overviewQuery
-  )
-  const [searchTerm, setSearchTerm] = useState<MovieDatabaseContextProps['searchTerm']>(defaultState.searchTerm)
+  const [movieDatabaseContextData, setMovieDatabaseContextData] = useState<MovieDatabaseContextData>(defaultState)
 
   useEffect(() => {
     const fetchData = async () => {
+      setMovieDatabaseContextData((prevState) => ({
+        ...prevState,
+        movieDatabaseLoadingState: GENERIC_LOADING_STATES.pending,
+        allMovies: null,
+      }))
       const movies = await createApiClient().getMovies()
-      if (!movies.length) {
+      if (movies === null || movies.length === 0) {
+        setMovieDatabaseContextData((prevState) => ({
+          ...prevState,
+          movieDatabaseLoadingState: GENERIC_LOADING_STATES.error,
+          allMovies: null,
+        }))
         return
       }
-      setAllMovies(movies)
+      setMovieDatabaseContextData((prevState) => ({
+        ...prevState,
+        movieDatabaseLoadingState: GENERIC_LOADING_STATES.success,
+        allMovies: movies,
+      }))
     }
-    fetchData()
+    void fetchData()
   }, [])
 
-  const contextValue = useMemo(
-    () => ({
-      activeCategory,
-      allMovies,
-      overviewQuery,
-      searchTerm,
-      setActiveCategory,
-      setAllMovies,
-      setOverviewQuery,
-      setSearchTerm,
-    }),
-    [activeCategory, allMovies, overviewQuery, searchTerm]
+  return (
+    <MovieDatabaseContext.Provider value={{ ...movieDatabaseContextData, setMovieDatabaseContextData }}>
+      {children}
+    </MovieDatabaseContext.Provider>
   )
-
-  return <MovieDatabaseContext.Provider value={contextValue}>{children}</MovieDatabaseContext.Provider>
 }

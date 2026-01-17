@@ -1,11 +1,10 @@
 import type { Movie } from '../data/dataTypes'
 
-export const randomMovie = (movies: Array<Movie>) => {
+export const randomMovie = (movies: Array<Movie>): Movie | undefined => {
   const randomNumber = Math.floor(Math.random() * (movies.length - 1)) + 1
-  return movies[randomNumber]
+  return movies.at(randomNumber)
 }
 
-//  It takes out the movie from the pool of possibilties once it is taken
 export const tenRandomMovies = (movies: Array<Movie>) => {
   if (movies.length <= 10) {
     return [...movies].sort(() => 0.5 - Math.random())

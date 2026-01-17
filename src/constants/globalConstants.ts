@@ -19,8 +19,8 @@ export type MovieCategoryOptions = (typeof MOVIE_CATEGORIES)[number]['filter'] |
 
 export const GENERIC_LOADING_STATES = {
   idle: 'idle',
-  loading: 'loading',
-  loaded: 'loaded',
+  pending: 'pending',
+  success: 'success',
   error: 'error',
 } as const
 

@@ -1,5 +1,6 @@
 import { useRef, useState, useEffect, type ReactNode, useCallback } from 'react'
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'
+import { classNames } from '../../utils/classNames'
 
 interface ScrollMenuProps {
   children: ReactNode
@@ -42,21 +43,23 @@ export function ScrollMenu({ children, className = '' }: ScrollMenuProps) {
   }
 
   return (
-    <div className={`relative group ${className}`}>
+    <div className={classNames('relative group', className)}>
       {canScrollLeft && (
         <button
           onClick={() => scroll('left')}
-          className='absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white shadow-lg rounded-full p-2 transition-opacity opacity-0 group-hover:opacity-100'
+          className='absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/40 dark:bg-neutral-800/40 hover:dark:bg-neutral-700 hover:bg-white shadow-lg rounded-full p-2 transition-all opacity-0 group-hover:opacity-100 ml-1'
           aria-label='Scroll left'
           type='button'>
-          <FaChevronLeft size={30} />
+          <div className='mr-1'>
+            <FaChevronLeft size={30} />
+          </div>
         </button>
       )}
 
       <div
         ref={scrollRef}
         onScroll={checkScroll}
-        className='flex gap-6 overflow-x-auto scrollbar-hide scroll-smooth py-8'
+        className='flex gap-6 overflow-x-auto scrollbar-hide scroll-smooth py-4 px-4 lg:py-8 overflow-y-hidden'
         style={{
           scrollbarWidth: 'none',
           msOverflowStyle: 'none',
@@ -67,10 +70,12 @@ export function ScrollMenu({ children, className = '' }: ScrollMenuProps) {
       {canScrollRight && (
         <button
           onClick={() => scroll('right')}
-          className='absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white shadow-lg rounded-full p-2 transition-opacity opacity-0 group-hover:opacity-100'
+          className='absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/40 dark:bg-neutral-800/40 hover:dark:bg-neutral-700 hover:bg-white shadow-lg rounded-full p-2 transition-all opacity-0 group-hover:opacity-100 mr-1'
           aria-label='Scroll right'
           type='button'>
-          <FaChevronRight size={30} />
+          <div className='ml-1'>
+            <FaChevronRight size={30} />
+          </div>
         </button>
       )}
     </div>

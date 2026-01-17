@@ -1,5 +1,5 @@
+import type { Movie } from '../../data/dataTypes'
 import { DetailHeader } from '../Header/DetailHeader'
-import './MissingTitles.scss'
 
 const MISSING_TITLES = [
   'Attack on the Queen',
@@ -19,10 +19,10 @@ const MISSING_TITLES = [
 const MISSING_HEADER = 'Ontbrekende titels'
 const MISSING_SUB = 'Onderstaande titels konden online niet gevonden worden.'
 
-export default function MissingTitles() {
+export default function MissingTitles({ allMovies }: { allMovies: Array<Movie> }) {
   return (
     <div>
-      <DetailHeader />
+      <DetailHeader allMovies={allMovies} />
       <div>
         <h1>
           {MISSING_HEADER}{' '}
@@ -32,7 +32,7 @@ export default function MissingTitles() {
         </h1>
         <p>{MISSING_SUB}</p>
         {MISSING_TITLES.map((title) => (
-          <li key={title.substr(0, 4)} className='missing_title'>
+          <li key={title.substr(0, 4)} className='list-none px-1'>
             {title}
           </li>
         ))}
