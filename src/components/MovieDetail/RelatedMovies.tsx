@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react'
 import type { Movie } from '../../data/dataTypes'
 import { tenRandomMovies } from '../../utils/randomMovie'
 import { MovieList } from '../MovieOverview/MovieList'
@@ -9,24 +8,24 @@ interface RelatedMoviesProps {
   allMovies: Array<Movie>
 }
 
-const regex = /,/
+function getRelatedMovies(activeMovie: string, genre: string, allMovies: Array<Movie>): Movie[] {
+  const regex = /,/
+  const hasComma = regex.test(genre)
 
-export function RelatedMovies({ genre, activeMovie, allMovies }: RelatedMoviesProps) {
-  const [relatedMovies, setRelatedMovies] = useState<Array<Movie>>([])
+  const query = hasComma ? genre.split(',') : genre
+  const [firstListedGenre] = query
 
-  useEffect(() => {
-    const hasComma = regex.test(genre)
-    const query = hasComma ? genre.split(',') : genre
-    const [firstListedGenre] = query
-
-    if (!firstListedGenre) {
-      return
-    }
+  if (firstListedGenre === undefined) {
+    return []
+  } else {
     const filteredMovies = allMovies.filter(
       ({ imdbID, Genre }) => imdbID !== activeMovie && Genre.toLowerCase().includes(firstListedGenre.toLowerCase())
     )
-    setRelatedMovies(tenRandomMovies(filteredMovies))
-  }, [genre, allMovies, activeMovie])
+    return tenRandomMovies(filteredMovies)
+  }
+}
 
-  return <div>{relatedMovies.length > 0 && <MovieList movies={relatedMovies} />}</div>
+export function RelatedMovies({ genre, activeMovie, allMovies }: RelatedMoviesProps) {
+  const relatedMovies = getRelatedMovies(activeMovie, genre, allMovies)
+  return <MovieList movies={relatedMovies} />
 }

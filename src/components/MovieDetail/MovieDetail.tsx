@@ -8,11 +8,11 @@ import { DetailHeader } from '../Header/DetailHeader'
 // import { MovieTrailerComponent, OpenTrailerButton } from './MovieTrailer'
 import { RelatedMovies } from './RelatedMovies'
 import { REPORT_LINK, RATING, ACTORS, DIRECTOR, GENRE, RUNTIME, RELATED_MOVIES } from './MovieDetailConstants'
-import { LOADING, COULD_NOT_LOAD } from '../../constants/globalConstants'
+import { COULD_NOT_LOAD } from '../../constants/globalConstants'
 
 interface RenderDetailProps {
   movie: Movie
-  movieID: string | undefined
+  movieID: string
   allMovies: Array<Movie>
 }
 
@@ -86,7 +86,7 @@ const RenderDetail = ({ movie, movieID, allMovies }: RenderDetailProps) => {
 
       <div className='md:mt-16 mt-4 flex flex-col gap-3 animate-slow-reveal'>
         <h2>{RELATED_MOVIES}</h2>
-        {movieID ? <RelatedMovies allMovies={allMovies} genre={Genre} activeMovie={movieID} /> : null}
+        <RelatedMovies allMovies={allMovies} genre={Genre} activeMovie={movieID} />
       </div>
     </div>
   )
@@ -101,18 +101,18 @@ function MovieDetailWrapper({ children, allMovies }: { children?: React.JSX.Elem
   )
 }
 
+function getMovieDetails(allMovies: Array<Movie>, movieID: string | undefined): Movie | undefined {
+  if (movieID === undefined) {
+    return undefined
+  }
+  return allMovies.find(({ imdbID }) => imdbID.toLowerCase().includes(`${movieID}`))
+}
+
 export default function MovieDetail({ allMovies }: { allMovies: Array<Movie> }) {
   const { movieID } = useParams()
+  const movie = getMovieDetails(allMovies, movieID)
 
-  const movie = movieID ? allMovies.find(({ imdbID }) => imdbID.toLowerCase().includes(`${movieID}`)) : 'loading'
-
-  if (movie === 'loading') {
-    return (
-      <MovieDetailWrapper allMovies={allMovies}>
-        <h2>{LOADING}</h2>
-      </MovieDetailWrapper>
-    )
-  } else if (movie === undefined) {
+  if (movie === undefined || movieID === undefined) {
     return (
       <MovieDetailWrapper allMovies={allMovies}>
         <h2>{COULD_NOT_LOAD}</h2>

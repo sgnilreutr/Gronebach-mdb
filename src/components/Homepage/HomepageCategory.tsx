@@ -7,11 +7,25 @@ import { tenRandomMovies } from '../../utils/randomMovie'
 import { MovieList } from '../MovieOverview/MovieList'
 import type { MovieCategoryOptions } from '../../constants/globalConstants'
 import { MovieDatabaseContext } from '../../context/MovieDatabaseContext'
+import type { CategoryOptions } from '../Header/HeaderOptions'
 
 interface HomepageCategoryProps {
   categoryFilter: MovieCategoryOptions
   categoryName: string
   movies: Array<Movie>
+}
+
+function sliceMovies(activeCategory: CategoryOptions, categoryFilter: MovieCategoryOptions, movies: Array<Movie>) {
+  const moviesFiltered = movies.filter(({ Type }) => Type.toLowerCase().includes(activeCategory.toLowerCase()))
+  const sectionMovieList = filteredList({
+    activeFilter: categoryFilter,
+    movies,
+  })
+
+  if (moviesFiltered.length < 1 || sectionMovieList.length < 1) {
+    return []
+  }
+  return tenRandomMovies(sectionMovieList)
 }
 
 export function HomepageCategory({ categoryFilter, categoryName, movies }: HomepageCategoryProps) {
@@ -23,18 +37,6 @@ export function HomepageCategory({ categoryFilter, categoryName, movies }: Homep
     navigate(`/overview/${value}`)
   }
 
-  const sliceMovies = () => {
-    const moviesFiltered = movies.filter(({ Type }) => Type.toLowerCase().includes(activeCategory.toLowerCase()))
-    const sectionMovieList = filteredList({
-      activeFilter: categoryFilter,
-      movies,
-    })
-    if (moviesFiltered.length < 1 || sectionMovieList.length < 1) {
-      return []
-    }
-    return tenRandomMovies(sectionMovieList)
-  }
-
   return (
     <div className='flex flex-col gap-3'>
       <button
@@ -44,7 +46,7 @@ export function HomepageCategory({ categoryFilter, categoryName, movies }: Homep
         <h2 className='ml-2 md:ml-0 md:text-2xl group'>{categoryName}</h2>
         <FiChevronRight className='opacity-50' size={18} />
       </button>
-      <MovieList movies={sliceMovies()} />
+      <MovieList movies={sliceMovies(activeCategory, categoryFilter, movies)} />
     </div>
   )
 }
