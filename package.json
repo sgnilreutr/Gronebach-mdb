@@ -4,7 +4,7 @@
 	"type": "module",
 	"homepage": "/",
 	"engines": {
-		"node": ">=22.0.0"
+		"node": ">=24.0.0"
 	},
 	"scripts": {
 		"build": "CI=false && tsc && vite build",
